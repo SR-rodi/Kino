@@ -13,8 +13,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/di" />
-            <option value="$PROJECT_DIR$/homepage" />
             <option value="$PROJECT_DIR$/kinopoisk_api" />
+            <option value="$PROJECT_DIR$/screen_homepage" />
+            <option value="$PROJECT_DIR$/screen_listpage" />
           </set>
         </option>
       </GradleProjectSettings>

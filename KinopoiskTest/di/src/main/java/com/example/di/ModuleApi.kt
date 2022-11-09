@@ -1,16 +1,13 @@
 package com.example.di
 
-import com.example.core.BASE_URL
-import com.example.homepage.data.repository.NetworkRepositoryHomePage
-import com.example.homepage.presentation.HomeViewModel
-import com.example.kinopoisk_api.FilmsApi
-import com.example.kinopoisk_api.createFilmsApi
-import org.koin.androidx.viewmodel.dsl.viewModel
+import com.example.kinopoisk_api.BASE_URL
+import com.example.kinopoisk_api.domine.api.FilmsApi
+import com.example.kinopoisk_api.domine.repo.NetworkRepository
+import com.example.kinopoisk_api.domine.repo.PagingRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 val filmsApi = module {
 
@@ -26,11 +23,11 @@ val filmsApi = module {
         val retrofit = get<Retrofit>(named("retrofit"))
         retrofit.create(FilmsApi::class.java)
     }
+}
 
+val networkRepository =  module {
+    single { NetworkRepository(filmsApi = get()) }
 
-    single { NetworkRepositoryHomePage(filmsApi = get()) }
+    single { PagingRepository(get()) }
 
-    viewModel<HomeViewModel>{
-        HomeViewModel(networkRepository =  get())
-    }
 }

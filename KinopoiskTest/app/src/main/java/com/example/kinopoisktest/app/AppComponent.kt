@@ -2,10 +2,9 @@ package com.example.kinopoisktest.app
 
 import android.app.Application
 import com.example.di.filmsApi
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
+import com.example.di.networkRepository
+import com.example.di.viewModel
 import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
 
 class AppComponent:Application() {
 
@@ -13,7 +12,7 @@ class AppComponent:Application() {
         super.onCreate()
 
         startKoin{
-            modules(listOf(filmsApi))
+            modules(listOf(filmsApi, viewModel, networkRepository))
         }
     }
 

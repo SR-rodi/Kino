@@ -7,5 +7,18 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.homepage.presentation.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@id/action_homeFragment_to_categoryPageFragment"
+            app:destination="@id/categoryPageFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryPageFragment"
+        android:name="com.example.screen_listpage.CategoryPageFragment"
+        android:label="CategoryPageFragment" >
+        <argument
+            android:name="category"
+            app:argType="com.example.kinopoisk_api.CategoryFilms" />
+    </fragment>
 </navigation>
