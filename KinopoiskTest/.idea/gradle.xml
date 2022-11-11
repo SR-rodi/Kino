@@ -12,10 +12,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/di" />
-            <option value="$PROJECT_DIR$/kinopoisk_api" />
-            <option value="$PROJECT_DIR$/screen_homepage" />
-            <option value="$PROJECT_DIR$/screen_listpage" />
+            <option value="$PROJECT_DIR$/domaine" />
+            <option value="$PROJECT_DIR$/presentation_details" />
+            <option value="$PROJECT_DIR$/presentation_home" />
+            <option value="$PROJECT_DIR$/presentation_profile" />
+            <option value="$PROJECT_DIR$/presentation_search" />
           </set>
         </option>
       </GradleProjectSettings>

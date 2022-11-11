@@ -29,13 +29,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+
+    implementation project(':presentation_home')
+    implementation project(':presentation_details')
+    implementation project(':presentation_search')
+    implementation project(':presentation_profile')
     implementation project(":di")
-    implementation project(':screen_homepage')
-    implementation project(":kinopoisk_api")
-    implementation project(":screen_listpage")
+    implementation project(':domaine')
     implementation project(":core")
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

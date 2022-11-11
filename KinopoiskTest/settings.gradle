@@ -14,8 +14,11 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Kinopoisk Test"
 include ':app'
-include ':screen_homepage'
-include ':kinopoisk_api'
+include ':presentation_home'
+include ':domaine'
 include ':core'
 include ':di'
-include ':screen_listpage'
+include ':presentation_search'
+include ':presentation_profile'
+include ':data'
+include ':presentation_details'
