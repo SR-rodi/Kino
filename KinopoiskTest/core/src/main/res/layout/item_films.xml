@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="4dp"
     android:orientation="vertical"
-    android:id="@+id/item">
+    android:id="@+id/item_card">
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -32,7 +32,7 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
 
             binding.categoryTitle.text = args.category.text
         binding.backArrow.setOnClickListener {
-            findNavController().navigate(CategoryPageFragmentDirections.actionCategoryPageFragmentToHomeFragment())
+            findNavController().navigate(CategoryPageFragmentDirections.actionCategoryPageFragmentToFilmInfoFragment())
         }
     }
 

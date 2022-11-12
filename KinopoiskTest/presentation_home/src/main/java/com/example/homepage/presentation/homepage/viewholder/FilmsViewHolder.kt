@@ -20,15 +20,15 @@ class FilmsViewHolder(private val binding: ItemFilmsBinding) :
             rating.isInvisible = true
         }
 
-        binding.item.setOnClickListener{ clickNextButton() }
+        binding.itemCard.setOnClickListener{ clickNextButton() }
 
     }
 
     fun bindItem(item: BaseFilms, isCategoryFragment:Boolean = false, clickFilms:(id:Int)->Unit,) {
 
         if (isCategoryFragment){
-             binding.item.layoutParams.width = LayoutParams.MATCH_PARENT
-            binding.item.setPadding(8)
+             binding.itemCard.layoutParams.width = LayoutParams.MATCH_PARENT
+            binding.itemCard.setPadding(8)
         }
 
 
@@ -42,7 +42,7 @@ class FilmsViewHolder(private val binding: ItemFilmsBinding) :
             }
             else  rating.isInvisible = true
         }
-        binding.item.setOnClickListener{ clickFilms(item.filmId) }
+        binding.itemCard.setOnClickListener{ clickFilms(item.filmId) }
     }
 
 }
