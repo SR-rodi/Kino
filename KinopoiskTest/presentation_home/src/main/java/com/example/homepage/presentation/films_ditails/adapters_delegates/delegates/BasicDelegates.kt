@@ -1,11 +1,11 @@
 package com.example.homepage.presentation.films_ditails.adapters_delegates.delegates
 
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.data.detailsFilm_page.CategoryInfo
 import com.example.data.detailsFilm_page.model.CategoryAdapter
 import com.example.data.detailsFilm_page.model.*
 import com.example.homepage.databinding.ItemCategoryBinding
 import com.example.homepage.databinding.ItemDescriptionBinding
+import com.example.homepage.presentation.films_ditails.CategoryInfo
 import com.example.homepage.presentation.films_ditails.adapters_delegates.adapters.NestedAdapterInInfo
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 

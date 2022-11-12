@@ -3,7 +3,6 @@ package com.example.homepage.presentation.films_ditails.adapters_delegates.deleg
 import androidx.core.view.isVisible
 import com.example.core.databinding.ItemFilmsBinding
 import com.example.core.tools.extensions.glide
-import com.example.data.detailsFilm_page.CategoryInfo
 
 import com.example.data.detailsFilm_page.dto.GalleryDTO
 import com.example.data.detailsFilm_page.dto.SimilarFilmsDTO
@@ -11,6 +10,7 @@ import com.example.data.detailsFilm_page.model.NestedInoFilms
 import com.example.data.detailsFilm_page.model.StaffFromFilms
 import com.example.homepage.databinding.ItemGalleryBinding
 import com.example.homepage.databinding.ItemStaffBinding
+import com.example.homepage.presentation.films_ditails.CategoryInfo
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import kotlinx.android.synthetic.main.item_staff.view.*
 
@@ -20,7 +20,7 @@ fun staffAdapter(onClickItem:(category: CategoryInfo) -> Unit) =
     }) {
 
         binding.itemCard.setOnClickListener { onClickItem(
-            CategoryInfo.STAFF.apply{ this.itemID = item.staffId })}
+            CategoryInfo.STAFF.apply{ this.itemId = item.staffId })}
 
         bind {
             binding.apply {
@@ -51,7 +51,7 @@ fun similarAdapter(onClickItem:(category: CategoryInfo) -> Unit) =
         ItemFilmsBinding.inflate(layoutInflater, root, false)
     }) {
         binding.itemCard.setOnClickListener { onClickItem(
-            CategoryInfo.STAFF.apply{ this.itemID = item.filmId }) }
+            CategoryInfo.STAFF.apply{ this.itemId = item.filmId }) }
 
         bind {
             binding.poster.glide(item.posterUrlPreview)

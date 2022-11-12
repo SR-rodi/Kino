@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.core.tools.BaseFragment
 import com.example.core.tools.extensions.createName
 import com.example.core.tools.extensions.glide
-import com.example.data.detailsFilm_page.CategoryInfo
 import com.example.data.detailsFilm_page.model.InfoFilms
 import com.example.data.detailsFilm_page.model.PosterFilm
 import com.example.homepage.databinding.FragmentFilmInfoBinding
@@ -69,4 +68,8 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
     companion object {
         const val TEST_ID = 301
     }
+}
+
+enum class CategoryInfo(var itemId:Int){
+    STAFF(0),GALLERY(0),FILMS(0)
 }
