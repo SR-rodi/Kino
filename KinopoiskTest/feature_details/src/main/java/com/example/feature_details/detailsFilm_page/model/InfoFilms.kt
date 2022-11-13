@@ -1,0 +1,3 @@
+package com.example.feature_details.detailsFilm_page.model
+
+interface InfoFilms
