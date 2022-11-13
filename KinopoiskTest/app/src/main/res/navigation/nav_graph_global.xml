@@ -3,11 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_global"
-    app:startDestination="@id/nav_graph_home">
-
-    <include app:graph="@navigation/nav_graph_home" />
-    <include app:graph="@navigation/nav_graph_search" />
-    <include app:graph="@navigation/nav_graph_profile" />
-
-
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.homepage.presentation.homepage.presentation.home_fragment.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@id/action_homeFragment_to_categoryPageFragment"
+            app:destination="@id/categoryPageFragment" />
+        <action
+            android:id="@id/action_homeFragment_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.screen_listpage.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.presentation_profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/categoryPageFragment"
+        android:name="com.example.homepage.presentation.homepage.presentation.category_fragment.CategoryPageFragment"
+        android:label="fragment_category_page"
+        tools:layout="@layout/fragment_category_page" >
+        <action
+            android:id="@id/action_categoryPageFragment_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmInfoFragment"
+        android:name="com.example.feature_details.films_ditails.FilmInfoFragment"
+        android:label="FilmInfoFragment" >
+        <action
+            android:id="@id/action_filmInfoFragment_to_staffInfoFragment"
+            app:destination="@id/staffInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/staffInfoFragment"
+        android:name="com.example.feature_details.persone_details.StaffInfoFragment"
+        android:label="fragment_staff_info"
+        tools:layout="@layout/fragment_staff_info" />
 </navigation>

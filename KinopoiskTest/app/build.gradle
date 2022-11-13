@@ -37,16 +37,15 @@ android {
 
 dependencies {
 
-    implementation project(':presentation_home')
-    implementation project(':presentation_details')
+    implementation project(':feature_home')
+    implementation project(':feature_details')
     implementation project(':presentation_search')
     implementation project(':presentation_profile')
     implementation project(":di")
-    implementation project(':domaine')
     implementation project(":core")
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
 

@@ -1,13 +1,13 @@
 package com.example.di
 
-import com.example.kinopoisk_api.BASE_URL
-import com.example.kinopoisk_api.api.CategoryFilmsApi
-import com.example.kinopoisk_api.api.DetailFilmsApi
-import com.example.kinopoisk_api.api.DetailStaffApi
-import com.example.kinopoisk_api.paging.PagingRepository
-import com.example.kinopoisk_api.repository_ipl.NetworkDetailsRepositoryImpl
-import com.example.kinopoisk_api.repository_ipl.NetworkCategoryImpl
-import com.example.kinopoisk_api.repository_ipl.NetworkStaffRepositoryImpl
+import com.example.core.tools.BASE_URL
+import com.example.homepage.presentation.homepage.domaine.CategoryFilmsApi
+import com.example.feature_details.DetailFilmsApi
+import com.example.feature_details.DetailStaffApi
+import com.example.homepage.presentation.homepage.domaine.paging.PagingRepository
+import com.example.feature_details.repository_ipl.NetworkDetailsRepositoryImpl
+import com.example.homepage.presentation.homepage.domaine.NetworkCategoryImpl
+import com.example.feature_details.repository_ipl.NetworkStaffRepositoryImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit

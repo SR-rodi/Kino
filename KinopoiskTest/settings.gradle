@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Kinopoisk Test"
 include ':app'
-include ':presentation_home'
+include ':feature_home'
 include ':domaine'
 include ':core'
 include ':di'
@@ -22,3 +22,4 @@ include ':presentation_search'
 include ':presentation_profile'
 include ':data'
 include ':presentation_details'
+include ':feature_details'

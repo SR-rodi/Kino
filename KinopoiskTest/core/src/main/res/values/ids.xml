@@ -5,4 +5,15 @@
     <item name="homeFragment" type="id"/>
     <item name="action_FragmentProfile" type="id"/>
 
+
+
+
+    <item name="action_homeFragment_to_categoryPageFragment" type="id"/>
+    <item name="action_homeFragment_to_filmInfoFragment" type="id"/>
+    <item name="action_categoryPageFragment_to_filmInfoFragment" type="id"/>
+    <item name="action_filmInfoFragment_to_staffInfoFragment" type="id"/>
+
+
+
+
 </resources>
