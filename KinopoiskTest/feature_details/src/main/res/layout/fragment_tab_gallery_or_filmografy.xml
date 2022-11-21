@@ -1,0 +1,85 @@
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.gallery.ListGalleryFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:paddingStart="17dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/graphik_bold"
+            android:gravity="center"
+            android:text="@string/gallery"
+            android:textColor="@color/title_text_color"
+            android:textSize="12sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="25dp"
+        app:tabContentStart="50dp"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabIndicatorColor="@color/purple_1"
+        app:tabIndicator="@drawable/bg_tab"
+        app:tabPaddingStart="24dp"
+        app:tabPaddingEnd="24dp"
+        app:tabIndicatorHeight="35sp"
+        app:tabMode="scrollable"
+        app:tabBackground="@drawable/bg_tab"
+        app:tabRippleColor="@null"
+        app:tabTextColor="@color/text_selector" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="26dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/gradient"/>
+
+        <ImageView
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:rotation="180"
+            android:src="@drawable/gradient"/>
+
+
+
+    </FrameLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
