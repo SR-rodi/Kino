@@ -28,13 +28,13 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryFilms = arguments?.getParcelable<CategoryFilms>(CATEGORY_BUNDLE)
-
-        Log.e("Kart","${getArgsCategoryFilms().text}")
-
         binding.categoryPageRecyclerView.adapter = adapter
 
-        setAdapter(getArgsCategoryFilms())
+        val category = getArgsCategoryFilms()
+
+        binding.categoryTitle.text = category.text
+
+        setAdapter(category)
 
         binding.backArrow.popBackStack()
     }

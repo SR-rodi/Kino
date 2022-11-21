@@ -14,10 +14,19 @@
         android:orientation="horizontal"
         android:layout_gravity="center_vertical">
 
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="96dp"
+            android:layout_height="132dp"
+            android:padding="5dp"
+            android:visibility="gone"/>
+
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:padding="5sp"
+            android:layout_gravity="center"
             android:layout_weight="@integer/material_motion_duration_long_1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -40,13 +49,22 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <Button
-            android:id="@+id/favorite_button"
-            android:layout_gravity="center_vertical"
+      <TextView
+          android:id="@+id/rating"
+          android:layout_gravity="center"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="25dp"
+          tools:text ="7.3"/>
+
+        <ImageView
+            android:id="@+id/expand"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:rotation="-90"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Буду смотреть"/>
+            android:src="@drawable/ic_menu"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

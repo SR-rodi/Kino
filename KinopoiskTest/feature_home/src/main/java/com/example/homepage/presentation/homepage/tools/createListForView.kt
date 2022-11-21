@@ -5,7 +5,7 @@ import com.example.core.tools.general.Country
 import com.example.core.tools.general.Genre
 
 
-import com.example.homepage.presentation.homepage.data.films.BaseFilms
+import com.example.core.tools.all.BaseFilms
 
 fun List<BaseFilms>.createListForView(sizeListInView: Int): MutableList<BaseFilms> {
 

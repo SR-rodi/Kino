@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_global"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/searchStartFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.homepage.presentation.homepage.presentation.home_fragment.HomeFragment"
@@ -14,11 +14,10 @@
         <action
             android:id="@id/action_homeFragment_to_filmInfoFragment"
             app:destination="@id/filmInfoFragment" />
+        <action
+            android:id="@id/action_homeFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.screen_listpage.SearchFragment"
-        android:label="SearchFragment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.presentation_profile.ProfileFragment"
@@ -34,15 +33,56 @@
     </fragment>
     <fragment
         android:id="@+id/filmInfoFragment"
-        android:name="com.example.feature_details.films_ditails.FilmInfoFragment"
+        android:name="com.example.feature_details.presentation.films_ditails.FilmInfoFragment"
         android:label="FilmInfoFragment" >
         <action
             android:id="@id/action_filmInfoFragment_to_staffInfoFragment"
             app:destination="@id/staffInfoFragment" />
+        <action
+            android:id="@id/action_filmInfoFragment_to_bottomSheetMenuFragment"
+            app:destination="@id/bottomSheetMenuFragment" />
+        <action
+            android:id="@id/action_filmInfoFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
     </fragment>
     <fragment
         android:id="@+id/staffInfoFragment"
-        android:name="com.example.feature_details.persone_details.StaffInfoFragment"
+        android:name="com.example.feature_details.presentation.staff_details.fragment.StaffInfoFragment"
         android:label="fragment_staff_info"
-        tools:layout="@layout/fragment_staff_info" />
+        tools:layout="@layout/fragment_staff_info" >
+        <argument
+            android:name="actorId"
+            app:argType="com.example.core.tools.all.CategoryFilms" />
+        <action
+            android:id="@id/action_filmInfoFragment_to_filmographyFragment"
+            app:destination="@id/filmography" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetMenuFragment"
+        android:name="com.example.feature_details.presentation.films_ditails.BottomSheetMenuFragment"
+        android:label="BottomSheetMenuFragment" />
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.example.feaure_onboarding.OnBoardingFragment"
+        android:label="OnBoardingFragment" />
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.example.feature_details.presentation.gallery.ListGalleryFragment"
+        android:label="GalleryFragment" >
+        <argument
+            android:name="filmId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmography"
+        android:name="com.example.feature_details.presentation.filmographi.fragment.FilmographyListFragment"
+        android:label="Filmography" >
+        <argument
+            android:name="films"
+            app:argType="com.example.feature_details.data.details_staff.Film[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchStartFragment"
+        android:name="com.example.screen_listpage.start.SearchStartFragment"
+        android:label="SearchStartFragment" />
 </navigation>

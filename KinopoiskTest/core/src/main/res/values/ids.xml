@@ -12,6 +12,13 @@
     <item name="action_homeFragment_to_filmInfoFragment" type="id"/>
     <item name="action_categoryPageFragment_to_filmInfoFragment" type="id"/>
     <item name="action_filmInfoFragment_to_staffInfoFragment" type="id"/>
+    <item name="action_filmInfoFragment_to_bottomSheetMenuFragment" type="id"/>
+    <item name="action_homeFragment_to_onBoardingFragment" type="id"/>
+    <item name="action_staffInfoFragment_to_filmInfoFragment" type="id"/>
+    <item name="action_staffInfoFragment_to_categoryPageFragment" type="id"/>
+    <item name="action_filmInfoFragment_to_galleryFragment" type="id"/>
+    <item name="action_searchFragment_to_settingsSearchFragment" type="id"/>
+    <item name="action_filmInfoFragment_to_filmographyFragment" type="id"/>
 
 
 

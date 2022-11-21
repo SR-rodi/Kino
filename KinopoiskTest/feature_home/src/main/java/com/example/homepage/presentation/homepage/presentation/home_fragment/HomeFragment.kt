@@ -11,8 +11,10 @@ import com.example.core.tools.BaseFragment
 import com.example.core.tools.extensions.createBundle
 import com.example.core.R
 import com.example.core.tools.CATEGORY_BUNDLE
+import com.example.core.tools.extensions.checkFirstStart
 import com.example.homepage.databinding.FragmentHomeBinding
 import com.example.homepage.presentation.homepage.presentation.adapters.home_page.CategoryAdapter
+import com.example.homepage.presentation.homepage.presentation.category_fragment.CategoryPageFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,6 +28,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         createAdapter()
+
+        binding.nameProject.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
+        }
+
+            if (checkFirstStart()) findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
+
 
     }
 
@@ -43,8 +52,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onClickFilms(filmID: Int) {
-        Log.d("Kart",filmID.toString())
         findNavController().navigate(R.id.action_homeFragment_to_filmInfoFragment,filmID.createBundle())
+
     }
 
 }

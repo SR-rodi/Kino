@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.core.databinding.ItemFilmsBinding
-import com.example.homepage.presentation.homepage.presentation.adapters.Diff
-import com.example.homepage.presentation.homepage.presentation.adapters.viewholder.FilmsViewHolder
-import com.example.homepage.presentation.homepage.data.films.BaseFilms
+import com.example.core.tools.Diff
+import com.example.core.tools.FilmsViewHolder
+import com.example.core.tools.all.BaseFilms
 
 class FilmAdapterFromPage :PagingDataAdapter<BaseFilms, FilmsViewHolder>(Diff()) {
 

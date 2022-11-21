@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.databinding.ItemCategoryBinding
 import com.example.core.tools.all.CategoryFilms
 import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
-import com.example.homepage.presentation.homepage.presentation.adapters.home_page.FilmsAdapter
+import com.example.core.tools.FilmsAdapter
 
 class CategoryViewHolder(private val binding: ItemCategoryBinding) :
     RecyclerView.ViewHolder(binding.root) {

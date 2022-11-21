@@ -1,7 +1,7 @@
 package com.example.homepage.presentation.homepage.data.films.dto
 
 import com.example.core.tools.general.Genre
-import com.example.homepage.presentation.homepage.data.films.BaseFilms
+import com.example.core.tools.all.BaseFilms
 
 
 data class BestFilmsDTO(

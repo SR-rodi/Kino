@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layoutDescription="@xml/fragment_film_info_scene"
-    tools:context="com.example.homepage.com.example.feature_details.films_ditails.FilmInfoFragment"
+
+    tools:context="com.example.feature_details.presentation.films_ditails.FilmInfoFragment"
     android:id="@+id/containerAnimation">
 
     <ImageView
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/title_text_color"
         android:textSize="12sp"
+        android:fontFamily="@font/graphik_medium"
         app:layout_constraintBottom_toBottomOf="@+id/back_arrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

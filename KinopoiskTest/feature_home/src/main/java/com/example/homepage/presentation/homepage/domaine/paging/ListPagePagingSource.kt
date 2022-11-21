@@ -3,7 +3,7 @@ package com.example.homepage.presentation.homepage.domaine.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.core.tools.all.CategoryFilms
-import com.example.homepage.presentation.homepage.data.films.BaseFilms
+import com.example.core.tools.all.BaseFilms
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryRepository
 import com.example.homepage.presentation.homepage.tools.loadBest
 import com.example.homepage.presentation.homepage.tools.loadFilmsByCounterAdnGenre

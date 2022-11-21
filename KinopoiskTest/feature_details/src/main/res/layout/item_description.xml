@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:id="@+id/anim_layout"
     xmlns:tools="http://schemas.android.com/tools">
-
 
     <TextView
         android:id="@+id/short_description"
@@ -12,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
+        android:textColor="@color/title_text_color"
+        android:fontFamily="@font/graphik_bold"
         android:layout_marginTop="10dp" />
 
     <TextView
@@ -20,6 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
+        android:maxLines="3"
+        android:textColor="@color/title_text_color"
+        android:fontFamily="@font/graphik_light"
+        android:ellipsize="end"
         android:layout_marginTop="10dp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

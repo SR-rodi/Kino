@@ -15,6 +15,7 @@
             android:id="@+id/category_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/graphik_bold"
             android:layout_marginStart="26dp"
 
             android:text="@string/premieres"
@@ -30,7 +31,8 @@
             android:layout_gravity="center"
             android:gravity="end"
             android:layout_marginEnd="26dp"
-            android:textColor="@color/purple_1"
+            android:fontFamily="@font/graphik_regular"
+            android:textColor="@color/pressed_active_text_color"
             android:text="@string/All"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
