@@ -21,5 +21,5 @@ interface SearchApi {
         @Query("yearTo") yearTo: Int,
         @Query("keyword") keyword: String,
         @Query("page") page: Int,
-    ):ResponseSearchDTO
+    ): ResponseSearchDTO
 }

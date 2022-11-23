@@ -56,5 +56,3 @@ fun ImageView.clickAndShowShareDialog(share: String) {
         startActivity(this.context,shareIntent,null)
     }
 }
-
-fun Int.toDP() = this/Resources.getSystem().displayMetrics.density

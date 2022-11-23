@@ -84,5 +84,21 @@
     <fragment
         android:id="@+id/searchStartFragment"
         android:name="com.example.screen_listpage.start.SearchStartFragment"
-        android:label="SearchStartFragment" />
+        android:label="SearchStartFragment" >
+        <action
+            android:id="@id/action_searchFragment_to_settingsSearchFragment"
+            app:destination="@id/settingsSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsSearchFragment"
+        android:name="com.example.screen_listpage.SettingsSearchFragment"
+        android:label="SettingsSearchFragment" >
+        <action
+            android:id="@id/action_settingsSearchFragment_to_chooseSettingFragment"
+            app:destination="@id/chooseSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseSettingFragment"
+        android:name="com.example.screen_listpage.start.ChooseSettingFragment"
+        android:label="ChooseSettingFragment" />
 </navigation>

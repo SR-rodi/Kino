@@ -19,6 +19,7 @@
     <item name="action_filmInfoFragment_to_galleryFragment" type="id"/>
     <item name="action_searchFragment_to_settingsSearchFragment" type="id"/>
     <item name="action_filmInfoFragment_to_filmographyFragment" type="id"/>
+    <item name="action_settingsSearchFragment_to_chooseSettingFragment" type="id"/>
 
 
 

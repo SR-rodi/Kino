@@ -1,10 +1,8 @@
 package com.example.kinopoisktest.app
 
 import android.app.Application
-import com.example.di.filmsApi
-import com.example.di.networkRepository
-import com.example.di.useCase
-import com.example.di.viewModel
+import com.example.di.*
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class AppComponent:Application() {
@@ -13,7 +11,8 @@ class AppComponent:Application() {
         super.onCreate()
 
         startKoin{
-            modules(listOf(filmsApi, viewModel, networkRepository, useCase))
+            androidContext(this@AppComponent)
+            modules(listOf(filmsApi, viewModel, networkRepository, databaseRepository, useCase))
         }
     }
 

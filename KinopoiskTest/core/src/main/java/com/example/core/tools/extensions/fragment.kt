@@ -7,9 +7,13 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.error_dialog.view.*
+import kotlinx.android.synthetic.main.item_films.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -23,24 +27,15 @@ fun <T : Fragment> T.withArguments(action: Bundle.() -> Unit): T {
     }
 }
 
-@ExperimentalCoroutinesApi
-fun EditText.setTextChangesFlowListener(): Flow<String> {
-    return callbackFlow {
-//        создаем textChangeListener
-        val textChangeListener = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                при изменении текста отправляем текст
-                trySendBlocking(s?.toString().orEmpty())
-            }
+fun Fragment.createErrorDialog() {
+    val dialog = LayoutInflater.from(requireContext())
+        .inflate(R.layout.error_dialog, null)
+    val closeButton = dialog.close_button
+    closeButton.setOnClickListener {}
 
-            override fun afterTextChanged(s: Editable?) {}
-        }
-//        добавляем лисенер
-        this@setTextChangesFlowListener.addTextChangedListener(textChangeListener)
-//        при закрытии поля удаляем лисенер
-        awaitClose {
-            this@setTextChangesFlowListener.removeTextChangedListener(textChangeListener)
-        }
-    }
+    AlertDialog.Builder(requireContext())
+        .setView(dialog)
+        .setOnDismissListener { }
+        .create()
+        .show()
 }

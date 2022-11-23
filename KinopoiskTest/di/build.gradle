@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -35,8 +36,16 @@ dependencies {
 
     implementation project(':feature_home')
     implementation project(':feature_details')
+    implementation project(':feature_database')
     implementation project(':presentation_search')
     implementation project(":core")
+
+
+
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'androidx.room:room-runtime:2.4.3'
+    implementation 'androidx.room:room-ktx:2.4.3'
+    kapt 'androidx.room:room-compiler:2.4.3'
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'

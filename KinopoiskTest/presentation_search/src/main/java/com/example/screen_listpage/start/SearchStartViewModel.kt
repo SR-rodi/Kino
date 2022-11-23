@@ -1,33 +1,33 @@
 package com.example.screen_listpage.start
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import com.example.core.tools.all.CategoryFilms
-import com.example.screen_listpage.data.Film
+import com.example.screen_listpage.data.SearchFilm
 import com.example.screen_listpage.data.SetSearch
 import com.example.screen_listpage.network.SearchPagingRepo
 import com.example.screen_listpage.network.SearchRepositoryImpl
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 
 class SearchStartViewModel(
     private val networkRepository: SearchRepositoryImpl,
     private val searchPagingRepo: SearchPagingRepo
 ) : ViewModel() {
 
-    var searchResponse = MutableSharedFlow<PagingData<Film>>()
+    private val _films = MutableSharedFlow<List<SearchFilm>>()
+    val films = _films.asSharedFlow()
 
+    var keyWordStartSearch = ""
 
-
-    @OptIn(FlowPreview::class)
-    fun search(keyWordFlow: Flow<String>) = keyWordFlow.debounce(500)
-        .distinctUntilChanged()
-        .onEach { keyWord ->
+    fun search(keyWord: String, after: Int) {
+        viewModelScope.launch {
+            keyWordStartSearch = keyWord
+            delay(500)
+            if (keyWordStartSearch == "") _films.emit(emptyList())
+            if (keyWordStartSearch.length == after && keyWordStartSearch.isNotEmpty())
+                _films.emit(networkRepository.getSearchFilms(SetSearch, keyWordStartSearch, 1).items)
         }
-        .launchIn(viewModelScope + Dispatchers.IO)
+    }
+
+
 }

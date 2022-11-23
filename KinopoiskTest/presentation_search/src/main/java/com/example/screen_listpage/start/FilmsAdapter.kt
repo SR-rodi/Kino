@@ -1,41 +1,36 @@
 package com.example.screen_listpage.start
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.tools.Diff
 import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.extensions.createName
 import com.example.core.tools.extensions.glide
-import com.example.screen_listpage.data.Film
+import com.example.screen_listpage.data.SearchFilm
 import com.example.screen_listpage.databinding.ItemFilmsSearchBinding
 
-class FilmsAdapter: PagingDataAdapter<Film, SearchFilmsViewHolder>(NewDiff()) {
+class FilmsAdapter : ListAdapter<BaseFilms, SearchFilmsViewHolder>(Diff()) {
 
     override fun onBindViewHolder(holder: SearchFilmsViewHolder, position: Int) {
-        Log.d("Kart","${getItem(position)}" )
-        holder.bind(getItem(position) as Film)
+        holder.bind(getItem(position) as SearchFilm)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= SearchFilmsViewHolder(
-        ItemFilmsSearchBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SearchFilmsViewHolder(
+        ItemFilmsSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-
 }
 
-class SearchFilmsViewHolder (private val binding:ItemFilmsSearchBinding):RecyclerView.ViewHolder(binding.root){
+class SearchFilmsViewHolder(private val binding: ItemFilmsSearchBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item:Film){
+    fun bind(item: SearchFilm) {
 
-            binding.poster.glide(item.posterUrl)
+        binding.poster.glide(item.posterUrl)
+        binding.name.text = item.nameEn ?: item.nameRu
+        binding.description.text = item.year.toString() + ", " + item.genres.createName()
+        binding.rating.text =item.rating
     }
-}
-
-class NewDiff:DiffUtil.ItemCallback<Film>(){
-    override fun areItemsTheSame(oldItem: Film, newItem: Film) = oldItem.filmId == newItem.filmId
-
-    override fun areContentsTheSame(oldItem: Film, newItem: Film) = oldItem.posterUrl ==newItem.posterUrl
 }

@@ -28,6 +28,7 @@
         android:textSize="12sp" />
 
     <include
+        android:id="@+id/type"
         layout="@layout/item_sorted"
         android:layout_width="match_parent"
         android:layout_height="31dp"
@@ -35,6 +36,7 @@
         android:layout_marginTop="10dp" />
 
     <include
+        android:id="@+id/country"
         layout="@layout/item_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -46,6 +48,7 @@
         android:background="?android:attr/listDivider" />
 
     <include
+        android:id="@+id/genres"
         layout="@layout/item_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -57,63 +60,64 @@
         android:background="?android:attr/listDivider" />
 
     <include
+        android:id="@+id/years"
         layout="@layout/item_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <View
-        android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
     <include
+        android:id="@+id/rating"
         layout="@layout/item_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
-    <com.google.android.material.slider.RangeSlider
-        android:id="@+id/range"
-        android:layout_marginHorizontal="26dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:stepSize=".5"
-        app:trackColorActive = "@color/purple_1"
-        app:trackColorInactive ="@color/subtitle_text_color"
-        android:valueFrom="0.0"
-        android:valueTo="10.0"
-        app:labelBehavior="gone"
-        app:labelStyle="@style/Widget.Material3.Tooltip"
-        app:thumbColor="@color/rating_text_color_white"
-        app:thumbStrokeColor="@color/title_text_color"
-        app:thumbStrokeWidth="1dp"
-        app:tickVisible="false"
-        app:values="@array/initial_slider_values" />
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/rangeSlider"
+            android:layout_marginHorizontal="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stepSize=".5"
+            app:trackColorActive = "@color/purple_1"
+            app:trackColorInactive ="@color/subtitle_text_color"
+            android:valueFrom="0.0"
+            android:valueTo="10.0"
+            app:labelBehavior="gone"
+            app:labelStyle="@style/Widget.Material3.Tooltip"
+            app:thumbColor="@color/rating_text_color_white"
+            app:thumbStrokeColor="@color/title_text_color"
+            app:thumbStrokeWidth="1dp"
+            app:tickVisible="false"
+            app:values="@array/initial_slider_values" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="30dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp">
 
         <TextView
             android:id="@+id/rangeFrom"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/graphik_regular"
             android:text="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/rangeTo"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:fontFamily="@font/graphik_regular"
             android:text="10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="14sp" />
 
     </FrameLayout>
 
@@ -136,6 +140,7 @@
         android:textSize="12sp" />
 
     <include
+        android:id="@+id/date_best_ratting"
         layout="@layout/item_sorted"
         android:layout_width="match_parent"
         android:layout_height="31dp"
@@ -156,6 +161,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/look_image"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
@@ -164,13 +170,14 @@
             app:tint="@color/title_text_color" />
 
         <TextView
+            android:id="@+id/look_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/graphik_regular"
-            android:text="Не просмотрен"
             android:textColor="@color/title_text_color"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="Не просмотрен" />
 
     </LinearLayout>
 

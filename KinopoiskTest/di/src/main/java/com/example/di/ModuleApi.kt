@@ -1,7 +1,11 @@
 package com.example.di
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.room.Room
 import com.example.core.tools.BASE_URL
+import com.example.feature_database.CinemaDatabase
+import com.example.feature_database.Dao.GenreDao
+import com.example.feature_database.DataBaseRepository
 import com.example.homepage.presentation.homepage.domaine.CategoryFilmsApi
 import com.example.feature_details.domein.DetailFilmsApi
 import com.example.feature_details.domein.DetailStaffApi
@@ -27,7 +31,21 @@ val filmsApi = module {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+    single(named("database")) {
+        Room.databaseBuilder(
+            get(),
+            CinemaDatabase::class.java,
+            "StoreDataBase"
+        ).build()
+    }
 
+    single<GenreDao> {
+        get<CinemaDatabase>(named("database")).genreDao()
+    }
+
+    single {
+        get<CinemaDatabase>(named("database")).countryDao()
     }
 
     single<CategoryFilmsApi> {
@@ -46,7 +64,7 @@ val filmsApi = module {
         get<Retrofit>(named("retrofit")).create()
     }
 
-    single{
+    single {
         SavedStateHandle()
     }
 
@@ -66,6 +84,10 @@ val networkRepository = module {
 
     single { SearchRepositoryImpl(get()) }
 
+}
+
+val databaseRepository= module {
+    single { DataBaseRepository(get(),get()) }
 }
 
 val useCase = module {
