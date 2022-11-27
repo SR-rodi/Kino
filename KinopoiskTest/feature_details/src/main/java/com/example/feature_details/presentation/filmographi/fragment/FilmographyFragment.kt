@@ -32,7 +32,6 @@ class FilmographyFragment : BaseFragment<FragmentRecyclerBinding>() {
         binding.filmsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-
         adapter.items = viewModel.startList()
         binding.filmsRecyclerView.adapter = adapter
     }

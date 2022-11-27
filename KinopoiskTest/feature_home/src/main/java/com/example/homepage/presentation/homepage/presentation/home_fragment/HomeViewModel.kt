@@ -1,11 +1,10 @@
 package com.example.homepage.presentation.homepage.presentation.home_fragment
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.BaseViewModel
 import com.example.core.tools.all.CategoryFilms
 import com.example.core.tools.all.LoadState
-import com.example.feature_database.DataBaseRepository
+import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryImpl
@@ -23,7 +22,7 @@ class HomeViewModel(
 
     private val calendar = Calendar.getInstance()
 
-    private val _homePageList =
+    private var _homePageList =
         MutableStateFlow<List<HomePadeList>>(emptyList())
     val homePageList = _homePageList.asStateFlow()
 
@@ -34,12 +33,31 @@ class HomeViewModel(
     private fun getHomePageList() {
         viewModelScope.launch(handler + Dispatchers.IO) {
             _loadState.value = LoadState.LOADING
-            _homePageList.value =
-                loadAllFilms(
-                    calendar.get(Calendar.YEAR),
-                    (calendar.get(Calendar.MONTH) + 1),
-                    getCounterAndGenreList()
-                )
+            val networkList = loadAllFilms(
+                calendar.get(Calendar.YEAR),
+                (calendar.get(Calendar.MONTH) + 1),
+                getCounterAndGenreList()).mergeHomeDatabase(dataBaseRepository,_homePageList,viewModelScope)
+
+/*            networkList.getListFilmID()
+            networkList.emitMergeDataBaseList(networkList,_homePageList,,viewModelScope)
+            val listFilmsId = mutableListOf<Int>()
+            a.forEach { list ->
+                list.filmList.forEach { film ->
+                    listFilmsId.add(film.filmId)
+                }
+            }
+            dataBaseRepository.getStatusFilmList(listFilmsId).onEach {map->
+                a.forEach{
+                    it.filmList.forEach{film->
+                       film.isLook = map[film.filmId]?:false
+                    }
+                }
+                _homePageList.value = a
+            }.launchIn(viewModelScope)*/
+
+
+
+
             _loadState.value = LoadState.SUCCESS
         }
     }
@@ -59,12 +77,8 @@ class HomeViewModel(
 
     private suspend fun loadNetworkGenresAndCountries(): CountryAndGenreDTO {
         val counterAndGenre = networkRepository.getListGenreAndCounter()
-        counterAndGenre.countries.forEach { country ->
-            dataBaseRepository.insertCounter(country)
-        }
-        counterAndGenre.genres.forEach { genre ->
-            dataBaseRepository.insertGenre(genre)
-        }
+        dataBaseRepository.insertCounter(counterAndGenre.countries)
+        dataBaseRepository.insertGenre(counterAndGenre.genres)
         return counterAndGenre
     }
 
@@ -75,7 +89,7 @@ class HomeViewModel(
     ): List<HomePadeList> {
 
         val counter = counterAndGenre.getRandomCounter()
-        val genre = counterAndGenre.getRandomGenre(dataBaseRepository)
+        val genre = counterAndGenre.getRandomGenre()
 
         return listOf(
             HomePadeList(
@@ -95,15 +109,17 @@ class HomeViewModel(
             ),
             HomePadeList(
                 CategoryFilms.POPULAR,
-                loadPopular(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)
-            ),
+                loadPopular(networkRepository, FIRST_PAGE).createListForView(
+                    SIZE_LIST_VIEW
+                )
+            )
         )
     }
 
 
     companion object {
         const val FIRST_PAGE = 1
-        const val SIZE_LIST_VIEW = 5
+        const val SIZE_LIST_VIEW = 18
     }
 
 }

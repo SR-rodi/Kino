@@ -14,8 +14,8 @@ abstract class BaseViewModel :ViewModel(){
     val loadState = _loadState.asStateFlow()
 
     protected val handler = CoroutineExceptionHandler { _, T ->
-        Log.e("Mart","${T.message}")
+        Log.e("Kart","${T.message}")
         if (T != UnknownHostException())
-        _loadState.value = LoadState.ERROR
+            _loadState.value = LoadState.ERROR
     }
 }

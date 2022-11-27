@@ -1,28 +1,33 @@
 package com.example.homepage.presentation.homepage.tools
 
+import com.example.core.tools.all.BaseEntityFilm
 import com.example.core.tools.all.CategoryFilms
 import com.example.core.tools.general.Country
 import com.example.core.tools.general.Genre
 
 
-import com.example.core.tools.all.BaseFilms
+import com.example.homepage.presentation.homepage.data.films.dto.StubFilms
 
-fun List<BaseFilms>.createListForView(sizeListInView: Int): MutableList<BaseFilms> {
+fun List<BaseEntityFilm>.createListForView(
+    sizeListInView: Int,
+): List<BaseEntityFilm> {
 
-    val newList = mutableListOf<BaseFilms>()
-    this.shuffled()
     val size = if (this.lastIndex < sizeListInView) this.size
     else sizeListInView
-    for (i in 0 until  size) newList.add(this[i])
-    return newList
+
+    val list = this.take(size).toMutableList()
+
+    if (list.isNotEmpty()) list.add(StubFilms())
+    else list.add(StubFilms(filmId = -2))
+    return list
 }
 
 fun CategoryFilms.createRandomCategory(counter: Country, genre: Genre): CategoryFilms {
     if (this == CategoryFilms.RANDOM) {
         this.apply {
-           text = counter.info +" "+ genre.info
-           query.counterID = counter.id
-           query.genreId = genre.id
+            text = counter.info + " " + genre.info
+            query.counterID = counter.id
+            query.genreId = genre.id
         }
 
     }
@@ -30,7 +35,7 @@ fun CategoryFilms.createRandomCategory(counter: Country, genre: Genre): Category
 }
 
 fun CategoryFilms.createPrimersCategory(years: Int, month: Int): CategoryFilms {
-    if (this == CategoryFilms.PREMIERS){
+    if (this == CategoryFilms.PREMIERS) {
         this.apply {
             query.year = years
             query.month = month.converterInMonth()

@@ -5,7 +5,9 @@ import androidx.room.Room
 import com.example.core.tools.BASE_URL
 import com.example.feature_database.CinemaDatabase
 import com.example.feature_database.Dao.GenreDao
-import com.example.feature_database.DataBaseRepository
+import com.example.feature_database.repository.CollectionsFilmsRepository
+import com.example.feature_database.repository.DataBaseRepository
+import com.example.feature_database.repository.FilmDataBaseRepository
 import com.example.homepage.presentation.homepage.domaine.CategoryFilmsApi
 import com.example.feature_details.domein.DetailFilmsApi
 import com.example.feature_details.domein.DetailStaffApi
@@ -48,6 +50,14 @@ val filmsApi = module {
         get<CinemaDatabase>(named("database")).countryDao()
     }
 
+    single {
+        get<CinemaDatabase>(named("database")).filmsDao()
+    }
+
+    single {
+        get<CinemaDatabase>(named("database")).filmsCollectionDao()
+    }
+
     single<CategoryFilmsApi> {
         get<Retrofit>(named("retrofit")).create()
     }
@@ -72,7 +82,7 @@ val filmsApi = module {
 
 val networkRepository = module {
 
-    single { PagingRepository(get()) }
+    single { PagingRepository(get(), get()) }
 
     single { SearchPagingRepo(get()) }
 
@@ -86,8 +96,12 @@ val networkRepository = module {
 
 }
 
-val databaseRepository= module {
-    single { DataBaseRepository(get(),get()) }
+val databaseRepository = module {
+    single { DataBaseRepository(get(), get(), get()) }
+
+    single { FilmDataBaseRepository(get(), get()) }
+
+    single { CollectionsFilmsRepository(get(), get()) }
 }
 
 val useCase = module {

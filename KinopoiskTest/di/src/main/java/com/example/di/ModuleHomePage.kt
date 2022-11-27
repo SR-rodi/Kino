@@ -2,6 +2,7 @@ package com.example.di
 
 import com.example.feature_details.presentation.filmographi.viewModel.FilmographyListViewModel
 import com.example.feature_details.presentation.filmographi.viewModel.FilmographyViewModel
+import com.example.feature_details.presentation.films_ditails.BottomSheetViewModel
 import com.example.feature_details.presentation.gallery.ListGalleryViewModel
 import com.example.homepage.presentation.homepage.presentation.home_fragment.HomeViewModel
 import com.example.homepage.presentation.homepage.presentation.category_fragment.CategoryPageViewModel
@@ -24,7 +25,7 @@ val viewModel = module {
     }
 
     viewModel {
-        FilmInfoViewModel(get(),get())
+        FilmInfoViewModel(get(),get(),get())
     }
 
     viewModel {
@@ -50,4 +51,9 @@ val viewModel = module {
     viewModel{
         SearchStartViewModel(get(),get())
     }
+
+    viewModel{
+       BottomSheetViewModel(get(),get())
+    }
+
 }

@@ -36,7 +36,13 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/purple_1"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="match_parent"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_page_recyclerView"
         android:layout_width="wrap_content"
@@ -48,5 +54,7 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_films" />
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

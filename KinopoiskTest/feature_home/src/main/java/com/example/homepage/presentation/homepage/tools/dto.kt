@@ -1,8 +1,6 @@
 package com.example.homepage.presentation.homepage.tools
 
 import com.example.core.tools.all.Month
-import com.example.core.tools.general.Genre
-import com.example.feature_database.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 
 import kotlin.random.Random
@@ -11,7 +9,7 @@ import kotlin.random.nextInt
 fun CountryAndGenreDTO.getRandomCounter()=
     countries[Random.nextInt(0..countries.lastIndex)]
 
- fun CountryAndGenreDTO.getRandomGenre(dataBaseRepository: DataBaseRepository)=
+ fun CountryAndGenreDTO.getRandomGenre()=
     genres[Random.nextInt(0..genres.lastIndex)]
 
 

@@ -3,4 +3,6 @@
     <string name="All">Всё</string>
     <string name="error">Ошибка!</string>
     <string name="text_error">Во время обработки запроса\nпроизошла ошибка</string>
+    <string name="ooops">Ooops! К сожелениию по данному запроссу ничкегоне найденно</string>
+    <string name="ooops_n">Ooops!\n Нет Данных</string>
 </resources>

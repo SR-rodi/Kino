@@ -1,7 +1,7 @@
 package com.example.homepage.presentation.homepage.data.films.dto
 
+import com.example.core.tools.all.BaseEntityFilm
 import com.example.core.tools.general.Genre
-import com.example.core.tools.all.BaseFilms
 
 
 data class BestFilmsDTO(
@@ -10,4 +10,4 @@ data class BestFilmsDTO(
     override val nameRu: String,
     override val genres: List<Genre>,
     override val filmId: Int,
-): BaseFilms
+): BaseEntityFilm()

@@ -17,6 +17,8 @@
         <item name="android:windowLightStatusBar">true</item>
 
         <item name="android:alertDialogTheme">@style/dialog</item>
+        
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -24,5 +26,14 @@
         <item name="windowMinWidthMinor">85%</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/round_bottom_sheet</item>
+    </style>
 
 </resources>

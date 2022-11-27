@@ -4,14 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.core.tools.extensions.popBackStack
+import androidx.lifecycle.lifecycleScope
+import com.example.core.tools.extensions.createAddDialog
+import com.example.core.tools.extensions.glide
+import com.example.feature_database.entity.FilmsCollectionEntity
 import com.example.feature_details.databinding.BottomSheetMenuBinding
+import com.example.feature_details.presentation.films_ditails.adapters_delegates.adapters.CollectionAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BottomSheetMenuFragment: BottomSheetDialogFragment() {
-    private var _binding: BottomSheetMenuBinding?=null
+class BottomSheetMenuFragment : BottomSheetDialogFragment() {
+    private var _binding: BottomSheetMenuBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModel<BottomSheetViewModel>()
+
+    private val adapter by lazy { CollectionAdapter{ onClick(it) } }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,11 +31,41 @@ class BottomSheetMenuFragment: BottomSheetDialogFragment() {
         return binding.root
     }
 
+    private fun observeCollection() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.collections.collect {
+                adapter.items = it
+                binding.detailRecyclerView.adapter = adapter
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.imageFilterView.setOnClickListener{
-            findNavController().popBackStack()
+        observeCollection()
+        viewModel.getCollectionFilms()
+
+        binding.addCategory.setOnClickListener{
+            createAddDialog{ name->
+                viewModel.addCollection(name)}
+        }
+
+        binding.addFilmsButton.setOnClickListener{
+            viewModel.addFilmsInCollection()
+        }
+
+        binding.poster.setOnClickListener {
+            viewModel.getFilmsCollection()
+        }
+
+        binding.poster.glide(viewModel.getFilm().posterUrlPreview)
+        binding.filmsName.text = viewModel.getFilm().nameRu
+        binding.genreName.text = viewModel.getFilm().genres.first().info
+    }
+
+
+    private fun onClick(collection: FilmsCollectionEntity){
+            viewModel.addUpdateList(collection)
         }
     }
-}

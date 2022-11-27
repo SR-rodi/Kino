@@ -6,16 +6,18 @@ import androidx.paging.PagingDataAdapter
 import com.example.core.databinding.ItemFilmsBinding
 import com.example.core.tools.Diff
 import com.example.core.tools.FilmsViewHolder
+import com.example.core.tools.all.BaseEntityFilm
 import com.example.core.tools.all.BaseFilms
 
-class FilmAdapterFromPage :PagingDataAdapter<BaseFilms, FilmsViewHolder>(Diff()) {
+class FilmAdapterFromPage(
+   private val onClickItem:(filmID:Int)->Unit) :PagingDataAdapter<BaseEntityFilm, FilmsViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmsViewHolder(
         ItemFilmsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
-        getItem(position)?.let { holder.bindItem(it,true){} }
+        getItem(position)?.let { holder.bindItem(it,true){id-> onClickItem(id) } }
     }
 
 

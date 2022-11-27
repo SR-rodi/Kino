@@ -8,14 +8,10 @@ import com.example.core.tools.general.Country
 interface CountryDao{
 
     @Insert
-    fun insertGenre(country: Country)
+    fun insertCounty(country: List<Country>)
 
     @Query("SELECT*FROM country WHERE info =:name")
     fun getCounterByName(name:String) :Country?
-
-
-    @Query("SELECT*FROM country WHERE id =:countryID")
-    fun getCounterById(countryID: Int):Country?
 
     @Query("SELECT*FROM country")
     fun getAllCounter():List<Country>

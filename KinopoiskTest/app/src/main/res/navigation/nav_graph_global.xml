@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_global"
-    app:startDestination="@id/searchStartFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.homepage.presentation.homepage.presentation.home_fragment.HomeFragment"
@@ -80,6 +80,9 @@
         <argument
             android:name="films"
             app:argType="com.example.feature_details.data.details_staff.Film[]" />
+        <action
+            android:id="@+id/action_filmography_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchStartFragment"
@@ -94,11 +97,7 @@
         android:name="com.example.screen_listpage.SettingsSearchFragment"
         android:label="SettingsSearchFragment" >
         <action
-            android:id="@id/action_settingsSearchFragment_to_chooseSettingFragment"
-            app:destination="@id/chooseSettingFragment" />
+            android:id="@+id/action_settingsSearchFragment_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/chooseSettingFragment"
-        android:name="com.example.screen_listpage.start.ChooseSettingFragment"
-        android:label="ChooseSettingFragment" />
 </navigation>
