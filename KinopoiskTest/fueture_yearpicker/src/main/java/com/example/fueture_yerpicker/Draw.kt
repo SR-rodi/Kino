@@ -8,68 +8,66 @@ object Draw {
 
 
 
-    fun createMatrix() {
+    fun createMatrix(setting: SettingsPicker) {
 
-        for (row in 1 until SettingsPicker.rows) {
-            val cellHeight = SettingsPicker.cellSizeH * row
-            for (col in 0 until SettingsPicker.columns) {
+        for (row in 1 until setting.rows) {
+            val cellHeight = setting.cellSizeH * row
+            for (col in 0 until setting.columns) {
 
-                SettingsPicker.datePicker[row][col].apply {
-                    rect.left = ((SettingsPicker.cellSizeW * col).toFloat())
+                setting.datePicker[row][col].apply {
+                    rect.left = ((setting.cellSizeW * col).toFloat())
                     rect.top = cellHeight.toFloat()
-                    rect.right =
-                        SettingsPicker.datePicker[row][col].rect.left + SettingsPicker.cellSizeW
-                    rect.bottom =
-                        SettingsPicker.datePicker[row][col].rect.top + SettingsPicker.cellSizeH
-                    date = SettingsPicker.startDate++
+                    rect.right = rect.left + setting.cellSizeW
+                    rect.bottom = rect.top + setting.cellSizeH
+                    date = setting.startDate++
                     status = State.NOT_SELECT
                 }
             }
         }
     }
 
-    fun drawMatrixDate(canvas: Canvas?) {
-        SettingsPicker.datePicker.forEach { dates ->
+    fun drawMatrixDate(canvas: Canvas?,setting: SettingsPicker) {
+        setting.datePicker.forEach { dates ->
             dates.forEach { date ->
                 Log.e("Kart","${date.rect}")
-                SettingsPicker.textPaint.color =
-                    if (date.status == State.NOT_SELECT) SettingsPicker.textColor
-                    else SettingsPicker.textColorSelect
+                setting.textPaint.color =
+                    if (date.status == State.NOT_SELECT) setting.textColor
+                    else setting.textColorSelect
                 canvas?.drawText(date.date.toString(), date.rect.centerX(),
-                    date.rect.centerY(), SettingsPicker.textPaint)
+                    date.rect.centerY(), setting.textPaint)
             }
         }
     }
 
-    fun drawRangeData(canvas: Canvas?) {
+    fun drawRangeData(canvas: Canvas?,setting:SettingsPicker) {
         val rect = RectF(
-            SettingsPicker.borderWidth,
-            SettingsPicker.borderWidth,
-            SettingsPicker.borderWidth + SettingsPicker.cellSizeW,
-            SettingsPicker.borderWidth + SettingsPicker.cellSizeH
+            setting.borderWidth,
+            setting.borderWidth,
+            setting.borderWidth + setting.cellSizeW,
+            setting.borderWidth + setting.cellSizeH
         )
-        SettingsPicker.textPaint.color = SettingsPicker.textColorSelect
+        setting.textPaint.color = setting.textColorSelect
         canvas?.drawText(
-            "${SettingsPicker.datePicker[1].first().date} - ${
-                SettingsPicker.datePicker.last().last().date
+            "${setting.datePicker[1].first().date} - ${
+                setting.datePicker.last().last().date
             }",
             rect.centerX(),
             rect.centerY(),
-            SettingsPicker.textPaint
+            setting.textPaint
         )
     }
 
-    fun drawArrow(canvas: Canvas?) {
-        SettingsPicker.textPaint.color = SettingsPicker.textColor
-        canvas?.drawPath(SettingsPicker.arrowPath, SettingsPicker.paintArrow)
+    fun drawArrow(canvas: Canvas?,setting:SettingsPicker) {
+        setting.textPaint.color = setting.textColor
+        canvas?.drawPath(setting.arrowPath, setting.paintArrow)
     }
 
-    fun drawBorder(canvas: Canvas?) {
+    fun drawBorder(canvas: Canvas?,setting:SettingsPicker) {
         canvas?.drawRoundRect(
-            SettingsPicker.viewRectF,
-            SettingsPicker.radius,
-            SettingsPicker.radius,
-            SettingsPicker.paint
+            setting.viewRectF,
+            setting.radius,
+            setting.radius,
+            setting.paint
         )
     }
 

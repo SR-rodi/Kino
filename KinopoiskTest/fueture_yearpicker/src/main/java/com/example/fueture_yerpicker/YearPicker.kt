@@ -14,7 +14,9 @@ class YerPicker @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
 ) : View(context, attrs) {
 
+    private val setting = SettingsPicker()
 
+   private var startDate = 1994
     var setDateListener: onDateClickListener? = null
 
     init {
@@ -23,47 +25,47 @@ class YerPicker @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        SettingsPicker.setupField(w, h)
-        Draw.createMatrix()
+        setting.setupField(w, h)
+        Draw.createMatrix(setting)
     }
 
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        Draw.drawArrow(canvas)
-        Draw.drawBorder(canvas)
-        Draw.drawMatrixDate(canvas)
-        Draw.drawRangeData(canvas)
+        Draw.drawArrow(canvas,setting)
+        Draw.drawBorder(canvas,setting)
+        Draw.drawMatrixDate(canvas,setting)
+        Draw.drawRangeData(canvas,setting)
 
     }
 
     @SuppressLint("Recycle")
     private fun setAttribute(attrs: AttributeSet) {
         val typArray = context.obtainStyledAttributes(attrs, R.styleable.YerPicker)
-        SettingsPicker.borderWidth =
+        setting.borderWidth =
             typArray.getDimension(
                 R.styleable.YerPicker_picker_border_width, context.dpToPx(
                     DEFAULT_BORDER_WIDTH
                 )
             )
-        SettingsPicker.borderColor = typArray.getColor(
+        setting.borderColor = typArray.getColor(
             R.styleable.YerPicker_picker_border_color,
             DEFAULT_BORDER_COLOR
         )
-        SettingsPicker.radius = typArray.getDimension(R.styleable.YerPicker_picker_border_corner_radius,context.dpToPx(10))
-        SettingsPicker.startDate = typArray.getInt(R.styleable.YerPicker_picker_start_date,1990)
-        SettingsPicker.textSizeSP = typArray.getDimension(R.styleable.YerPicker_picker_text_size,context.dpToSp(15))
+        setting.radius = typArray.getDimension(R.styleable.YerPicker_picker_border_corner_radius,context.dpToPx(10))
+        startDate = typArray.getInt(R.styleable.YerPicker_picker_start_date,1990)
+        setting.textSizeSP = typArray.getDimension(R.styleable.YerPicker_picker_text_size,context.dpToSp(15))
         typArray.recycle()
-        SettingsPicker.paint.apply {
-            color = SettingsPicker.borderColor
-            strokeWidth = SettingsPicker.borderWidth
+        setting.paint.apply {
+            color = setting.borderColor
+            strokeWidth = setting.borderWidth
             style = Paint.Style.STROKE
         }
-        SettingsPicker.textPaint.apply {
-            color = SettingsPicker.textColor
+        setting.textPaint.apply {
+            color = setting.textColor
             style = Paint.Style.FILL
-            textSize = SettingsPicker.textSizeSP
+            textSize = setting.textSizeSP
         }
     }
 
@@ -73,7 +75,7 @@ class YerPicker @JvmOverloads constructor(
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        listener.onTouchEvent(event,setDateListener){invalidate()}
+        listener.onTouchEvent(event,setting,setDateListener){invalidate()}
         return super.onTouchEvent(event)
     }
 

@@ -6,7 +6,7 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.util.Log
 
-object SettingsPicker {
+class SettingsPicker {
 
     var borderWidth = 0F
     var borderColor = YerPicker.DEFAULT_BORDER_COLOR
