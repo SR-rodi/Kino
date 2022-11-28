@@ -39,6 +39,7 @@ android {
 dependencies {
 
     implementation project(":core")
+    implementation project(':fueture_yearpicker')
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

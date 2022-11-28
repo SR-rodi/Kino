@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <DatePicker
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:datePickerMode="calendar"
-        android:startYear="1998"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:paddingStart="17dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:fontFamily="@font/graphik_bold"
+            android:textColor="@color/title_text_color"
+            android:textSize="12sp"
+            tools:text="Category" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginVertical="16dp"
+        android:text="Искать в период с:"/>
+
+    <com.example.fueture_yerpicker.YerPicker
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        app:picker_text_color="@color/title_text_color"
+        app:picker_border_width="5dp"
+        app:picker_start_date="1990"
+        app:picker_text_size="15sp"
+        android:layout_marginHorizontal="26dp"
+        app:picker_border_corner_radius="25dp"
+        app:picker_border_color="@color/purple_1"
+        app:picker_text_select_color="@color/purple_1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginVertical="16dp"
+        android:text="Искать в период до:"/>
+
+    <com.example.fueture_yerpicker.YerPicker
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        app:picker_text_color="@color/title_text_color"
+        app:picker_border_width="5dp"
+        app:picker_start_date="1990"
+        app:picker_text_size="15sp"
+        android:layout_marginHorizontal="26dp"
+        app:picker_border_corner_radius="25dp"
+        app:picker_border_color="@color/purple_1"
+        app:picker_text_select_color="@color/purple_1"/>
+
+</LinearLayout>
