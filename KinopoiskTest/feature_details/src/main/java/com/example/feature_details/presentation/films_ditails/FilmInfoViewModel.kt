@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.*
+import com.example.core.tools.all.CategoryInfo
 import com.example.core.tools.all.LoadState
 import com.example.core.tools.general.InfoFilms
 import com.example.feature_database.entity.FilmEntity
@@ -33,8 +34,7 @@ class FilmInfoViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-
-    var id = 0
+    val filmId:Int? = savedStateHandle[NAVIGATE__TO_INFO_FILM]
 
     private val _film = MutableSharedFlow<Pair<PosterFilm, List<InfoFilms>>>()
     val film = _film.asSharedFlow()
@@ -45,24 +45,33 @@ class FilmInfoViewModel(
     private var filmEntity: FilmEntity? = null
     private var isEmptyInfoFromDataBase = true
 
-    fun createID(argsInt: Int) {
-        id = argsInt
-    }
 
-    fun getFilmForID() =
+    fun getFilmForID(id:Int? = filmId) =
         viewModelScope.launch(handler + Dispatchers.IO) {
-            _loadState.value = LoadState.LOADING
-          val  infoFilms = networkRepository.getFilmForID(id)
-            Log.e("Kart","Start Network")
-            filmsDatabaseRepository.getFilmByID(id).onEach {
-                filmEntity=it
-                if(it == null){
-                    collectionsFilmsRepository.insetFilm(infoFilms.toFilmEntity())
-                    collectionsFilmsRepository.insertFilmCollection(infoFilms.toFilmEntity(), ID_HISTORY_COLLECTION)
+            Log.d("Kart","network ${id}")
 
-                } else _filmStatus.emit(it)
-                _film.emit(Pair(infoFilms.toPosterFilms(), createListCategoryInfo(id, infoFilms)))
-            }.launchIn(viewModelScope+Dispatchers.IO)
+            _loadState.value = LoadState.LOADING
+            if (id!=null) {
+                val infoFilms = networkRepository.getFilmForID(id)
+                filmsDatabaseRepository.getFilmByID(id).onEach {
+                    Log.d("Kart"," bd ${it?.filmId}")
+                    filmEntity = it
+                    if (it == null) {
+                        collectionsFilmsRepository.insetFilm(infoFilms.toFilmEntity())
+                        collectionsFilmsRepository.insertFilmCollection(
+                            infoFilms.toFilmEntity(),
+                            ID_HISTORY_COLLECTION
+                        )
+
+                    } else _filmStatus.emit(it)
+                    _film.emit(
+                        Pair(
+                            infoFilms.toPosterFilms(),
+                            createListCategoryInfo(id, infoFilms)
+                        )
+                    )
+                }.launchIn(viewModelScope + Dispatchers.IO)
+            }
             _loadState.value = LoadState.SUCCESS
 
         }
@@ -140,9 +149,16 @@ class FilmInfoViewModel(
         return galleryList
     }
 
-    fun createHandle() {
+    fun navigateToBottomSheet() {
         savedStateHandle[BOTTOM_SHEET_FILMS] = filmEntity
         savedStateHandle[IS_EMPTY_FILM_DATABASE] = isEmptyInfoFromDataBase
+    }
+
+    fun navigateToStaffInfo(categoryInfo: CategoryInfo) {
+        savedStateHandle[NAVIGATE__TO_STAFF]= categoryInfo.itemId
+    }
+
+    fun navigateToCategory() {
     }
 
 
@@ -151,5 +167,4 @@ class FilmInfoViewModel(
         const val BOTTOM_SHEET_FILMS = "bottom_sheet_films"
         const val IS_EMPTY_FILM_DATABASE = "item_in_data_base"
     }
-
 }

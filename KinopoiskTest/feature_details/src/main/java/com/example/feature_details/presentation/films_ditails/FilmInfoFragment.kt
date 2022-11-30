@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
@@ -28,18 +29,20 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
 
     private val adapter by lazy { InfoAdapter({ onClickItem(it) }, { onClickAll(it) }) }
 
+    override fun onStart() {
+        super.onStart()
+
+        Log.d("Kart"," onStart")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.createID(getArgsInt())
+        binding.backArrow.popBackStack()
 
         viewModel.getFilmForID()
 
-      //  viewModel.getStatusFilm()
 
-        binding.backArrow.popBackStack()
-
-        binding.detailRecyclerView.adapter = adapter
 
         observeLoadState(viewModel.loadState, binding.newPoster.loading) {}
 
@@ -49,12 +52,10 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
         onClickStatusButton(binding.newPoster.look, ButtonPoster.LOOK)
         observeFilmStatus()
         Log.d(
-            "Kart", "like ${ binding.newPoster.like.isSelected}" +
+            "Kart", "like ${binding.newPoster.like.isSelected}" +
                     " favorite ${binding.newPoster.favorite.isSelected}" +
                     " look ${binding.newPoster.look.isSelected}"
         )
-
-
     }
 
     private fun observeFilmStatus() {
@@ -63,7 +64,6 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
                 binding.newPoster.like.isSelected = it.isLike
                 binding.newPoster.favorite.isSelected = it.isFavorite
                 binding.newPoster.look.isSelected = it.isLook
-
             }
         }
     }
@@ -73,7 +73,7 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
             viewModel.film.collect {
                 setPoster(it.first)
                 adapter.items = it.second
-
+                binding.detailRecyclerView.adapter = adapter
             }
         }
     }
@@ -93,9 +93,8 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
 
             binding.categoryTitle.text = item.nameOriginal
 
-
             binding.newPoster.menu.setOnClickListener {
-                viewModel.createHandle()
+                viewModel.navigateToBottomSheet()
                 findNavController().navigate(R.id.action_filmInfoFragment_to_bottomSheetMenuFragment)
             }
 
@@ -105,24 +104,27 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
     }
 
     private fun onClickItem(categoryInfo: CategoryInfo) {
+
         when (categoryInfo) {
-            CategoryInfo.STAFF ->
-                findNavController().navigate(
-                    R.id.action_filmInfoFragment_to_staffInfoFragment,
-                    categoryInfo.createBundle()
-                )
+            CategoryInfo.STAFF -> {
+                viewModel.navigateToStaffInfo(categoryInfo)
+                findNavController().navigate(R.id.action_filmInfoFragment_to_staffInfoFragment)
+            }
             CategoryInfo.GALLERY -> createGalleryDialog(categoryInfo)
-            CategoryInfo.FILMS -> {}
+            CategoryInfo.FILMS -> { viewModel.getFilmForID(categoryInfo.itemId) }
         }
 
     }
+
 
     private fun onClickAll(categoryInfo: CategoryInfo) {
         when (categoryInfo) {
             CategoryInfo.STAFF -> {}
             CategoryInfo.GALLERY ->
                 findNavController().navigate(R.id.action_filmInfoFragment_to_galleryFragment)
-            CategoryInfo.FILMS -> {}
+            CategoryInfo.FILMS -> {
+                viewModel.navigateToCategory()
+            }
         }
 
     }

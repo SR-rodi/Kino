@@ -1,5 +1,6 @@
 package com.example.homepage.presentation.homepage.presentation.home_fragment
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.*
 import com.example.core.tools.all.CategoryFilms
@@ -19,7 +20,8 @@ import java.util.*
 class HomeViewModel(
     private val networkRepository: NetworkCategoryImpl,
     private val counterGenreRepository: DataBaseRepository,
-    private val collectionsRepository: CollectionsFilmsRepository
+    private val collectionsRepository: CollectionsFilmsRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val calendar = Calendar.getInstance()
@@ -105,6 +107,16 @@ class HomeViewModel(
                 )
             )
         )
+    }
+
+    fun navigateToCategory(categoryFilms: CategoryFilms) {
+        savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms
+        savedStateHandle[WORK_MODE] = ViewModelWorkMode.IN_NETWORK
+    }
+
+    fun navigateToInfoFilm(filmID: Int) {
+        savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmID
+
     }
 
     companion object {

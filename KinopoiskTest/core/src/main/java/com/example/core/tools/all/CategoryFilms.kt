@@ -8,6 +8,5 @@ enum class CategoryFilms(var text :String,val query: Query):Parcelable {
     BEST("ТОП-250", Query()),
     POPULAR("Популярное", Query()),
     PREMIERS("Премьеры", Query()),
-    RANDOM("Исправить", Query())
-
+    RANDOM("Исправить", Query()),
 }

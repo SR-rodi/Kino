@@ -14,8 +14,8 @@ import kotlinx.coroutines.withContext
 class ListPagePagingSource(
     private val networkRepository: NetworkCategoryRepository,
     private val dataBaseRepository: DataBaseRepository,
-    private val viewModelScope:CoroutineScope,
-    private val category: CategoryFilms,
+    private val viewModelScope: CoroutineScope,
+    private val category: CategoryFilms?,
 
     ) : PagingSource<Int, BaseEntityFilm>() {
 
@@ -26,27 +26,27 @@ class ListPagePagingSource(
         val page = params.key ?: FIRST_PAGE
         val pageSize = params.loadSize
 
-    return    kotlin.runCatching {
-        withContext(Dispatchers.IO){
-            getFilms(page, category).mergeDatabase(dataBaseRepository,viewModelScope)
-        }
-    }.fold(
-        onSuccess = {
-            LoadResult.Page(
-                data = it,
-                prevKey = if (page == 1) null else page - 1,
-                nextKey = if (it.size<pageSize) null else page+1
-            )
-        },
-            onFailure = {LoadResult.Error(it)}
+        return kotlin.runCatching {
+            withContext(Dispatchers.IO) {
+                getFilms(page, category).mergeDatabase(dataBaseRepository, viewModelScope)
+            }
+        }.fold(
+            onSuccess = {
+                LoadResult.Page(
+                    data = it,
+                    prevKey = if (page == 1) null else page - 1,
+                    nextKey = if (it.size < pageSize) null else page + 1
+                )
+            },
+            onFailure = { LoadResult.Error(it) }
         )
 
     }
 
-    private suspend fun getFilms(page: Int, category: CategoryFilms): List<BaseEntityFilm> {
+    private suspend fun getFilms(page: Int, category: CategoryFilms?): List<BaseEntityFilm> {
         return when (category) {
 
-            CategoryFilms.POPULAR -> loadPopular(networkRepository,  page)
+            CategoryFilms.POPULAR -> loadPopular(networkRepository, page)
             CategoryFilms.PREMIERS -> loadPremieres(
                 networkRepository,
                 category.query.year,
@@ -59,6 +59,7 @@ class ListPagePagingSource(
                 category.query.counterID,
                 category.query.genreId
             )
+            else -> emptyList()
         }
     }
 

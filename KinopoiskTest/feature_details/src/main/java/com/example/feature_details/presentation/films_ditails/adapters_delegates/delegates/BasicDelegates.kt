@@ -67,8 +67,9 @@ fun categorySimilarAdapter(
         ItemCategoryBinding.inflate(layoutInflater, root, false)
     }) {
 
-        binding.buttonAll.setOnClickListener { onClickAll(CategoryInfo.FILMS) }
+        binding.buttonAll.setOnClickListener { onClickAll(CategoryInfo.FILMS.apply { itemId }) }
         bind {
+
             binding.categoryName.text = item.category
             val adapter = NestedAdapterInInfo { onClickItem(it) }
             binding.filmsRecyclerView.adapter = adapter

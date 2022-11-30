@@ -18,11 +18,11 @@ import org.koin.dsl.module
 val viewModel = module {
 
     viewModel {
-        HomeViewModel(get(),get(),get())
+        HomeViewModel(get(),get(),get(),get())
     }
 
     viewModel {
-        CategoryPageViewModel(get())
+        CategoryPageViewModel(get(),get())
     }
 
     viewModel {

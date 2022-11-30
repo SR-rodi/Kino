@@ -21,16 +21,26 @@ class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
 
     private val viewModel by viewModel<StaffInfoViewModel>()
 
-    private val adapter by lazy { FilmsAdapter({},{}) }
+    private val adapter by lazy { FilmsAdapter({}, {}) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getStaff(TEST_ID/* getArgsCategoryInfo().itemId*/)
+        viewModel.getStaff()
+        observe()
 
         binding.bestFilms.adapter = adapter
 
         binding.backArrow.popBackStack()
+
+        binding.name.setOnClickListener {
+            viewModel.navigateToFilmography()
+            findNavController().navigate(R.id.action_filmInfoFragment_to_filmographyFragment)
+        }
+
+    }
+
+    private fun observe() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.staff.collect {
@@ -38,14 +48,8 @@ class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
                 binding.name.text = it.first.nameRu
                 binding.description.text = it.first.profession
                 adapter.submitList(it.second)
-                binding.name.setOnClickListener{
-                    findNavController().navigate(R.id.action_filmInfoFragment_to_filmographyFragment)
-                }
             }
         }
     }
 
-    companion object {
-        private const val TEST_ID = 66539
-    }
 }

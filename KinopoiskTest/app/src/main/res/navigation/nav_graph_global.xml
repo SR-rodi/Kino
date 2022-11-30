@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_global"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.homepage.presentation.homepage.presentation.home_fragment.HomeFragment"
@@ -21,7 +21,11 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.presentation_profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@id/action_profileFragment_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoryPageFragment"
         android:name="com.example.homepage.presentation.homepage.presentation.category_fragment.CategoryPageFragment"
@@ -56,6 +60,9 @@
         <action
             android:id="@id/action_filmInfoFragment_to_filmographyFragment"
             app:destination="@id/filmography" />
+        <action
+            android:id="@id/action_staffInfoFragment_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetMenuFragment"
@@ -91,15 +98,20 @@
         <action
             android:id="@id/action_searchFragment_to_settingsSearchFragment"
             app:destination="@id/settingsSearchFragment" />
+        <action
+            android:id="@id/action_searchStartFragment_to_filmInfoFragment"
+            app:destination="@id/filmInfoFragment" />
+        <action
+            android:id="@id/action_searchStartFragment_to_yearPickerFragment"
+            app:destination="@id/yearPickerFragment" />
+        <action
+            android:id="@id/action_searchStartFragment_to_chooseSettingFragment"
+            app:destination="@id/chooseSettingFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsSearchFragment"
         android:name="com.example.screen_listpage.SettingsSearchFragment"
-        android:label="SettingsSearchFragment" >
-        <action
-            android:id="@+id/action_settingsSearchFragment_to_filmInfoFragment"
-            app:destination="@id/filmInfoFragment" />
-    </fragment>
+        android:label="SettingsSearchFragment" />
     <fragment
         android:id="@+id/chooseSettingFragment"
         android:name="com.example.screen_listpage.start.ChooseSettingFragment"

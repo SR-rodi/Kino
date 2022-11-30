@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
 import com.example.core.tools.all.CategoryInfo
+import com.example.feature_details.data.details_staff.BestFilm
+import com.example.feature_details.data.details_staff.Film
+import com.example.feature_details.domein.repository_ipl.FilmUseCase
 import com.example.feature_details.presentation.gallery.GalleryAdapter
+import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
 
 fun Fragment.createGalleryDialog(categoryInfo: CategoryInfo){
     val dialog = LayoutInflater.from(requireContext())
@@ -28,4 +32,15 @@ fun Fragment.createGalleryDialog(categoryInfo: CategoryInfo){
         .show()
 
     recyclerView.scrollToPosition(categoryInfo.itemId)
+}
+
+suspend fun List<Film>.getBeastFilms(filmUseCase: FilmUseCase): MutableList<BestFilm> {
+    val bestListFilms = if (this.size > StaffInfoViewModel.SIZE_BEST_LIST)
+        this.sortedByDescending { it.rating }.slice(0 until StaffInfoViewModel.SIZE_BEST_LIST)
+    else this
+    val bestFilmsInfo = mutableListOf<BestFilm>()
+    if (bestListFilms.isNotEmpty()) bestListFilms.forEach {
+        bestFilmsInfo.add(filmUseCase.getFilmByID(it.filmId).toBestFilms())
+    }
+    return bestFilmsInfo
 }

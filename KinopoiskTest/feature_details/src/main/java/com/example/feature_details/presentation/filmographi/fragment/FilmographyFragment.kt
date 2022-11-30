@@ -46,16 +46,8 @@ class FilmographyFragment : BaseFragment<FragmentRecyclerBinding>() {
         }
     }
 
-
     private fun onClick(position: Int) {
         viewModel.onClick(position)
     }
-
-/*    companion object {
-        fun getInstance(filmographyCategory: FilmographyCategory) =
-            FilmographyFragment().withArguments {
-                putParcelable("KET", filmographyCategory)
-            }
-    }*/
 
 }

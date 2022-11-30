@@ -5,21 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.all.CategoryFilms
-import com.example.core.tools.extensions.createBundle
 import com.example.core.tools.extensions.createErrorDialog
-import com.example.core.tools.extensions.getArgsCategoryFilms
 import com.example.core.tools.extensions.popBackStack
-import com.example.homepage.R
 import com.example.homepage.databinding.FragmentCategoryPageBinding
 import com.example.homepage.presentation.homepage.presentation.adapters.filmsAdapter.FilmAdapterFromPage
 import kotlinx.coroutines.launch
+import com.example.core.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
@@ -29,7 +25,7 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
 
     private val viewModel by viewModel<CategoryPageViewModel>()
 
-    private val adapter by lazy { FilmAdapterFromPage{onClickItem(it)} }
+    private val adapter by lazy { FilmAdapterFromPage { onClickItem(it) } }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,11 +33,9 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
 
         binding.categoryPageRecyclerView.adapter = adapter
 
-        val category = getArgsCategoryFilms()
+        binding.categoryTitle.text = viewModel.getNameCategory()
 
-        binding.categoryTitle.text = category.text
-
-        setAdapter(category)
+        setAdapter()
 
         loadStateListener()
 
@@ -49,8 +43,9 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
 
     }
 
-    private fun onClickItem(filmId:Int){
-        findNavController().navigate(com.example.core.R.id.action_categoryPageFragment_to_filmInfoFragment,filmId.createBundle())
+    private fun onClickItem(filmId: Int) {
+        viewModel.navigateToFilmsInfo(filmId)
+        findNavController().navigate(R.id.action_categoryPageFragment_to_filmInfoFragment)
     }
 
     private fun loadStateListener() {
@@ -60,9 +55,9 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
         }
     }
 
-    private fun setAdapter(categoryFilms: CategoryFilms) {
+    private fun setAdapter() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getFilms(categoryFilms).collect {
+            viewModel.getFilms().collect {
                 adapter.submitData(it)
             }
         }

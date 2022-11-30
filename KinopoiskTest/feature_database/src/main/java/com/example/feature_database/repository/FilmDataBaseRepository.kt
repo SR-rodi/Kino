@@ -11,11 +11,7 @@ class FilmDataBaseRepository(
 
     fun getFilmByID(filmID: Int) = filmsDao.getFilmById(filmID)
 
-    fun insertFilm(filmEntity: FilmEntity) = filmsDao.insertFilm(filmEntity)
-
     fun updateFilm(filmEntity: FilmEntity) = filmsDao.updateFilm(filmEntity)
-
-    fun deleteFilm(filmEntity: FilmEntity) = filmsDao.deleteFilm(filmEntity)
 
 
 }

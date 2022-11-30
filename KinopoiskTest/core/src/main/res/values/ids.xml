@@ -20,6 +20,10 @@
     <item name="action_searchFragment_to_settingsSearchFragment" type="id"/>
     <item name="action_filmInfoFragment_to_filmographyFragment" type="id"/>
     <item name="action_settingsSearchFragment_to_chooseSettingFragment" type="id"/>
+    <item name="action_searchStartFragment_to_filmInfoFragment" type="id"/>
+    <item name="action_profileFragment_to_filmInfoFragment" type="id"/>
+    <item name="action_searchStartFragment_to_chooseSettingFragment" type="id"/>
+    <item name="action_searchStartFragment_to_yearPickerFragment" type="id"/>
 
 
 

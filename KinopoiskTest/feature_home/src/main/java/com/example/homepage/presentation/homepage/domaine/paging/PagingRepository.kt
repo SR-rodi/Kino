@@ -14,7 +14,7 @@ class PagingRepository(
     private val networkRepository: NetworkCategoryImpl,
     private val dataBaseRepository: DataBaseRepository
 ) {
-    fun getFlowFilms(category: CategoryFilms,viewModelScope: CoroutineScope): Flow<PagingData<BaseEntityFilm>> {
+    fun getFlowFilms(category: CategoryFilms?, viewModelScope: CoroutineScope): Flow<PagingData<BaseEntityFilm>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,

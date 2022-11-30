@@ -3,6 +3,7 @@ package com.example.feature_details.presentation.filmographi.viewModel
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.core.tools.NAVIGATE__TO_FILMOGRAPHY
 import com.example.feature_details.data.details_staff.StaffDetailsDTO
 import com.example.feature_details.presentation.filmographi.FilmographyCategory
 
@@ -10,7 +11,7 @@ class FilmographyListViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val person = savedStateHandle.get<StaffDetailsDTO>("person")
+    private val person = savedStateHandle.get<StaffDetailsDTO>(NAVIGATE__TO_FILMOGRAPHY)
     private val films = person?.films
 
     fun divideByCategory(): MutableList<FilmographyCategory> {

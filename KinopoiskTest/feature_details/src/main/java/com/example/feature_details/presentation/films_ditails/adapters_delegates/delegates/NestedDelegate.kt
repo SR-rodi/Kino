@@ -1,5 +1,6 @@
 package com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates
 
+import android.util.Log
 import androidx.core.view.isVisible
 import com.example.core.databinding.ItemFilmsBinding
 import com.example.core.tools.all.CategoryInfo
@@ -37,14 +38,14 @@ fun similarAdapter(onClickItem: (category: CategoryInfo) -> Unit) =
     }) {
         binding.itemCard.setOnClickListener {
             onClickItem(
-                CategoryInfo.STAFF.apply { this.itemId = item.filmId })
+                CategoryInfo.FILMS.apply { this.itemId = item.filmId })
         }
 
         bind {
+            Log.e("Kart"," in adapter ${item.nameRu}")
             binding.poster.glide(item.posterUrlPreview)
             binding.filmsName.text = item.nameRu
             binding.rating.isVisible = true
-
         }
     }
 

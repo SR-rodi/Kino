@@ -52,3 +52,5 @@ fun Fragment.checkFirstStart(): Boolean {
     if (!a) pref.edit().putBoolean("isFirstStart", false).apply()
     return !a
 }
+
+
