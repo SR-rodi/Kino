@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_global"
-    app:startDestination="@id/chooseSettingFragment">
+    app:startDestination="@id/profileFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.homepage.presentation.homepage.presentation.home_fragment.HomeFragment"
@@ -104,4 +104,8 @@
         android:id="@+id/chooseSettingFragment"
         android:name="com.example.screen_listpage.start.ChooseSettingFragment"
         android:label="ChooseSettingFragment" />
+    <fragment
+        android:id="@+id/yearPickerFragment"
+        android:name="com.example.screen_listpage.start.YearPickerFragment"
+        android:label="YearPickerFragment" />
 </navigation>

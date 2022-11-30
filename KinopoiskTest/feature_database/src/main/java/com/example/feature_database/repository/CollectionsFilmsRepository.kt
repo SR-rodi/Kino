@@ -1,7 +1,9 @@
 package com.example.feature_database.repository
 
 import android.util.Log
-import androidx.room.Update
+import com.example.core.tools.ID_FAVORITE_COLLECTION
+import com.example.core.tools.ID_HISTORY_COLLECTION
+import com.example.core.tools.ID_LIKE_COLLECTION
 import com.example.feature_database.Dao.FilmsCollectionDao
 import com.example.feature_database.Dao.FilmsDao
 import com.example.feature_database.entity.FilmEntity
@@ -13,30 +15,70 @@ class CollectionsFilmsRepository(
     private val filmsCollectionDao: FilmsCollectionDao
 ) {
 
-    fun insertFilm(filmEntity: FilmEntity, collectionEntity: FilmsCollectionEntity) {
+    fun insetFilm(filmEntity: FilmEntity) = filmsDao.insertFilm(filmEntity)
+
+    fun insertFilmCollection(filmEntity: FilmEntity, collectionId: Int) {
+
+        val collectionEntity = filmsCollectionDao.getCollectionEntity(collectionId)
         collectionEntity.size++
-        filmsDao.insertFilm(filmEntity)
+
         val isSuccess = filmsCollectionDao
             .insertMergeCollectionAndFilms(
-                MergeCollectionAndFilms(collectionEntity.id!!, filmEntity.filmId)
+                MergeCollectionAndFilms(collectionId, filmEntity.filmId)
             )
-        if (isSuccess!=-1L) filmsCollectionDao.updateCollection(collectionEntity)
+        Log.e("Kart", isSuccess.toString())
+        if (isSuccess != -1L && collectionId != ID_HISTORY_COLLECTION)
+            filmsCollectionDao.updateCollection(collectionEntity)
     }
 
-    fun getFilmFromID(id: Int) = filmsDao.getFilmById(id)
+    fun insertFromBottomShit(filmEntity: FilmEntity, collectionId: Int, isCheck: Boolean) {
+        likeAndFavorite(collectionId, filmEntity, isCheck)
 
-    fun addCollection(name: String) =
-        filmsCollectionDao.insertCollection(FilmsCollectionEntity(nameCollection = name))
+        insertFilmCollection(filmEntity, collectionId)
+    }
 
+    fun deleteFilmInCollection(collectionId: Int, filmID: Int) {
+        val collectionEntity = filmsCollectionDao.getCollectionEntity(collectionId)
+        collectionEntity.size--
+        filmsCollectionDao.deleteFilm(MergeCollectionAndFilms(collectionId, filmID))
+        filmsCollectionDao.updateCollection(collectionEntity)
+    }
 
-    fun addFilmToCollection(filmId: Int, collectionID: Int) =
-        filmsCollectionDao
-            .insertMergeCollectionAndFilms(MergeCollectionAndFilms(collectionID, filmId))
+    fun deleteFilmInCollectionFromBottomShit(
+        collectionId: Int,
+        filmEntity: FilmEntity,
+        isSelect: Boolean
+    ) {
+
+        likeAndFavorite(collectionId, filmEntity, isSelect)
+        deleteFilmInCollection(collectionId, filmEntity.filmId)
+    }
+
+    fun addCollection(name: String, id: Int? = null) =
+        filmsCollectionDao.insertCollection(FilmsCollectionEntity(id, name))
+
 
     fun getFilmsFromCollectionID(collectionID: Int) =
         filmsCollectionDao.getFilmsFromCollectionID(collectionID)
 
+    fun getCollectionFromFilmId(id: Int?) = filmsCollectionDao.getCollectionsFromFilmID(id)
+
+    fun getCollectionFromFilmIdAndCollectionId(filmID: Int, collectionId: Int) =
+        filmsCollectionDao.getCollectionsFromFilmIDAndCollectionID(filmID, collectionId)
+
     fun getAllCollection() = filmsCollectionDao.getCollection()
 
+    fun getFilmsFromListID(list: List<Int>) = filmsCollectionDao.getFilmsByListId(list)
+
+    private fun likeAndFavorite(collectionId: Int, filmEntity: FilmEntity, isSelect: Boolean) {
+        if (collectionId == ID_LIKE_COLLECTION) {
+            filmEntity.isLike = isSelect
+            filmsDao.updateFilm(filmEntity)
+        }
+        if (collectionId == ID_FAVORITE_COLLECTION) {
+            filmEntity.isFavorite = isSelect
+            filmsDao.updateFilm(filmEntity)
+        }
+    }
 
 }

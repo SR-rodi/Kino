@@ -9,6 +9,7 @@ import com.example.homepage.presentation.homepage.presentation.category_fragment
 import com.example.feature_details.presentation.films_ditails.FilmInfoViewModel
 import com.example.feature_details.presentation.gallery.GalleryViewModel
 import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
+import com.example.presentation_profile.ProfileViewModel
 import com.example.screen_listpage.start.SearchStartViewModel
 
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,7 +18,7 @@ import org.koin.dsl.module
 val viewModel = module {
 
     viewModel {
-        HomeViewModel(get(),get())
+        HomeViewModel(get(),get(),get())
     }
 
     viewModel {
@@ -25,7 +26,7 @@ val viewModel = module {
     }
 
     viewModel {
-        FilmInfoViewModel(get(),get(),get())
+        FilmInfoViewModel(get(),get(),get(),get())
     }
 
     viewModel {
@@ -55,5 +56,7 @@ val viewModel = module {
     viewModel{
        BottomSheetViewModel(get(),get())
     }
-
+    viewModel{
+        ProfileViewModel(get())
+    }
 }

@@ -60,8 +60,6 @@ class ListPagePagingSource(
                 category.query.genreId
             )
         }
-
-
     }
 
     companion object {

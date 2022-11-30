@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import com.example.core.tools.FilmsCollection
 import com.example.core.tools.extensions.createAddDialog
 import com.example.core.tools.extensions.glide
-import com.example.feature_database.entity.FilmsCollectionEntity
 import com.example.feature_details.databinding.BottomSheetMenuBinding
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.adapters.CollectionAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -20,7 +20,8 @@ class BottomSheetMenuFragment : BottomSheetDialogFragment() {
 
     private val viewModel by viewModel<BottomSheetViewModel>()
 
-    private val adapter by lazy { CollectionAdapter{ onClick(it) } }
+    private val adapter by lazy { CollectionAdapter{ collection,isSelect->
+        onClick(collection,isSelect) } }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,21 +52,13 @@ class BottomSheetMenuFragment : BottomSheetDialogFragment() {
                 viewModel.addCollection(name)}
         }
 
-        binding.addFilmsButton.setOnClickListener{
-            viewModel.addFilmsInCollection()
-        }
-
-        binding.poster.setOnClickListener {
-            viewModel.getFilmsCollection()
-        }
-
         binding.poster.glide(viewModel.getFilm().posterUrlPreview)
         binding.filmsName.text = viewModel.getFilm().nameRu
         binding.genreName.text = viewModel.getFilm().genres.first().info
     }
 
 
-    private fun onClick(collection: FilmsCollectionEntity){
-            viewModel.addUpdateList(collection)
+    private fun onClick(collection: FilmsCollection, isSelect:Boolean){
+        viewModel.addFilmsInCollection(collection,isSelect)
         }
     }

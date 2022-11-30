@@ -2,6 +2,7 @@ package com.example.feature_details.data.detailsFilm_page.model
 
 import com.example.core.tools.general.Country
 import com.example.core.tools.general.Genre
+import com.example.core.tools.general.InfoFilms
 
 class PosterFilm(
     val kinopoiskId: Int,

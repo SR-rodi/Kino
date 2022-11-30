@@ -19,6 +19,4 @@ class FilmAdapterFromPage(
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
         getItem(position)?.let { holder.bindItem(it,true){id-> onClickItem(id) } }
     }
-
-
 }

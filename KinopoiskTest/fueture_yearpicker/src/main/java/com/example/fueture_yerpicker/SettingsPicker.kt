@@ -1,9 +1,6 @@
 package com.example.fueture_yerpicker
 
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.RectF
+import android.graphics.*
 import android.util.Log
 
 class SettingsPicker {
@@ -41,8 +38,9 @@ class SettingsPicker {
 
     val paintArrow = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
-        strokeWidth = borderWidth
+        strokeWidth = 7f
         style = Paint.Style.STROKE
+        pathEffect = CornerPathEffect(5f)
     }
 
     var viewRectF = RectF()

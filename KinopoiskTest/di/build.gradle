@@ -38,6 +38,7 @@ dependencies {
     implementation project(':feature_details')
     implementation project(':feature_database')
     implementation project(':presentation_search')
+    implementation project(':presentation_profile')
     implementation project(":core")
 
 

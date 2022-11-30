@@ -14,7 +14,4 @@ interface NetworkCategoryRepository {
     suspend fun  getListGenreAndCounter(): CountryAndGenreDTO
 
     suspend fun  getFilmsGenreAndCounter(page: Int,counterID:Int,genreId:Int ): List<RandomFilmsDTO>
-
-
-
 }

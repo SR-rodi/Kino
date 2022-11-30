@@ -6,16 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.tools.BaseFragment
 import com.example.core.tools.all.CategoryInfo
-import com.example.core.tools.all.LoadState
 import com.example.core.tools.extensions.*
 import com.example.feature_details.data.ButtonPoster
-import com.example.feature_details.data.detailsFilm_page.model.InfoFilms
 import com.example.feature_details.data.detailsFilm_page.model.PosterFilm
 import com.example.feature_details.databinding.FragmentFilmInfoBinding
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.adapters.InfoAdapter
@@ -34,16 +31,41 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getFilmForID(getArgsInt())
+        viewModel.createID(getArgsInt())
+
+        viewModel.getFilmForID()
+
+      //  viewModel.getStatusFilm()
 
         binding.backArrow.popBackStack()
 
         binding.detailRecyclerView.adapter = adapter
 
-        observeLoadState(viewModel.loadState,binding.newPoster.loading){}
+        observeLoadState(viewModel.loadState, binding.newPoster.loading) {}
 
         observeFilm()
+        onClickStatusButton(binding.newPoster.like, ButtonPoster.LIKE)
+        onClickStatusButton(binding.newPoster.favorite, ButtonPoster.FAVORITE)
+        onClickStatusButton(binding.newPoster.look, ButtonPoster.LOOK)
+        observeFilmStatus()
+        Log.d(
+            "Kart", "like ${ binding.newPoster.like.isSelected}" +
+                    " favorite ${binding.newPoster.favorite.isSelected}" +
+                    " look ${binding.newPoster.look.isSelected}"
+        )
 
+
+    }
+
+    private fun observeFilmStatus() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.filmStatus.collect {
+                binding.newPoster.like.isSelected = it.isLike
+                binding.newPoster.favorite.isSelected = it.isFavorite
+                binding.newPoster.look.isSelected = it.isLook
+
+            }
+        }
     }
 
     private fun observeFilm() {
@@ -51,17 +73,15 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
             viewModel.film.collect {
                 setPoster(it.first)
                 adapter.items = it.second
-                onClickStatusButton(binding.newPoster.like, ButtonPoster.LIKE)
-                onClickStatusButton(binding.newPoster.favorite,ButtonPoster.FAVORITE)
-                onClickStatusButton(binding.newPoster.look,ButtonPoster.LOOK)
+
             }
         }
     }
 
     private fun onClickStatusButton(view: ImageView, statusButton: ButtonPoster) {
-        view.setOnClickListener { button->
+        view.setOnClickListener { button ->
             button.isSelected = !button.isSelected
-            viewModel.workDatabase(button.isSelected,statusButton)
+            viewModel.workDatabase(statusButton)
         }
     }
 
@@ -72,9 +92,7 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
                 item.createInfoText(item.genres.createName(), item.countries.createName())
 
             binding.categoryTitle.text = item.nameOriginal
-            binding.newPoster.like.isSelected = item.isLike
-            binding.newPoster.favorite.isSelected = item.isFavorite
-            binding.newPoster.look.isSelected = item.isLook
+
 
             binding.newPoster.menu.setOnClickListener {
                 viewModel.createHandle()

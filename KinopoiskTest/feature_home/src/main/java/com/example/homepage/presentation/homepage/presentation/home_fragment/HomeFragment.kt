@@ -32,8 +32,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         createAdapter()
 
-        if (checkFirstStart()) findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
-
+        if (checkFirstStart()) {
+            viewModel.createStartCollection()
+            findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
+        }
     }
 
     private fun createAdapter() {
@@ -57,5 +59,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             R.id.action_homeFragment_to_filmInfoFragment, filmID.createBundle()
         )
     }
-
 }

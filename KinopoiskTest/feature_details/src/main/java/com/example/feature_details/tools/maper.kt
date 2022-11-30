@@ -1,7 +1,10 @@
 package com.example.feature_details.tools
 
 import android.util.Log
+import com.example.core.tools.CategoryFromAdapter
+import com.example.core.tools.general.InfoFilms
 import com.example.feature_database.entity.FilmEntity
+import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
 import com.example.feature_details.data.detailsFilm_page.dto.StaffFromFilmsDTO
@@ -26,8 +29,9 @@ fun InfoFilmDTO.toBestFilms() =
 fun InfoFilmDTO.toFilmEntity() =
     FilmEntity(nameRu, posterUrl, genres, ratingKinopoisk.toString(), kinopoiskId)
 
-fun InfoFilmDTO?.getStatusFromDataBase(fimEntity: FilmEntity) {
-    Log.e("Kart","${fimEntity.isLike}")
+fun InfoFilmDTO?.getStatusFromDataBase(
+    fimEntity: FilmEntity,
+) {
     this?.isLike = fimEntity.isLike
     this?.isFavorite = fimEntity.isFavorite
     this?.isLook = fimEntity.isLook
@@ -46,8 +50,8 @@ fun List<StaffFromFilmsDTO>.createStaffList(): List<InfoFilms> {
         else staffList.add(dto.toStaff())
     }
     return listOf(
-        CategoryAdapter("В фильме снимались", actorList, true),
-        CategoryAdapter("Над фильмом работали", staffList, false)
+        CategoryFromAdapter("В фильме снимались", actorList, true),
+        CategoryFromAdapter("Над фильмом работали", staffList, false)
     )
 }
 

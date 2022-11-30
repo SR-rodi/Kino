@@ -16,7 +16,6 @@ class YerPicker @JvmOverloads constructor(
 
     private val setting = SettingsPicker()
 
-   private var startDate = 1994
     var setDateListener: onDateClickListener? = null
 
     init {
@@ -54,7 +53,7 @@ class YerPicker @JvmOverloads constructor(
             DEFAULT_BORDER_COLOR
         )
         setting.radius = typArray.getDimension(R.styleable.YerPicker_picker_border_corner_radius,context.dpToPx(10))
-        startDate = typArray.getInt(R.styleable.YerPicker_picker_start_date,1990)
+        setting.startDate = typArray.getInt(R.styleable.YerPicker_picker_start_date,1990)
         setting.textSizeSP = typArray.getDimension(R.styleable.YerPicker_picker_text_size,context.dpToSp(15))
         typArray.recycle()
         setting.paint.apply {

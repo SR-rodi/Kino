@@ -16,7 +16,7 @@ interface FilmsDao {
     fun updateFilm(film: FilmEntity)
 
     @Query("SELECT*FROM films WHERE film_id =:filmId")
-    fun getFilmById(filmId: Int):FilmEntity?
+    fun getFilmById(filmId: Int):Flow<FilmEntity?>
 
     @Query("SELECT * FROM films WHERE film_id IN(:filmId)")
     @MapInfo(keyColumn = "film_id", valueColumn = "isLook")

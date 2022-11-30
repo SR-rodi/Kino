@@ -1,9 +1,10 @@
-package com.example.feature_details.data.detailsFilm_page.model
+package com.example.core.tools
 
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.general.InfoFilms
 
-class CategoryGallery(
+class CategoryFromAdapter(
+    val category: String,
     val listValue: List<NestedInfoInCategory>,
-    val category: String = "Галерея",
-): InfoFilms
+    var isActor :Boolean = false
+) : InfoFilms

@@ -14,4 +14,4 @@ abstract class BaseEntityFilm(
     var isFavorite: Boolean = false,
     var isLook: Boolean = false,
     var isLike: Boolean = false
-) : BaseFilms
+) : BaseFilms,NestedInfoInCategory

@@ -1,8 +1,8 @@
 package com.example.feature_details.data.detailsFilm_page.dto
 
-import com.example.core.tools.all.NestedInoFilms
+import com.example.core.tools.all.NestedInfoInCategory
 
 class GalleryDTO(
     val imageUrl: String,
     val previewUrl: String
-): NestedInoFilms
+): NestedInfoInCategory

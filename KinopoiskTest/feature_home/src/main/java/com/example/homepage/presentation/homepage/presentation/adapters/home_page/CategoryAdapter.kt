@@ -27,7 +27,6 @@ class CategoryAdapter(
     }
 
     override fun getItemCount() = category.size
-
 }
 
 

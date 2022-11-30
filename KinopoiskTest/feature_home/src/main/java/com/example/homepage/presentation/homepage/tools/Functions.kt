@@ -17,8 +17,7 @@ suspend fun loadPremieres(
 suspend fun loadBest(
     networkRepository: NetworkCategoryRepository,
     page: Int
-) =
-    networkRepository.getBestFilmsInNetwork(page)
+) = networkRepository.getBestFilmsInNetwork(page)
 
 suspend fun loadPopular(
     networkRepository: NetworkCategoryRepository,
@@ -46,7 +45,7 @@ fun List<BaseEntityFilm>.mergeDatabase(dataBaseRepository: DataBaseRepository,vi
     return this
 }
 
-suspend fun List<HomePadeList>.mergeHomeDatabase(
+fun List<HomePadeList>.mergeHomeDatabase(
     dataBaseRepository: DataBaseRepository,
     _homePageList: MutableStateFlow<List<HomePadeList>>,
     viewModelScope: CoroutineScope

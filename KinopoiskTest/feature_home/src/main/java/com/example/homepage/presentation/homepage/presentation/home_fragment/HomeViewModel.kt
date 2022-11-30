@@ -1,9 +1,10 @@
 package com.example.homepage.presentation.homepage.presentation.home_fragment
 
 import androidx.lifecycle.viewModelScope
-import com.example.core.tools.BaseViewModel
+import com.example.core.tools.*
 import com.example.core.tools.all.CategoryFilms
 import com.example.core.tools.all.LoadState
+import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
@@ -17,7 +18,8 @@ import java.util.*
 
 class HomeViewModel(
     private val networkRepository: NetworkCategoryImpl,
-    private val dataBaseRepository: DataBaseRepository
+    private val counterGenreRepository: DataBaseRepository,
+    private val collectionsRepository: CollectionsFilmsRepository
 ) : BaseViewModel() {
 
     private val calendar = Calendar.getInstance()
@@ -33,39 +35,28 @@ class HomeViewModel(
     private fun getHomePageList() {
         viewModelScope.launch(handler + Dispatchers.IO) {
             _loadState.value = LoadState.LOADING
-            val networkList = loadAllFilms(
+            loadAllFilms(
                 calendar.get(Calendar.YEAR),
                 (calendar.get(Calendar.MONTH) + 1),
-                getCounterAndGenreList()).mergeHomeDatabase(dataBaseRepository,_homePageList,viewModelScope)
-
-/*            networkList.getListFilmID()
-            networkList.emitMergeDataBaseList(networkList,_homePageList,,viewModelScope)
-            val listFilmsId = mutableListOf<Int>()
-            a.forEach { list ->
-                list.filmList.forEach { film ->
-                    listFilmsId.add(film.filmId)
-                }
-            }
-            dataBaseRepository.getStatusFilmList(listFilmsId).onEach {map->
-                a.forEach{
-                    it.filmList.forEach{film->
-                       film.isLook = map[film.filmId]?:false
-                    }
-                }
-                _homePageList.value = a
-            }.launchIn(viewModelScope)*/
-
-
-
-
+                getCounterAndGenreList()
+            ).mergeHomeDatabase(counterGenreRepository, _homePageList, viewModelScope)
             _loadState.value = LoadState.SUCCESS
+        }
+    }
+
+    fun createStartCollection() {
+        viewModelScope.launch(Dispatchers.IO) {
+            collectionsRepository.addCollection("Любимое", ID_LIKE_COLLECTION)
+            collectionsRepository.addCollection("Хочу посмотреть", ID_FAVORITE_COLLECTION)
+            collectionsRepository.addCollection("Вам было интересно", ID_HISTORY_COLLECTION)
+            collectionsRepository.addCollection("Просмотренно", ID_LOOK_COLLECTION)
         }
     }
 
     private suspend fun getCounterAndGenreList(): CountryAndGenreDTO {
         var counterAndGenre = CountryAndGenreDTO(
-            dataBaseRepository.getAllCounter(),
-            dataBaseRepository.getAllGenre()
+            counterGenreRepository.getAllCounter(),
+            counterGenreRepository.getAllGenre()
         )
 
         if (counterAndGenre.countries.isEmpty() || counterAndGenre.genres.isEmpty())
@@ -77,8 +68,8 @@ class HomeViewModel(
 
     private suspend fun loadNetworkGenresAndCountries(): CountryAndGenreDTO {
         val counterAndGenre = networkRepository.getListGenreAndCounter()
-        dataBaseRepository.insertCounter(counterAndGenre.countries)
-        dataBaseRepository.insertGenre(counterAndGenre.genres)
+        counterGenreRepository.insertCounter(counterAndGenre.countries)
+        counterGenreRepository.insertGenre(counterAndGenre.genres)
         return counterAndGenre
     }
 
@@ -115,7 +106,6 @@ class HomeViewModel(
             )
         )
     }
-
 
     companion object {
         const val FIRST_PAGE = 1

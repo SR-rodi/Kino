@@ -2,9 +2,9 @@ package com.example.feature_details.presentation.films_ditails.adapters_delegate
 
 
 import android.util.Log
+import com.example.core.tools.FilmsCollection
 import com.example.core.tools.all.CategoryInfo
-import com.example.core.tools.all.NestedInoFilms
-import com.example.feature_database.entity.FilmsCollectionEntity
+import com.example.core.tools.all.NestedInfoInCategory
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates.bottomSheetDelegate
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates.galleryCategoryDelegate
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates.similarAdapter
@@ -14,7 +14,7 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class NestedAdapterInInfo(
     onClickItem: (category: CategoryInfo) -> Unit
-) : ListDelegationAdapter<List<NestedInoFilms>>() {
+) : ListDelegationAdapter<List<NestedInfoInCategory>>() {
     init {
         delegatesManager.addDelegate(staffAdapter { onClickItem(it) })
             .addDelegate(galleryCategoryDelegate {
@@ -26,11 +26,13 @@ class NestedAdapterInInfo(
     }
 }
 
-class CollectionAdapter(onClickItem: (collection:FilmsCollectionEntity) -> Unit) : ListDelegationAdapter<List<FilmsCollectionEntity>>() {
-
+class CollectionAdapter(
+    onClickItem: (collection: FilmsCollection, isCheck:Boolean ) -> Unit) : ListDelegationAdapter<List<FilmsCollection>>() {
     init {
         Log.d("Kart","${items?.size}")
-        delegatesManager.addDelegate(bottomSheetDelegate{onClickItem(it)})
+        delegatesManager.addDelegate(bottomSheetDelegate{collection,isCheck->
+            onClickItem(collection,isCheck)
+        })
         setItems(items)
     }
 }

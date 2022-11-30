@@ -16,5 +16,4 @@ class NetworkCategoryImpl(
 
     override suspend fun getFilmsGenreAndCounter(page: Int, counterID: Int, genreId: Int) =
         filmsApi.getFilmsByGenreAndCountry(page, counterID, genreId).items
-
 }

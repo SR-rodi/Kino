@@ -1,10 +1,12 @@
 package com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates
 
 import android.transition.TransitionManager
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.databinding.ItemCategoryBinding
+import com.example.core.tools.CategoryFromAdapter
 import com.example.core.tools.all.CategoryInfo
-import com.example.core.tools.all.NestedInoFilms
+import com.example.core.tools.general.InfoFilms
 import com.example.feature_details.data.detailsFilm_page.model.*
 import com.example.feature_details.databinding.ItemDescriptionBinding
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.adapters.NestedAdapterInInfo
@@ -78,7 +80,7 @@ fun categoryStaffAdapter(
     onClickItem: (category: CategoryInfo) -> Unit,
     onClickAll: (category: CategoryInfo) -> Unit,
 ) =
-    adapterDelegateViewBinding<CategoryAdapter, InfoFilms, ItemCategoryBinding>({ layoutInflater, root ->
+    adapterDelegateViewBinding<CategoryFromAdapter, InfoFilms, ItemCategoryBinding>({ layoutInflater, root ->
         ItemCategoryBinding.inflate(layoutInflater, root, false)
     }) {
 

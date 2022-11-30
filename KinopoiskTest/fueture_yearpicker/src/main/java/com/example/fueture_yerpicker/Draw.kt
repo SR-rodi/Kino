@@ -29,7 +29,6 @@ object Draw {
     fun drawMatrixDate(canvas: Canvas?,setting: SettingsPicker) {
         setting.datePicker.forEach { dates ->
             dates.forEach { date ->
-                Log.e("Kart","${date.rect}")
                 setting.textPaint.color =
                     if (date.status == State.NOT_SELECT) setting.textColor
                     else setting.textColorSelect
@@ -51,8 +50,8 @@ object Draw {
             "${setting.datePicker[1].first().date} - ${
                 setting.datePicker.last().last().date
             }",
-            rect.centerX(),
-            rect.centerY(),
+            (rect.centerX() +rect.centerX()*0.2).toFloat(),
+            (rect.centerY() + rect.centerY()*0.2).toFloat(),
             setting.textPaint
         )
     }

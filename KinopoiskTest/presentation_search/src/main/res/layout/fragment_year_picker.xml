@@ -31,7 +31,7 @@
             android:gravity="center"
             android:textColor="@color/title_text_color"
             android:textSize="12sp"
-            tools:text="Category" />
+            android:text="Период" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -43,6 +43,7 @@
         android:text="Искать в период с:" />
 
     <com.example.fueture_yerpicker.YerPicker
+        android:id="@+id/rangeFrom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
@@ -63,6 +64,7 @@
         android:text="Искать в период до:" />
 
     <com.example.fueture_yerpicker.YerPicker
+        android:id="@+id/rangeTo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
@@ -76,6 +78,7 @@
         app:picker_text_size="15sp" />
 
     <Button
+        android:id="@+id/button_seleckt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

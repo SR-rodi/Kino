@@ -3,11 +3,14 @@ package com.example.core.tools
 import com.example.core.tools.general.GenreCountry
 
 const val BASE_URL = "https://kinopoiskapiunofficial.tech/"
-const val API_KEY= "c92f9a94-f068-435f-855b-a5acff019cc5"
-const val API_KEY2 = "8c5cddf6-0364-4744-a57b-5d13c7f48063"
-const val API_KEY3= "70e0059c-0587-4549-9cbf-8a9c5c4143f6"
-const val API_KEY1= "2c7d0bf6-864e-4403-a497-85dde3bc1c16"
+const val API_KEY5= "c92f9a94-f068-435f-855b-a5acff019cc5"
+const val API_KEY3 = "8c5cddf6-0364-4744-a57b-5d13c7f48063"
+const val API_KEY1= "70e0059c-0587-4549-9cbf-8a9c5c4143f6"
+const val API_KEY4= "2c7d0bf6-864e-4403-a497-85dde3bc1c16"
+const val API_KEY2= "4afdb41e-920d-4f23-bb5b-ff9015206a1b"
+const val API_KEY= "ca3b0d40-c9dc-4950-b32f-d4e29e560d62"
 const val TEST_APIKEY = "70e0059c-0587-4549-9cbf-8a9c5c4143f6"
+
 const val PREMIERES = "api/v2.2/films/premieres"
 const val POPULAR = "api/v2.2/films/top"
 const val GET_FILTERS = "api/v2.2/films/filters"
@@ -21,6 +24,9 @@ const val CATEGORY_BUNDLE = "category_bundle"
 const val CATEGORY_INFO_BUNDLE = "category_bundle"
 const val INT_BUNDLE = "category_bundle"
 
-const val NOT_DESCRIPTION = "..."
+const val ID_LIKE_COLLECTION = 0
+const val ID_FAVORITE_COLLECTION = 1
+const val ID_HISTORY_COLLECTION = 2
+const val ID_LOOK_COLLECTION = 3
 
 

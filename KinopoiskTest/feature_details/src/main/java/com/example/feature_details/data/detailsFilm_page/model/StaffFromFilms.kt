@@ -1,6 +1,6 @@
 package com.example.feature_details.data.detailsFilm_page.model
 
-import com.example.core.tools.all.NestedInoFilms
+import com.example.core.tools.all.NestedInfoInCategory
 
 class StaffFromFilms(
     val description: String?,
@@ -8,4 +8,4 @@ class StaffFromFilms(
     val posterUrl: String,
     val professionText: String,
     val staffId: Int
-): NestedInoFilms
+): NestedInfoInCategory

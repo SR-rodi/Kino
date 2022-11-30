@@ -29,6 +29,14 @@ fun ImageView.glide(imageUrl: String) {
         .into(this)
 }
 
+fun ImageView.glide(recurseID: Int) {
+    Glide.with(this)
+        .load(recurseID)
+        .placeholder(R.drawable.ic_baseline_downloading_24)
+        .error(R.drawable.ic_error)
+        .into(this)
+}
+
 fun ImageView.popBackStack() {
     this.setOnClickListener {
         findNavController().popBackStack()

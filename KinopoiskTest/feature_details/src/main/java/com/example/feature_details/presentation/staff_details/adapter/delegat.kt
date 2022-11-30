@@ -1,4 +1,4 @@
-package com.example.feature_details.presentation.staff_details
+package com.example.feature_details.presentation.staff_details.adapter
 
 import com.example.feature_details.databinding.ItemFilmographyBinding
 import com.example.feature_details.data.details_staff.Film

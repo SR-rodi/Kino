@@ -67,5 +67,4 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
             }
         }
     }
-
 }
