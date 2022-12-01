@@ -2,7 +2,7 @@ package com.example.feature_database
 
 import com.example.core.R
 import com.example.core.tools.*
-import com.example.core.tools.adapter.FilmsCollection
+import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
 import com.example.core.tools.base_model.films.FilmsDTO
 import com.example.feature_database.entity.FilmsCollectionEntity
 

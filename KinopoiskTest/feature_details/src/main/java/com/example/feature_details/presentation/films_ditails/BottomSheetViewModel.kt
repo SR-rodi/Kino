@@ -3,7 +3,7 @@ package com.example.feature_details.presentation.films_ditails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.tools.adapter.FilmsCollection
+import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
 import com.example.feature_database.entity.FilmEntity
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.toFilmsCollectionList

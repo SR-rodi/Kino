@@ -1,6 +1,6 @@
 package com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates
 
-import com.example.core.tools.adapter.FilmsCollection
+import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
 import com.example.feature_details.databinding.ItemCollectionFilmsBinding
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 

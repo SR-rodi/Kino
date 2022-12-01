@@ -2,7 +2,7 @@ package com.example.feature_details.presentation.films_ditails.adapters_delegate
 
 
 import android.util.Log
-import com.example.core.tools.adapter.FilmsCollection
+import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.category.CategoryDetailsFilms
 import com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates.bottomSheetDelegate

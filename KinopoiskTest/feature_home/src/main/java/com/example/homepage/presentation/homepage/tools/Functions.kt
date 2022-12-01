@@ -1,10 +1,12 @@
 package com.example.homepage.presentation.homepage.tools
 
+import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.extensions.toBaseFilmList
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
+import com.example.homepage.presentation.homepage.data.list_info.HomePageCategory
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,22 +49,23 @@ fun List<BaseFilm>.mergeDatabase(dataBaseRepository: DataBaseRepository, viewMod
     return this
 }
 
-fun List<HomePadeList>.mergeHomeDatabase(
+fun List<HomePageCategory>.mergeHomeDatabase(
     dataBaseRepository: DataBaseRepository,
-    _homePageList: MutableStateFlow<List<HomePadeList>>,
+    _homePageList: MutableStateFlow<List<BaseCategory>>,
     viewModelScope: CoroutineScope
 ) {
 
     val listFilmsId = mutableListOf<Int>()
-    this.forEach { list ->
-        list.filmList.forEach { film ->
-            listFilmsId.add(film.filmId)
-        }
+    this.forEach { category->
+        category.list.forEach { film ->
+            if (film is BaseFilm)
+            listFilmsId.add(film.filmId) }
     }
     dataBaseRepository.getStatusFilmList(listFilmsId).onEach { mapData ->
-        this.forEach { list ->
-            list.filmList.forEach { film ->
-                film.isLook = mapData[film.filmId] ?: false
+        this.map { category ->
+            category.list.forEach { film ->
+               if (film is BaseFilm)
+                film .isLook = mapData[film.filmId] ?: false
             }
         }
         _homePageList.value = this

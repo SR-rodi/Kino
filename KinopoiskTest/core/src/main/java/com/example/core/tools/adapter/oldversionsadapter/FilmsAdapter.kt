@@ -1,15 +1,20 @@
-package com.example.core.tools.adapter
+package com.example.core.tools.adapter.oldversionsadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core.databinding.ItemFilmsBinding
+import com.example.core.tools.adapter.diffutil.BaseFilmsDiffUtil
+import com.example.core.tools.adapter.diffutil.CategoryDiffUtil
+import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.films.BaseFilm
 
 class FilmsAdapter(
     private val clickNextButton: () -> Unit,
     private val clickFilms: (filmID: Int) -> Unit
-) : ListAdapter<BaseFilm, FilmsViewHolder>(Diff()) {
+) : ListAdapter<BaseFilm, FilmsViewHolder>(BaseFilmsDiff()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmsViewHolder(
         ItemFilmsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,3 +29,9 @@ class FilmsAdapter(
         }
     }
 }
+class BaseFilmsDiff: DiffUtil.ItemCallback<BaseFilm>() {
+    override fun areItemsTheSame(oldItem: BaseFilm, newItem: BaseFilm) = oldItem == newItem
+
+    override fun areContentsTheSame(oldItem: BaseFilm, newItem: BaseFilm)= oldItem == newItem
+}
+

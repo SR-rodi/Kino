@@ -1,4 +1,4 @@
-package com.example.core.tools.adapter
+package com.example.core.tools.adapter.oldversionsadapter
 
 import android.app.ActionBar
 import androidx.core.view.isInvisible

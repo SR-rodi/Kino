@@ -11,6 +11,8 @@ const val API_KEY2= "4afdb41e-920d-4f23-bb5b-ff9015206a1b"
 const val API_KEY1= "ca3b0d40-c9dc-4950-b32f-d4e29e560d62"
 const val TEST_APIKEY = "70e0059c-0587-4549-9cbf-8a9c5c4143f6"
 
+const val NEXT_BUTTON = -100
+
 const val PREMIERES = "api/v2.2/films/premieres"
 const val POPULAR = "api/v2.2/films/top"
 const val GET_FILTERS = "api/v2.2/films/filters"

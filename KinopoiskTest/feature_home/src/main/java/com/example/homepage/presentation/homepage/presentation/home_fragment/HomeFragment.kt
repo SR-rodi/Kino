@@ -3,10 +3,14 @@ package com.example.homepage.presentation.homepage.presentation.home_fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.tools.BaseFragment
+import com.example.core.tools.adapter.CategoryAdapterBase
+import com.example.core.tools.base_model.category.BaseCategory
+import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.checkFirstStart
 import com.example.core.tools.extensions.observeLoadState
@@ -20,6 +24,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
 
     private val viewModel by viewModel<HomeViewModel>()
+
+    private val adapter by lazy {CategoryAdapterBase({onClickFilms(it)},{onClickNextButton(it)})  }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,12 +49,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.homePageList.collect { premiers ->
                 binding.categoryRecyclerView.adapter =
-                    CategoryAdapter(premiers, { onClickNextButton(it) }, { onClickFilms(it) })
+                    adapter.apply {
+                        items =premiers
+                    }
             }
         }
     }
 
-    private fun onClickNextButton(categoryFilms: CategoryInfo) {
+    private fun onClickNextButton(categoryFilms: BaseCategory) {
         viewModel.navigateToCategory(categoryFilms)
         findNavController().navigate(R.id.action_homeFragment_to_categoryPageFragment)
     }

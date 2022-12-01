@@ -1,4 +1,4 @@
-package com.example.core.tools.adapter
+package com.example.core.tools.adapter.oldversionsadapter
 
 class FilmsCollection(
 

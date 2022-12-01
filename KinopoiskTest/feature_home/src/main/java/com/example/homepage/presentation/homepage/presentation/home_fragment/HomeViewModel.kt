@@ -5,11 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.tools.*
 import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.all.LoadState
+import com.example.core.tools.all.Query
+import com.example.core.tools.base_model.category.BaseCategory
+import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.extensions.createListForView
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
+import com.example.homepage.presentation.homepage.data.list_info.HomePageCategory
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryImpl
 import com.example.homepage.presentation.homepage.tools.*
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +32,7 @@ class HomeViewModel(
     private val calendar = Calendar.getInstance()
 
     private var _homePageList =
-        MutableStateFlow<List<HomePadeList>>(emptyList())
+        MutableStateFlow<List<BaseCategory>>(emptyList())
     val homePageList = _homePageList.asStateFlow()
 
     init {
@@ -80,38 +84,30 @@ class HomeViewModel(
         year: Int,
         month: Int,
         counterAndGenre: CountryAndGenreDTO
-    ): List<HomePadeList> {
+    ): List<HomePageCategory> {
+        val query = Query().apply {
+            counterID =counterAndGenre.getRandomCounter().id
+            genreId =counterAndGenre.getRandomGenre().id
+            this.year = year
+            this.month = month.converterInMonth()
+        }
 
-        val counter = counterAndGenre.getRandomCounter()
-        val genre = counterAndGenre.getRandomGenre()
-
-        return listOf(
-            HomePadeList(
-                CategoryInfo.PREMIERS.createPrimersCategory(year, month),
-                loadPremieres(networkRepository, year, month.converterInMonth()).createListForView(
-                    SIZE_LIST_VIEW
-                )
-            ),
-            HomePadeList(
-                CategoryInfo.RANDOM.createRandomCategory(counter, genre),
-                loadFilmsByCounterAdnGenre(networkRepository, FIRST_PAGE, counter.id, genre.id)
-                    .createListForView(SIZE_LIST_VIEW)
-            ),
-            HomePadeList(
-                CategoryInfo.BEST,
-                loadBest(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)
-            ),
-            HomePadeList(
-                CategoryInfo.POPULAR,
-                loadPopular(networkRepository, FIRST_PAGE).createListForView(
-                    SIZE_LIST_VIEW
-                )
-            )
-        )
+              return  listOf(
+                  CategoryInfo.PREMIERS.createCategory(
+                      loadPremieres(networkRepository,query.year,query.month)
+                          .createListForView(SIZE_LIST_VIEW),query),
+                  CategoryInfo.BEST.createCategory(
+                      loadBest(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)),
+                  CategoryInfo.POPULAR.createCategory(
+                      loadPopular(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)),
+                  CategoryInfo.RANDOM.createCategory(
+                      loadFilmsByCounterAdnGenre(networkRepository, FIRST_PAGE, query.counterID, query.genreId)
+                      .createListForView(SIZE_LIST_VIEW),query)
+              )
     }
 
-    fun navigateToCategory(categoryFilms: CategoryInfo) {
-        savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms
+    fun navigateToCategory(categoryFilms: BaseCategory) {
+        savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms as HomePageCategory
         savedStateHandle[WORK_MODE] = ViewModelWorkMode.IN_NETWORK
     }
 

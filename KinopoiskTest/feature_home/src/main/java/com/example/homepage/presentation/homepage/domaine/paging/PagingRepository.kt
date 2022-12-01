@@ -3,6 +3,8 @@ package com.example.homepage.presentation.homepage.domaine.paging
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.category.CategoryInfo
 import com.example.feature_database.repository.DataBaseRepository
@@ -14,7 +16,7 @@ class PagingRepository(
     private val networkRepository: NetworkCategoryImpl,
     private val dataBaseRepository: DataBaseRepository
 ) {
-    fun getFlowFilms(category: CategoryInfo?, viewModelScope: CoroutineScope): Flow<PagingData<BaseFilm>> {
+    fun getFlowFilms(category: BaseCategory?, viewModelScope: CoroutineScope): Flow<PagingData<NestedInfoInCategory>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
