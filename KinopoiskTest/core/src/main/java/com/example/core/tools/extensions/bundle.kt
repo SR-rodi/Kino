@@ -8,11 +8,10 @@ import androidx.fragment.app.Fragment
 import com.example.core.tools.CATEGORY_BUNDLE
 import com.example.core.tools.CATEGORY_INFO_BUNDLE
 import com.example.core.tools.INT_BUNDLE
-import com.example.core.tools.all.CategoryFilms
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryInfo
 
 
-fun CategoryFilms.createBundle(tag: String = CATEGORY_BUNDLE): Bundle {
+fun CategoryInfo.createBundle(tag: String = CATEGORY_BUNDLE): Bundle {
     val categoryFilms = this //магия, ставлю this сразу в банд все падает
     return Bundle().apply { putParcelable(tag, categoryFilms) }
 }
@@ -29,8 +28,8 @@ fun CategoryInfo.createBundle(): Bundle {
 
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-fun Fragment.getArgsCategoryFilms(tag: String = CATEGORY_BUNDLE): CategoryFilms {
-    val categoryFilms = arguments?.getParcelable<CategoryFilms>(tag)
+fun Fragment.getArgsCategoryFilms(tag: String = CATEGORY_BUNDLE): CategoryInfo {
+    val categoryFilms = arguments?.getParcelable<CategoryInfo>(tag)
     return categoryFilms!!
 }
 

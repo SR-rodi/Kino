@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.core.databinding.ItemFilmsBinding
-import com.example.core.tools.Diff
-import com.example.core.tools.FilmsViewHolder
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.adapter.Diff
+import com.example.core.tools.adapter.FilmsViewHolder
+import com.example.core.tools.base_model.films.BaseFilm
 
 class FilmAdapterFromPage(
-   private val onClickItem:(filmID:Int)->Unit) :PagingDataAdapter<BaseEntityFilm, FilmsViewHolder>(Diff()) {
+   private val onClickItem:(filmID:Int)->Unit) :PagingDataAdapter<BaseFilm, FilmsViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmsViewHolder(
         ItemFilmsBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -3,22 +3,23 @@ package com.example.feature_details.presentation.films_ditails.adapters_delegate
 import android.util.Log
 import androidx.core.view.isVisible
 import com.example.core.databinding.ItemFilmsBinding
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.glide
 import com.example.feature_details.databinding.ItemStaffBinding
 import com.example.feature_details.data.detailsFilm_page.dto.SimilarFilmsDTO
 import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.category.CategoryDetailsFilms
 import com.example.feature_details.data.detailsFilm_page.model.StaffFromFilms
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
-fun staffAdapter(onClickItem: (category: CategoryInfo) -> Unit) =
+fun staffAdapter(onClickItem: (category: CategoryDetailsFilms) -> Unit) =
     adapterDelegateViewBinding<StaffFromFilms, NestedInfoInCategory, ItemStaffBinding>({ layoutInflater, root ->
         ItemStaffBinding.inflate(layoutInflater, root, false)
     }) {
 
         binding.itemCard.setOnClickListener {
             onClickItem(
-                CategoryInfo.STAFF.apply { this.itemId = item.staffId })
+                CategoryDetailsFilms.STAFF.apply { this.itemId = item.staffId })
         }
 
         bind {
@@ -32,13 +33,13 @@ fun staffAdapter(onClickItem: (category: CategoryInfo) -> Unit) =
 
 
 
-fun similarAdapter(onClickItem: (category: CategoryInfo) -> Unit) =
+fun similarAdapter(onClickItem: (category: CategoryDetailsFilms) -> Unit) =
     adapterDelegateViewBinding<SimilarFilmsDTO, NestedInfoInCategory, ItemFilmsBinding>({ layoutInflater, root ->
         ItemFilmsBinding.inflate(layoutInflater, root, false)
     }) {
         binding.itemCard.setOnClickListener {
             onClickItem(
-                CategoryInfo.FILMS.apply { this.itemId = item.filmId })
+                CategoryDetailsFilms.FILMS.apply { this.itemId = item.filmId })
         }
 
         bind {

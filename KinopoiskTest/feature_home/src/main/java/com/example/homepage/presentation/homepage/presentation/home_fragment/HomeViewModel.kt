@@ -3,8 +3,9 @@ package com.example.homepage.presentation.homepage.presentation.home_fragment
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.*
-import com.example.core.tools.all.CategoryFilms
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.all.LoadState
+import com.example.core.tools.extensions.createListForView
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
@@ -86,22 +87,22 @@ class HomeViewModel(
 
         return listOf(
             HomePadeList(
-                CategoryFilms.PREMIERS.createPrimersCategory(year, month),
+                CategoryInfo.PREMIERS.createPrimersCategory(year, month),
                 loadPremieres(networkRepository, year, month.converterInMonth()).createListForView(
                     SIZE_LIST_VIEW
                 )
             ),
             HomePadeList(
-                CategoryFilms.RANDOM.createRandomCategory(counter, genre),
+                CategoryInfo.RANDOM.createRandomCategory(counter, genre),
                 loadFilmsByCounterAdnGenre(networkRepository, FIRST_PAGE, counter.id, genre.id)
                     .createListForView(SIZE_LIST_VIEW)
             ),
             HomePadeList(
-                CategoryFilms.BEST,
+                CategoryInfo.BEST,
                 loadBest(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)
             ),
             HomePadeList(
-                CategoryFilms.POPULAR,
+                CategoryInfo.POPULAR,
                 loadPopular(networkRepository, FIRST_PAGE).createListForView(
                     SIZE_LIST_VIEW
                 )
@@ -109,7 +110,7 @@ class HomeViewModel(
         )
     }
 
-    fun navigateToCategory(categoryFilms: CategoryFilms) {
+    fun navigateToCategory(categoryFilms: CategoryInfo) {
         savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms
         savedStateHandle[WORK_MODE] = ViewModelWorkMode.IN_NETWORK
     }

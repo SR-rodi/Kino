@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.CategoryFromAdapter
-import com.example.core.tools.extensions.glide
 import com.example.presentation_profile.databinding.FragmentProfileBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

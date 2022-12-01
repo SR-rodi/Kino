@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryDetailsFilms
+import com.example.core.tools.category.CategoryInfo
 import com.example.feature_details.data.details_staff.BestFilm
 import com.example.feature_details.data.details_staff.Film
 import com.example.feature_details.domein.repository_ipl.FilmUseCase
 import com.example.feature_details.presentation.gallery.GalleryAdapter
 import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
 
-fun Fragment.createGalleryDialog(categoryInfo: CategoryInfo){
+fun Fragment.createGalleryDialog(categoryInfo: CategoryDetailsFilms){
     val dialog = LayoutInflater.from(requireContext())
         .inflate(com.example.feature_details.R.layout.fragment_recycler, null)
     val recyclerView = dialog.findViewById<RecyclerView>(R.id.films_recyclerView)

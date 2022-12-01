@@ -1,7 +1,6 @@
 package com.example.screen_listpage.data
 
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.general.Genre
 import com.google.gson.annotations.SerializedName
 
@@ -18,4 +17,4 @@ class SearchFilm(
     val type: String,
     val year: Int,
 
-):BaseEntityFilm()
+): BaseEntityFilm()

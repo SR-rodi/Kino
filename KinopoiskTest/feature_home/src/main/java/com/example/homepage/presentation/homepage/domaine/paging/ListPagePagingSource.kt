@@ -2,8 +2,8 @@ package com.example.homepage.presentation.homepage.domaine.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.CategoryFilms
+import com.example.core.tools.base_model.films.BaseFilm
+import com.example.core.tools.category.CategoryInfo
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryRepository
 import com.example.homepage.presentation.homepage.tools.*
@@ -15,13 +15,13 @@ class ListPagePagingSource(
     private val networkRepository: NetworkCategoryRepository,
     private val dataBaseRepository: DataBaseRepository,
     private val viewModelScope: CoroutineScope,
-    private val category: CategoryFilms?,
+    private val category: CategoryInfo?,
 
-    ) : PagingSource<Int, BaseEntityFilm>() {
+    ) : PagingSource<Int, BaseFilm>() {
 
-    override fun getRefreshKey(state: PagingState<Int, BaseEntityFilm>) = FIRST_PAGE
+    override fun getRefreshKey(state: PagingState<Int, BaseFilm>) = FIRST_PAGE
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BaseEntityFilm> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BaseFilm> {
 
         val page = params.key ?: FIRST_PAGE
         val pageSize = params.loadSize
@@ -43,17 +43,17 @@ class ListPagePagingSource(
 
     }
 
-    private suspend fun getFilms(page: Int, category: CategoryFilms?): List<BaseEntityFilm> {
+    private suspend fun getFilms(page: Int, category: CategoryInfo?): List<BaseFilm> {
         return when (category) {
 
-            CategoryFilms.POPULAR -> loadPopular(networkRepository, page)
-            CategoryFilms.PREMIERS -> loadPremieres(
+            CategoryInfo.POPULAR -> loadPopular(networkRepository, page)
+            CategoryInfo.PREMIERS -> loadPremieres(
                 networkRepository,
                 category.query.year,
                 category.query.month
             )
-            CategoryFilms.BEST -> loadBest(networkRepository, page)
-            CategoryFilms.RANDOM -> loadFilmsByCounterAdnGenre(
+            CategoryInfo.BEST -> loadBest(networkRepository, page)
+            CategoryInfo.RANDOM -> loadFilmsByCounterAdnGenre(
                 networkRepository,
                 page,
                 category.query.counterID,

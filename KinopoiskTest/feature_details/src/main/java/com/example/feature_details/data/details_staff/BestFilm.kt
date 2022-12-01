@@ -1,7 +1,6 @@
 package com.example.feature_details.data.details_staff
 
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.general.Genre
 
 class BestFilm(

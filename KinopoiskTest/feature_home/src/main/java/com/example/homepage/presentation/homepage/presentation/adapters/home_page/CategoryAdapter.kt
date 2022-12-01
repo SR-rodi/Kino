@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.databinding.ItemCategoryBinding
-import com.example.core.tools.all.CategoryFilms
+import com.example.core.tools.category.CategoryInfo
 import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
 
 import com.example.homepage.presentation.homepage.presentation.adapters.viewholder.CategoryViewHolder
 
 class CategoryAdapter(
     private val category: List<HomePadeList>,
-    private val clickNextButton: (category: CategoryFilms) -> Unit,
+    private val clickNextButton: (category: CategoryInfo) -> Unit,
     private val clickFilms: (filmID: Int) -> Unit
 ) :
     RecyclerView.Adapter<CategoryViewHolder>() {

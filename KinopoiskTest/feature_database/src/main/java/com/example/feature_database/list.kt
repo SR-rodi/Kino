@@ -2,7 +2,8 @@ package com.example.feature_database
 
 import com.example.core.R
 import com.example.core.tools.*
-import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.adapter.FilmsCollection
+import com.example.core.tools.base_model.films.FilmsDTO
 import com.example.feature_database.entity.FilmsCollectionEntity
 
 fun List<FilmsCollectionEntity?>.toNestedCollection(): List<NestedCollection> {
@@ -44,7 +45,7 @@ fun List<FilmsCollectionEntity?>.toNestedCollection(): List<NestedCollection> {
     return list
 }
 
-fun List<BaseFilms?>.toNestedFilms(): MutableList<NestedFilm> {
+fun List<FilmsDTO?>.toNestedFilms(): MutableList<NestedFilm> {
     val list = mutableListOf<NestedFilm>()
     this.forEach {
         if (it != null)

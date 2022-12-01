@@ -1,16 +1,15 @@
-package com.example.core.tools
+package com.example.core.tools.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core.databinding.ItemFilmsBinding
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.base_model.films.BaseFilm
 
 class FilmsAdapter(
     private val clickNextButton: () -> Unit,
     private val clickFilms: (filmID: Int) -> Unit
-) : ListAdapter<BaseEntityFilm, FilmsViewHolder>(Diff()) {
+) : ListAdapter<BaseFilm, FilmsViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmsViewHolder(
         ItemFilmsBinding.inflate(LayoutInflater.from(parent.context), parent, false)

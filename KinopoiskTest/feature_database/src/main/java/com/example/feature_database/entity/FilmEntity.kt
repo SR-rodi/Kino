@@ -4,8 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.general.Genre
 import kotlinx.android.parcel.Parcelize
 

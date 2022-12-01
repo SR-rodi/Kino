@@ -4,8 +4,9 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.*
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.all.LoadState
+import com.example.core.tools.category.CategoryDetailsFilms
 import com.example.core.tools.general.InfoFilms
 import com.example.feature_database.entity.FilmEntity
 import com.example.feature_database.repository.CollectionsFilmsRepository
@@ -154,7 +155,7 @@ class FilmInfoViewModel(
         savedStateHandle[IS_EMPTY_FILM_DATABASE] = isEmptyInfoFromDataBase
     }
 
-    fun navigateToStaffInfo(categoryInfo: CategoryInfo) {
+    fun navigateToStaffInfo(categoryInfo: CategoryDetailsFilms) {
         savedStateHandle[NAVIGATE__TO_STAFF]= categoryInfo.itemId
     }
 

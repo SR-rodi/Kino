@@ -4,9 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-enum class CategoryFilms(var text :String,val query: Query):Parcelable {
-    BEST("ТОП-250", Query()),
-    POPULAR("Популярное", Query()),
-    PREMIERS("Премьеры", Query()),
-    RANDOM("Исправить", Query()),
+class CategoryFilms():Parcelable {
+    /** МАГИЯ!!! этот файл ни где не учасствует, но если удалить данный файл то все крашится */
 }

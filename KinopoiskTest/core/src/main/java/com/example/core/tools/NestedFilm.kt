@@ -1,8 +1,6 @@
 package com.example.core.tools
 
-import androidx.room.ColumnInfo
 import com.example.core.R
-import com.example.core.tools.all.BaseFilms
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.general.Genre
 

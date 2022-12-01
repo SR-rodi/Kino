@@ -4,15 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.tools.Diff
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.BaseFilms
+import com.example.core.tools.adapter.Diff
+import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.extensions.createName
 import com.example.core.tools.extensions.glide
 import com.example.screen_listpage.data.SearchFilm
 import com.example.screen_listpage.databinding.ItemFilmsSearchBinding
 
-class FilmsAdapter : ListAdapter<BaseEntityFilm, SearchFilmsViewHolder>(Diff()) {
+class FilmsAdapter : ListAdapter<BaseFilm, SearchFilmsViewHolder>(Diff()) {
 
     override fun onBindViewHolder(holder: SearchFilmsViewHolder, position: Int) {
         holder.bind(getItem(position) as SearchFilm)

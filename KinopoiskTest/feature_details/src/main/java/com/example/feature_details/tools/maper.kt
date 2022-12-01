@@ -1,10 +1,8 @@
 package com.example.feature_details.tools
 
-import android.util.Log
 import com.example.core.tools.CategoryFromAdapter
 import com.example.core.tools.general.InfoFilms
 import com.example.feature_database.entity.FilmEntity
-import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
 import com.example.feature_details.data.detailsFilm_page.dto.StaffFromFilmsDTO

@@ -3,14 +3,11 @@ package com.example.presentation_profile
 import android.util.Log
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
 import com.example.core.databinding.ItemCategoryBinding
 import com.example.core.databinding.ItemFilmsBinding
 import com.example.core.tools.CategoryFromAdapter
 import com.example.core.tools.NestedCollection
 import com.example.core.tools.NestedFilm
-import com.example.core.tools.all.BaseEntityFilm
-import com.example.core.tools.all.CategoryInfo
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.extensions.glide
 import com.example.core.tools.general.InfoFilms

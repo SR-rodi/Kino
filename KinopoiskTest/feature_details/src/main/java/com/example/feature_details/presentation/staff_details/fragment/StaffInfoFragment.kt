@@ -6,7 +6,7 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.FilmsAdapter
+import com.example.core.tools.adapter.FilmsAdapter
 import com.example.core.tools.extensions.glide
 import com.example.core.tools.extensions.popBackStack
 import com.example.feature_details.databinding.FragmentStaffInfoBinding

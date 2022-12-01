@@ -1,11 +1,10 @@
 package com.example.feature_details.presentation.films_ditails.adapters_delegates.delegates
 
 import android.transition.TransitionManager
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.databinding.ItemCategoryBinding
 import com.example.core.tools.CategoryFromAdapter
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryDetailsFilms
 import com.example.core.tools.general.InfoFilms
 import com.example.feature_details.data.detailsFilm_page.model.*
 import com.example.feature_details.databinding.ItemDescriptionBinding
@@ -42,14 +41,14 @@ fun descriptionAdapter() =
     }
 
 fun categoryGalleryAdapter(
-    onClickItem: (category: CategoryInfo) -> Unit,
-    onClickAll: (category: CategoryInfo) -> Unit,
+    onClickItem: (category: CategoryDetailsFilms) -> Unit,
+    onClickAll: (category: CategoryDetailsFilms) -> Unit,
 ) =
     adapterDelegateViewBinding<CategoryGallery, InfoFilms, ItemCategoryBinding>({ layoutInflater, root ->
         ItemCategoryBinding.inflate(layoutInflater, root, false)
     }) {
 
-        binding.buttonAll.setOnClickListener { onClickAll(CategoryInfo.GALLERY) }
+        binding.buttonAll.setOnClickListener { onClickAll(CategoryDetailsFilms.GALLERY) }
 
         bind {
             binding.categoryName.text = item.category
@@ -60,14 +59,14 @@ fun categoryGalleryAdapter(
     }
 
 fun categorySimilarAdapter(
-    onClickItem: (category: CategoryInfo) -> Unit,
-    onClickAll: (category: CategoryInfo) -> Unit,
+    onClickItem: (category: CategoryDetailsFilms) -> Unit,
+    onClickAll: (category: CategoryDetailsFilms) -> Unit,
 ) =
     adapterDelegateViewBinding<CategorySimilar, InfoFilms, ItemCategoryBinding>({ layoutInflater, root ->
         ItemCategoryBinding.inflate(layoutInflater, root, false)
     }) {
 
-        binding.buttonAll.setOnClickListener { onClickAll(CategoryInfo.FILMS.apply { itemId }) }
+        binding.buttonAll.setOnClickListener { onClickAll(CategoryDetailsFilms.FILMS.apply { itemId }) }
         bind {
 
             binding.categoryName.text = item.category
@@ -78,14 +77,14 @@ fun categorySimilarAdapter(
     }
 
 fun categoryStaffAdapter(
-    onClickItem: (category: CategoryInfo) -> Unit,
-    onClickAll: (category: CategoryInfo) -> Unit,
+    onClickItem: (category: CategoryDetailsFilms) -> Unit,
+    onClickAll: (category: CategoryDetailsFilms) -> Unit,
 ) =
     adapterDelegateViewBinding<CategoryFromAdapter, InfoFilms, ItemCategoryBinding>({ layoutInflater, root ->
         ItemCategoryBinding.inflate(layoutInflater, root, false)
     }) {
 
-        binding.buttonAll.setOnClickListener { onClickAll(CategoryInfo.STAFF) }
+        binding.buttonAll.setOnClickListener { onClickAll(CategoryDetailsFilms.STAFF) }
 
         bind {
             binding.apply {

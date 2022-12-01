@@ -6,12 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryDetailsFilms
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.*
 import com.example.feature_details.data.ButtonPoster
 import com.example.feature_details.data.detailsFilm_page.model.PosterFilm
@@ -103,26 +103,26 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
         }
     }
 
-    private fun onClickItem(categoryInfo: CategoryInfo) {
+    private fun onClickItem(categoryInfo: CategoryDetailsFilms) {
 
         when (categoryInfo) {
-            CategoryInfo.STAFF -> {
+            CategoryDetailsFilms.STAFF -> {
                 viewModel.navigateToStaffInfo(categoryInfo)
                 findNavController().navigate(R.id.action_filmInfoFragment_to_staffInfoFragment)
             }
-            CategoryInfo.GALLERY -> createGalleryDialog(categoryInfo)
-            CategoryInfo.FILMS -> { viewModel.getFilmForID(categoryInfo.itemId) }
+            CategoryDetailsFilms.GALLERY -> createGalleryDialog(categoryInfo)
+            CategoryDetailsFilms.FILMS -> { viewModel.getFilmForID(categoryInfo.itemId) }
         }
 
     }
 
 
-    private fun onClickAll(categoryInfo: CategoryInfo) {
+    private fun onClickAll(categoryInfo: CategoryDetailsFilms) {
         when (categoryInfo) {
-            CategoryInfo.STAFF -> {}
-            CategoryInfo.GALLERY ->
+            CategoryDetailsFilms.STAFF -> {}
+            CategoryDetailsFilms.GALLERY ->
                 findNavController().navigate(R.id.action_filmInfoFragment_to_galleryFragment)
-            CategoryInfo.FILMS -> {
+            CategoryDetailsFilms.FILMS -> {
                 viewModel.navigateToCategory()
             }
         }

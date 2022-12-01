@@ -2,19 +2,20 @@ package com.example.feature_details.presentation.films_ditails.adapters_delegate
 
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import com.example.core.tools.all.CategoryInfo
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.category.CategoryDetailsFilms
 import com.example.core.tools.extensions.glide
 import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
 import com.example.feature_details.databinding.ItemGalleryBinding
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
-fun galleryCategoryDelegate(onClickItem: (category: CategoryInfo) -> Unit) =
+fun galleryCategoryDelegate(onClickItem: (category: CategoryDetailsFilms) -> Unit) =
     adapterDelegateViewBinding<GalleryDTO, NestedInfoInCategory, ItemGalleryBinding>({ layoutInflater, root ->
         ItemGalleryBinding.inflate(layoutInflater, root, false)
     }) {
         binding.itemCard.setOnClickListener {
-            onClickItem(CategoryInfo.GALLERY.apply { this.itemId = absoluteAdapterPosition })
+            onClickItem(CategoryDetailsFilms.GALLERY.apply { this.itemId = absoluteAdapterPosition })
         }
 
         bind {

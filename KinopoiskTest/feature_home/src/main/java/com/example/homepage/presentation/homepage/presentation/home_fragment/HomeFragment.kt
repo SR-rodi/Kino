@@ -7,9 +7,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.all.CategoryFilms
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.checkFirstStart
-import com.example.core.tools.extensions.createBundle
 import com.example.core.tools.extensions.observeLoadState
 import com.example.homepage.databinding.FragmentHomeBinding
 import com.example.homepage.presentation.homepage.presentation.adapters.home_page.CategoryAdapter
@@ -49,7 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun onClickNextButton(categoryFilms: CategoryFilms) {
+    private fun onClickNextButton(categoryFilms: CategoryInfo) {
         viewModel.navigateToCategory(categoryFilms)
         findNavController().navigate(R.id.action_homeFragment_to_categoryPageFragment)
     }

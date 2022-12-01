@@ -1,6 +1,5 @@
 package com.example.feature_details.data.detailsFilm_page.dto
 
-import com.example.core.tools.all.BaseEntityFilm
 import com.example.core.tools.general.Country
 import com.example.core.tools.general.Genre
 

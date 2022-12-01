@@ -1,16 +1,14 @@
-package com.example.core.tools
+package com.example.core.tools.adapter
 
-import android.app.ActionBar.LayoutParams
+import android.app.ActionBar
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.databinding.ItemFilmsBinding
-import com.example.core.tools.all.BaseEntityFilm
+import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.extensions.createName
 import com.example.core.tools.extensions.glide
-import com.example.core.tools.all.BaseFilms
-
 
 class FilmsViewHolder(private val binding: ItemFilmsBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -35,14 +33,14 @@ class FilmsViewHolder(private val binding: ItemFilmsBinding) :
     }
 
     fun bindItem(
-        item: BaseEntityFilm,
+        item: BaseFilm,
         isCategoryFragment: Boolean = false,
         clickFilms: (id: Int) -> Unit,
     ) {
 
 
         if (isCategoryFragment) {
-            binding.itemCard.layoutParams.width = LayoutParams.MATCH_PARENT
+            binding.itemCard.layoutParams.width = ActionBar.LayoutParams.MATCH_PARENT
             binding.itemCard.setPadding(8)
         }
 
