@@ -12,7 +12,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class FilmEntity(
     @ColumnInfo(name = "name_Ru")
-    override val nameRu: String,
+    override val nameRu: String?,
     @ColumnInfo(name="poster")
     override val posterUrlPreview: String,
     @ColumnInfo(name = "genre_List")

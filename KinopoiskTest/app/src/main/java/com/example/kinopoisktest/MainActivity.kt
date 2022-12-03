@@ -22,10 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
 
-/*
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.navControllerViewTag.setupWithNavController(navController)
-*/
 
     }
 }

@@ -41,6 +41,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.5.3'
     implementation project(':feature_database')
+    implementation project(":common_domain")
     implementation project(":core")
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

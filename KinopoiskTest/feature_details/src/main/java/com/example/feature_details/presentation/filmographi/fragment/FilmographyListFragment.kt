@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.TextView
 import com.example.core.tools.BaseFragment
 import com.example.feature_details.R
-import com.example.feature_details.data.details_staff.Film
 import com.example.feature_details.databinding.FragmentTabGalleryOrFilmografyBinding
 import com.example.feature_details.presentation.filmographi.viewModel.FilmographyListViewModel
 import com.example.feature_details.presentation.filmographi.adapter.FilmographyTabAdapter

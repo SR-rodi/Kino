@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/filmInfoFragment"
-        android:name="com.example.feature_details.presentation.films_ditails.FilmInfoFragment"
+        android:name="com.example.feature_details.presentation.films_details.details.FilmInfoFragment"
         android:label="FilmInfoFragment" >
         <action
             android:id="@id/action_filmInfoFragment_to_staffInfoFragment"
@@ -48,6 +48,9 @@
         <action
             android:id="@id/action_filmInfoFragment_to_galleryFragment"
             app:destination="@id/galleryFragment" />
+        <action
+            android:id="@id/action_filmInfoFragment_to_categoryPageFragment"
+            app:destination="@id/categoryPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/staffInfoFragment"
@@ -66,7 +69,7 @@
     </fragment>
     <dialog
         android:id="@+id/bottomSheetMenuFragment"
-        android:name="com.example.feature_details.presentation.films_ditails.BottomSheetMenuFragment"
+        android:name="com.example.feature_details.presentation.films_details.bottom_sheet.BottomSheetMenuFragment"
         android:label="BottomSheetMenuFragment" />
     <fragment
         android:id="@+id/onBoardingFragment"

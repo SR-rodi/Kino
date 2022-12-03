@@ -1,5 +1,6 @@
 package com.example.feature_details.data.detailsFilm_page.model
 
+import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.general.Country
 import com.example.core.tools.general.Genre
 import com.example.core.tools.general.InfoFilms
@@ -20,7 +21,7 @@ class PosterFilm(
     var isFavorite: Boolean = false,
     var isLike: Boolean = false,
     var isLook: Boolean = false,
-) : InfoFilms {
+) : NestedInfoInCategory {
 
     fun createInfoText(genreName: String, countriesName: String): String {
         return "$rating $nameRu\n $year, $genreName\n$countriesName, " +

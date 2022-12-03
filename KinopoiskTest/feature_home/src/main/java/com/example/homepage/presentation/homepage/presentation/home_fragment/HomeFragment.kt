@@ -3,19 +3,17 @@ package com.example.homepage.presentation.homepage.presentation.home_fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.adapter.CategoryAdapterBase
+import com.example.core.tools.adapter.home.CategoryAdapterBase
 import com.example.core.tools.base_model.category.BaseCategory
+import com.example.core.tools.base_model.category.PageCategory
 import com.example.core.tools.base_model.category.StartCategory
-import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.checkFirstStart
 import com.example.core.tools.extensions.observeLoadState
 import com.example.homepage.databinding.FragmentHomeBinding
-import com.example.homepage.presentation.homepage.presentation.adapters.home_page.CategoryAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel by viewModel<HomeViewModel>()
 
-    private val adapter by lazy {CategoryAdapterBase({onClickFilms(it)},{onClickNextButton(it)})  }
+    private val adapter by lazy { CategoryAdapterBase({onClickFilms(it)},{onClickNextButton(it)})  }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,8 +59,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         findNavController().navigate(R.id.action_homeFragment_to_categoryPageFragment)
     }
 
-    private fun onClickFilms(filmID: Int) {
-        viewModel.navigateToInfoFilm(filmID)
+    private fun onClickFilms(pageCategory: StartCategory) {
+        viewModel.navigateToInfoFilm(pageCategory.query?.id)
         findNavController().navigate(R.id.action_homeFragment_to_filmInfoFragment)
     }
 }

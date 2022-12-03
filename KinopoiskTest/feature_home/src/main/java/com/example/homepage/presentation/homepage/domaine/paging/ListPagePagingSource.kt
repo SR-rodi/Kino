@@ -3,11 +3,13 @@ package com.example.homepage.presentation.homepage.domaine.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.adapterdelegate.data.createStaffList
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.category.CategoryInfo
+import com.example.core.tools.category.DetailsCategory
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryRepository
 import com.example.homepage.presentation.homepage.tools.*
@@ -32,7 +34,7 @@ class ListPagePagingSource(
 
         return kotlin.runCatching {
             withContext(Dispatchers.IO) {
-                getFilms(page, category).mergeDatabase(dataBaseRepository, viewModelScope)
+                getFilms(page, category)
             }
         }.fold(
             onSuccess = {
@@ -47,24 +49,29 @@ class ListPagePagingSource(
 
     }
 
-    private suspend fun getFilms(page: Int, category: BaseCategory?): List<BaseFilm> {
+    private suspend fun getFilms(page: Int, category: BaseCategory?): List<NestedInfoInCategory> {
         category as StartCategory
-        Log.e("Kart","год ${category.query?.year} месяц ${category.query?.month}")
         return when (category.category) {
 
-            CategoryInfo.POPULAR -> loadPopular(networkRepository, page)
+            CategoryInfo.POPULAR -> loadPopular(networkRepository, page).mergeDatabase(dataBaseRepository, viewModelScope)
             CategoryInfo.PREMIERS -> loadPremieres(
-                networkRepository,
-                category.query!!.year,
-                category.query!!.month
-            )
+                networkRepository, category.query!!.year, category.query!!.month
+            ).mergeDatabase(dataBaseRepository, viewModelScope)
             CategoryInfo.BEST -> loadBest(networkRepository, page)
             CategoryInfo.RANDOM -> loadFilmsByCounterAdnGenre(
-                networkRepository,
-                page,
-                category.query!!.counterID,
-                category.query!!.genreId
-            )
+                networkRepository, page, category.query!!.counterID, category.query!!.genreId
+            ).mergeDatabase(dataBaseRepository, viewModelScope)
+            CategoryInfo.SIMILAR -> networkRepository.getSimilarFilms(category.query?.id!!).items.toListBaseFilms().mergeDatabase(dataBaseRepository, viewModelScope)
+            CategoryInfo.STAFF -> {
+               val staffList = networkRepository.getStaffByFilmsId(category.query?.id!!)
+                    .createStaffList().first() as DetailsCategory
+                staffList.listValue
+            }
+            CategoryInfo.ACTOR ->  {
+                val actorList = networkRepository.getStaffByFilmsId(category.query?.id!!)
+                    .createStaffList().last() as DetailsCategory
+                actorList.listValue
+            }
             else -> emptyList()
         }
     }
@@ -73,4 +80,3 @@ class ListPagePagingSource(
         const val FIRST_PAGE = 1
     }
 }
-

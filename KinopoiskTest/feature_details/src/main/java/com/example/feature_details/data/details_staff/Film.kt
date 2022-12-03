@@ -1,7 +1,6 @@
 package com.example.feature_details.data.details_staff
 
 import android.os.Parcelable
-import androidx.versionedparcelable.ParcelField
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

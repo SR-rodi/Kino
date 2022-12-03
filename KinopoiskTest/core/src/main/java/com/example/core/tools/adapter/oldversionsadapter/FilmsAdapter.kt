@@ -5,9 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core.databinding.ItemFilmsBinding
-import com.example.core.tools.adapter.diffutil.BaseFilmsDiffUtil
-import com.example.core.tools.adapter.diffutil.CategoryDiffUtil
-import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.films.BaseFilm
 
 class FilmsAdapter(

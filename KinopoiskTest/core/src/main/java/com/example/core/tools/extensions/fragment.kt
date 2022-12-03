@@ -14,12 +14,6 @@ import kotlinx.android.synthetic.main.error_dialog.view.close_button
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-fun <T : Fragment> T.withArguments(action: Bundle.() -> Unit): T {
-    return apply {
-        val args = Bundle().apply(action)
-        arguments = args
-    }
-}
 
 fun Fragment.createErrorDialog() {
     val view = LayoutInflater.from(requireContext())

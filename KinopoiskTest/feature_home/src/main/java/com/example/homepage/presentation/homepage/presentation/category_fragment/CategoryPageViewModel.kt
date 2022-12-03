@@ -20,18 +20,13 @@ class CategoryPageViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val categoryFilms: StartCategory? = savedStateHandle[NAVIGATE__CATEGORY_PAGE]
+    private val categoryFilms: BaseCategory? = savedStateHandle[NAVIGATE__CATEGORY_PAGE]
 
-    fun msmd(){
-     val a=   networkRepository.getFlowFilms(categoryFilms, viewModelScope)
-    }
     fun getFilms(): StateFlow<PagingData<NestedInfoInCategory>> =
         networkRepository.getFlowFilms(categoryFilms, viewModelScope)
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 
     fun getNameCategory(): String? = categoryFilms?.category?.name
 
-    fun navigateToFilmsInfo(filmId: Int) {
-        savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmId
-    }
+    fun navigateToFilmsInfo(filmId: Int?) { savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmId }
 }

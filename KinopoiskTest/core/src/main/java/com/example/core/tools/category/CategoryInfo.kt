@@ -10,8 +10,9 @@ enum class CategoryInfo(var text :String, ): Parcelable {
     POPULAR("Популярное"),
     PREMIERS("Премьеры"),
     RANDOM("Исправить"),
-    SIMULA("Похожий на"),
-    STAFF("Персонал"),
+    SIMILAR("Похожий на"),
+    STAFF("Над фильмом работали:"),
+    ACTOR("В фильме снимались"),
     GALLERY("Галлерея"),
-    FILMS("Похожие")
+    DESCRIPTION("Описание"),
 }

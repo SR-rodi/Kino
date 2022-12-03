@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layoutDescription="@xml/fragment_film_info_scene"
-    tools:context="com.example.feature_details.presentation.films_ditails.FilmInfoFragment"
+    tools:context="com.example.feature_details.presentation.films_details.details.FilmInfoFragment"
     android:id="@+id/containerAnimation">
 
     <ImageView

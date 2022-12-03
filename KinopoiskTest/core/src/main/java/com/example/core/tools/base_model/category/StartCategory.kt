@@ -7,6 +7,6 @@ import com.example.core.tools.category.CategoryInfo
 
 abstract class StartCategory(
     override val category: CategoryInfo,
-    open val list: List<NestedInfoInCategory>,
+    open val list: List<NestedInfoInCategory> = emptyList(),
     open val query: Query?=null
-):BaseCategory
+):BaseDetailsCategory(category,list)

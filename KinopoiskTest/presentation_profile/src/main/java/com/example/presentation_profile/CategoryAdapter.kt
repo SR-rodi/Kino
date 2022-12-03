@@ -43,7 +43,7 @@ fun likeDelegate() =
         ItemCategoryBinding.inflate(layoutInflater, root, false)
     }) {
         bind {
-            Log.e("Kart", " test $item.toString()")
+
             val adapter = NestedAdapter()
             binding.categoryName.text = item.category
             adapter.items = item.listValue

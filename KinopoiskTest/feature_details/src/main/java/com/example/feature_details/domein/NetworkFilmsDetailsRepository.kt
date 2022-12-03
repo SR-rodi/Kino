@@ -2,9 +2,8 @@ package com.example.feature_details.domein
 
 import com.example.feature_details.data.detailsFilm_page.dto.InfoFilmDTO
 import com.example.feature_details.data.detailsFilm_page.response.ResponseFilmGallery
-import com.example.feature_details.data.detailsFilm_page.dto.StaffFromFilmsDTO
-import com.example.feature_details.data.detailsFilm_page.dto.SimilarFilmsDTO
-import com.example.feature_details.data.details_staff.StaffDetailsDTO
+import com.example.adapterdelegate.data.StaffFromFilmsDTO
+import com.example.adapterdelegate.data.SimilarFilmsDTO
 
 interface NetworkFilmsDetailsRepository {
 

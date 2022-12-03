@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.tools.adapter.diffutil.CategoryDiffUtil
 import com.example.core.tools.adapter.oldversionsadapter.BaseFilmsDiff
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.extensions.createName

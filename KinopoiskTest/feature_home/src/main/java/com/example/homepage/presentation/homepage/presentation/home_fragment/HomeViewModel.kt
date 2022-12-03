@@ -7,13 +7,11 @@ import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.all.LoadState
 import com.example.core.tools.all.Query
 import com.example.core.tools.base_model.category.BaseCategory
-import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.extensions.createListForView
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
-import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
-import com.example.homepage.presentation.homepage.data.list_info.HomePageCategory
+import com.example.core.tools.base_model.category.PageCategory
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryImpl
 import com.example.homepage.presentation.homepage.tools.*
 import kotlinx.coroutines.Dispatchers
@@ -84,7 +82,7 @@ class HomeViewModel(
         year: Int,
         month: Int,
         counterAndGenre: CountryAndGenreDTO
-    ): List<HomePageCategory> {
+    ): List<PageCategory> {
         val query = Query().apply {
             counterID =counterAndGenre.getRandomCounter().id
             genreId =counterAndGenre.getRandomGenre().id
@@ -107,18 +105,13 @@ class HomeViewModel(
     }
 
     fun navigateToCategory(categoryFilms: BaseCategory) {
-        savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms as HomePageCategory
+        savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms as PageCategory
         savedStateHandle[WORK_MODE] = ViewModelWorkMode.IN_NETWORK
     }
 
-    fun navigateToInfoFilm(filmID: Int) {
-        savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmID
-
-    }
+    fun navigateToInfoFilm(filmID: Int?) { savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmID }
 
     companion object {
         const val FIRST_PAGE = 1
-        const val SIZE_LIST_VIEW = 18
     }
-
 }

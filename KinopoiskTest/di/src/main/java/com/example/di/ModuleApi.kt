@@ -2,15 +2,14 @@ package com.example.di
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.room.Room
+import com.example.adapterdelegate.OverallApi
 import com.example.core.tools.BASE_URL
 import com.example.feature_database.CinemaDatabase
-import com.example.feature_database.Dao.GenreDao
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.feature_database.repository.FilmDataBaseRepository
 import com.example.homepage.presentation.homepage.domaine.CategoryFilmsApi
 import com.example.feature_details.domein.DetailFilmsApi
-import com.example.feature_details.domein.DetailStaffApi
 import com.example.feature_details.domein.repository_ipl.FilmUseCase
 import com.example.feature_details.domein.repository_ipl.GalleryUseCase
 import com.example.homepage.presentation.homepage.domaine.paging.PagingRepository
@@ -42,7 +41,7 @@ val filmsApi = module {
         ).build()
     }
 
-    single<GenreDao> {
+    single{
         get<CinemaDatabase>(named("database")).genreDao()
     }
 
@@ -66,7 +65,7 @@ val filmsApi = module {
         get<Retrofit>(named("retrofit")).create()
     }
 
-    single<DetailStaffApi> {
+    single<OverallApi> {
         get<Retrofit>(named("retrofit")).create()
     }
 
@@ -86,9 +85,9 @@ val networkRepository = module {
 
     single { SearchPagingRepo(get()) }
 
-    single { NetworkCategoryImpl(get()) }
+    single { NetworkCategoryImpl(get(),get()) }
 
-    single { NetworkFilmDetailsRepositoryImpl(get()) }
+    single { NetworkFilmDetailsRepositoryImpl(get(),get()) }
 
     single { NetworkStaffRepositoryImpl(get()) }
 

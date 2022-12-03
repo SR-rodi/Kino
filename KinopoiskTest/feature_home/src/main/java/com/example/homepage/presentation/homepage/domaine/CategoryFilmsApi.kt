@@ -4,7 +4,6 @@ package com.example.homepage.presentation.homepage.domaine
 import com.example.core.tools.*
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 import com.example.homepage.presentation.homepage.data.response.*
-import com.example.kinopoisk_api.*
 
 import retrofit2.http.GET
 import retrofit2.http.Headers

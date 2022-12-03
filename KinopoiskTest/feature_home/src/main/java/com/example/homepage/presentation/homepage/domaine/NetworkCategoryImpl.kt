@@ -1,7 +1,10 @@
 package com.example.homepage.presentation.homepage.domaine
 
+import com.example.adapterdelegate.OverallApi
+
 class NetworkCategoryImpl(
-    private val filmsApi: CategoryFilmsApi
+    private val filmsApi: CategoryFilmsApi,
+    private val overallApi: OverallApi
 ): NetworkCategoryRepository
 {
     override suspend fun getPremieresInNetwork(year: Int, month: String) =
@@ -16,4 +19,9 @@ class NetworkCategoryImpl(
 
     override suspend fun getFilmsGenreAndCounter(page: Int, counterID: Int, genreId: Int) =
         filmsApi.getFilmsByGenreAndCountry(page, counterID, genreId).items
+
+    override suspend fun getSimilarFilms(id: Int) =overallApi.getSimilarFilmsByID(id)
+
+    override  suspend fun getStaffByFilmsId(id: Int) = overallApi.getStaffFilmsByID(id)
+
 }

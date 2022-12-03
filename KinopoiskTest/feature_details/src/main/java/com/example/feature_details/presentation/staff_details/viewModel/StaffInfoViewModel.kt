@@ -8,8 +8,7 @@ import com.example.core.tools.NAVIGATE__TO_STAFF
 import com.example.core.tools.all.LoadState
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.extensions.toBaseFilmList
-import com.example.feature_details.data.details_staff.BestFilm
-import com.example.feature_details.data.details_staff.StaffDetailsDTO
+import com.example.feature_details.data.detailsFilm_page.dto.StaffDetailsDTO
 import com.example.feature_details.domein.repository_ipl.FilmUseCase
 import com.example.feature_details.domein.repository_ipl.NetworkStaffRepositoryImpl
 import com.example.feature_details.tools.getBeastFilms
@@ -29,7 +28,7 @@ class StaffInfoViewModel(
     val staff = _staff.asSharedFlow()
 
     private val staffID: Int? = savedStateHandle[NAVIGATE__TO_STAFF]
-    private var person:StaffDetailsDTO?=null
+    private var person: StaffDetailsDTO?=null
 
     fun getStaff() {
         viewModelScope.launch(handler + Dispatchers.IO) {

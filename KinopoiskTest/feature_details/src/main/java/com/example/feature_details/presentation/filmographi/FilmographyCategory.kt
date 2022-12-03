@@ -1,8 +1,6 @@
 package com.example.feature_details.presentation.filmographi
 
-import android.os.Parcelable
 import com.example.feature_details.data.details_staff.Film
-import kotlinx.android.parcel.Parcelize
 
 
 enum class FilmographyCategory(

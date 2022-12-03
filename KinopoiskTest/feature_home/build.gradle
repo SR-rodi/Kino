@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id("androidx.navigation.safeargs.kotlin")
     id "kotlin-android-extensions"
 }
 
@@ -40,9 +39,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.5.3'
-    implementation project(':domaine')
-    implementation project(":core")
+
     implementation project(":feature_database")
+    implementation project(":common_domain")
+    implementation project(":core")
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.code.gson:gson:2.10'

@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
+import com.example.core.tools.adapter.home.NestedAdapterBase
+import com.example.core.tools.base_model.category.BaseCategory
+import com.example.core.tools.base_model.category.PageCategory
+import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.category.CategoryDetailsFilms
 import com.example.core.tools.category.CategoryInfo
 import com.example.feature_details.data.details_staff.BestFilm
@@ -15,16 +19,16 @@ import com.example.feature_details.domein.repository_ipl.FilmUseCase
 import com.example.feature_details.presentation.gallery.GalleryAdapter
 import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
 
-fun Fragment.createGalleryDialog(categoryInfo: CategoryDetailsFilms){
+fun Fragment.createGalleryDialog(categoryInfo: StartCategory){
     val dialog = LayoutInflater.from(requireContext())
         .inflate(com.example.feature_details.R.layout.fragment_recycler, null)
     val recyclerView = dialog.findViewById<RecyclerView>(R.id.films_recyclerView)
-    val galleryAdapter = GalleryAdapter(true)
+    val galleryAdapter = NestedAdapterBase({},{},PageCategory(CategoryInfo.GALLERY, emptyList()))
 
     recyclerView.layoutManager = LinearLayoutManager(requireContext(),
         LinearLayoutManager.HORIZONTAL,false)
     PagerSnapHelper().attachToRecyclerView(recyclerView)
-    galleryAdapter.items = categoryInfo.itemList
+    galleryAdapter.items = categoryInfo.list
     recyclerView.adapter = galleryAdapter
     AlertDialog.Builder(requireContext())
         .setView(dialog)
@@ -32,7 +36,7 @@ fun Fragment.createGalleryDialog(categoryInfo: CategoryDetailsFilms){
         .create()
         .show()
 
-    recyclerView.scrollToPosition(categoryInfo.itemId)
+    recyclerView.scrollToPosition( categoryInfo.query?.id?:0)
 }
 
 suspend fun List<Film>.getBeastFilms(filmUseCase: FilmUseCase): MutableList<BestFilm> {

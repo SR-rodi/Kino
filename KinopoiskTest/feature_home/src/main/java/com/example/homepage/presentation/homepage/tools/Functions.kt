@@ -1,12 +1,10 @@
 package com.example.homepage.presentation.homepage.tools
 
 import com.example.core.tools.base_model.category.BaseCategory
-import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.extensions.toBaseFilmList
 import com.example.feature_database.repository.DataBaseRepository
-import com.example.homepage.presentation.homepage.data.list_info.HomePadeList
-import com.example.homepage.presentation.homepage.data.list_info.HomePageCategory
+import com.example.core.tools.base_model.category.PageCategory
 import com.example.homepage.presentation.homepage.domaine.NetworkCategoryRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,7 +34,6 @@ suspend fun loadFilmsByCounterAdnGenre(
     genreId: Int
 ) = networkRepository.getFilmsGenreAndCounter(page, counterId, genreId).toBaseFilmList()
 
-
 fun List<BaseFilm>.mergeDatabase(dataBaseRepository: DataBaseRepository, viewModelScope: CoroutineScope): List<BaseFilm> {
     val listFilmsId = mutableListOf<Int>()
     this.forEach { film -> listFilmsId.add(film.filmId) }
@@ -49,7 +46,7 @@ fun List<BaseFilm>.mergeDatabase(dataBaseRepository: DataBaseRepository, viewMod
     return this
 }
 
-fun List<HomePageCategory>.mergeHomeDatabase(
+fun List<PageCategory>.mergeHomeDatabase(
     dataBaseRepository: DataBaseRepository,
     _homePageList: MutableStateFlow<List<BaseCategory>>,
     viewModelScope: CoroutineScope
@@ -59,7 +56,7 @@ fun List<HomePageCategory>.mergeHomeDatabase(
     this.forEach { category->
         category.list.forEach { film ->
             if (film is BaseFilm)
-            listFilmsId.add(film.filmId) }
+                listFilmsId.add(film.filmId) }
     }
     dataBaseRepository.getStatusFilmList(listFilmsId).onEach { mapData ->
         this.map { category ->

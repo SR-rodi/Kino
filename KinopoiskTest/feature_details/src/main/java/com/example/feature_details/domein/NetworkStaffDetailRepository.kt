@@ -1,6 +1,6 @@
 package com.example.feature_details.domein
 
-import com.example.feature_details.data.details_staff.StaffDetailsDTO
+import com.example.feature_details.data.detailsFilm_page.dto.StaffDetailsDTO
 
 interface NetworkStaffDetailRepository {
 

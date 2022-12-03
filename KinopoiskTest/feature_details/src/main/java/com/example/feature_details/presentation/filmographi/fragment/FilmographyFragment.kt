@@ -1,19 +1,15 @@
 package com.example.feature_details.presentation.filmographi.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.tools.BaseFragment
-import com.example.core.tools.extensions.withArguments
 import com.example.feature_details.databinding.FragmentRecyclerBinding
-import com.example.feature_details.presentation.filmographi.FilmographyCategory
-import com.example.feature_details.presentation.filmographi.viewModel.FilmographyViewModel
 import com.example.feature_details.presentation.filmographi.adapter.FilmographyAdapter
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.SharedFlow
+import com.example.feature_details.presentation.filmographi.viewModel.FilmographyViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FilmographyFragment : BaseFragment<FragmentRecyclerBinding>() {

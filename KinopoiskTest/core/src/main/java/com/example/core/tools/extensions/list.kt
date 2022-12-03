@@ -1,10 +1,21 @@
 package com.example.core.tools.extensions
 
+import com.example.core.tools.GRID_ACTOR_SIZE
+import com.example.core.tools.GRID_STAFF_SIZE
 import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.base_model.imes.ItemNext
 import com.example.core.tools.base_model.imes.ItemStun
+import com.example.core.tools.category.CategoryInfo
+
+
+fun List<BaseEntityFilm>.toBaseFilmList(): List<BaseFilm> {
+    val list = mutableListOf<BaseFilm>()
+    this.forEach { list.add(it.toBaseFilm()) }
+    return list
+}
 
 fun List<BaseFilm>.createListForView(
     sizeListInView: Int,
@@ -13,16 +24,11 @@ fun List<BaseFilm>.createListForView(
     val size = if (this.lastIndex < sizeListInView) this.size
     else sizeListInView
 
-    val list :MutableList<NestedInfoInCategory> = this.take(size).toMutableList()
+    val list: MutableList<NestedInfoInCategory> = this.take(size).toMutableList()
 
     if (list.isEmpty()) list.add(ItemStun())
-    else list.add(ItemNext())
+    else if (this.size > sizeListInView) list.add(ItemNext())
     return list
 }
 
-fun List<BaseEntityFilm>.toBaseFilmList(): List<BaseFilm> {
-    val list= mutableListOf<BaseFilm>()
-    this.forEach { list.add(it.toBaseFilm()) }
-    return list
-}
 
