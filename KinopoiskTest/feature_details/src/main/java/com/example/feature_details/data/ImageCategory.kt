@@ -1,13 +1,15 @@
 package com.example.feature_details.data
 
+import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.base_model.BaseGallery
 import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
 
 enum class ImageCategory(
     val nameCategory: String,
-    var itemsList: MutableList<GalleryDTO> = mutableListOf(),
+    var itemsList: MutableList<BaseGallery> = mutableListOf(),
     var pages: Int = 0,
     var total: Int = 0
-) {
+):NestedInfoInCategory {
     STILL("кадры"),
     SHOOTING("изображения со съемок"),
     POSTER("постеры"),

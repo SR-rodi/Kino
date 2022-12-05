@@ -1,9 +1,11 @@
 package com.example.feature_details.presentation.staff_details.viewModel
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.BaseViewModel
 import com.example.core.tools.NAVIGATE__TO_FILMOGRAPHY
+import com.example.core.tools.NAVIGATE__TO_INFO_FILM
 import com.example.core.tools.NAVIGATE__TO_STAFF
 import com.example.core.tools.all.LoadState
 import com.example.core.tools.base_model.films.BaseFilm
@@ -12,6 +14,7 @@ import com.example.feature_details.data.detailsFilm_page.dto.StaffDetailsDTO
 import com.example.feature_details.domein.repository_ipl.FilmUseCase
 import com.example.feature_details.domein.repository_ipl.NetworkStaffRepositoryImpl
 import com.example.feature_details.tools.getBeastFilms
+import com.example.feature_details.tools.toListFilmsView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -42,7 +45,11 @@ class StaffInfoViewModel(
     }
 
     fun navigateToFilmography() {
-        savedStateHandle[NAVIGATE__TO_FILMOGRAPHY] = person
+        savedStateHandle[NAVIGATE__TO_FILMOGRAPHY] = person?.films?.toListFilmsView()
+    }
+
+    fun navigateToFilInfo(id: Int?) {
+        savedStateHandle[NAVIGATE__TO_INFO_FILM]  = id
     }
 
     companion object {

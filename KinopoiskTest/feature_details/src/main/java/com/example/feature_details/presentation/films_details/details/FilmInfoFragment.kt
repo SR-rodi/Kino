@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
@@ -39,8 +38,6 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
         binding.backArrow.popBackStack()
 
         viewModel.getFilmForID()
-
-
 
         observeLoadState(viewModel.loadState, binding.newPoster.loading) {}
 
@@ -100,12 +97,10 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
 
         when (categoryInfo.category) {
             CategoryInfo.STAFF -> {
-                Toast.makeText(requireContext(), "${categoryInfo.category.name}", Toast.LENGTH_SHORT).show()
                 viewModel.navigateToStaffInfo(categoryInfo)
                 findNavController().navigate(R.id.action_filmInfoFragment_to_staffInfoFragment)
             }
             CategoryInfo.ACTOR -> {
-                Toast.makeText(requireContext(), "${categoryInfo.category.name}", Toast.LENGTH_SHORT).show()
                 viewModel.navigateToStaffInfo(categoryInfo)
                 findNavController().navigate(R.id.action_filmInfoFragment_to_staffInfoFragment)
             }
@@ -118,8 +113,10 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
 
     private fun onClickAll(categoryInfo: BaseCategory) {
 
-        if (categoryInfo.category == CategoryInfo.GALLERY)
+        if (categoryInfo.category == CategoryInfo.GALLERY){
+            viewModel.navigateToGalleryList()
             findNavController().navigate(R.id.action_filmInfoFragment_to_galleryFragment)
+        }
         else navigateToCategory(categoryInfo)
 
     }

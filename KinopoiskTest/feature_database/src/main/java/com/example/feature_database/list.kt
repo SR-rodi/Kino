@@ -3,7 +3,9 @@ package com.example.feature_database
 import com.example.core.R
 import com.example.core.tools.*
 import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
+import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.base_model.films.FilmsDTO
+import com.example.core.tools.category.NestedCollection
 import com.example.feature_database.entity.FilmsCollectionEntity
 
 fun List<FilmsCollectionEntity?>.toNestedCollection(): List<NestedCollection> {
@@ -20,7 +22,7 @@ fun List<FilmsCollectionEntity?>.toNestedCollection(): List<NestedCollection> {
     this.forEach {
         fun addList(
             collection: FilmsCollectionEntity,
-            icon: Int = com.example.core.R.drawable.ic_profile,
+            icon: Int = R.drawable.ic_profile,
             isClose: Boolean = true
         ) {
             list.add(
@@ -35,9 +37,9 @@ fun List<FilmsCollectionEntity?>.toNestedCollection(): List<NestedCollection> {
             if (it.id != ID_LOOK_COLLECTION && it.id != ID_HISTORY_COLLECTION)
                 when (it.id) {
                     ID_FAVORITE_COLLECTION ->
-                        addList(it, com.example.core.R.drawable.ic_favorite, false)
+                        addList(it, R.drawable.ic_favorite, false)
                     ID_LIKE_COLLECTION ->
-                        addList(it, com.example.core.R.drawable.ic_like, false)
+                        addList(it, R.drawable.ic_like, false)
                     else -> addList(it)
                 }
         }
@@ -45,11 +47,11 @@ fun List<FilmsCollectionEntity?>.toNestedCollection(): List<NestedCollection> {
     return list
 }
 
-fun List<FilmsDTO?>.toNestedFilms(): MutableList<NestedFilm> {
-    val list = mutableListOf<NestedFilm>()
+fun List<FilmsDTO?>.toNestedFilms(): MutableList<BaseFilm> {
+    val list = mutableListOf<BaseFilm>()
     this.forEach {
         if (it != null)
-            list.add(NestedFilm(it.nameRu, it.posterUrlPreview, it.genres, it.rating, it.filmId))
+            list.add(BaseFilm(it.nameRu, it.posterUrlPreview, it.genres, it.rating, it.filmId))
     }
     return list
 }

@@ -1,7 +1,6 @@
 package com.example.screen_listpage.network
 
-import com.example.screen_listpage.data.SetSearch
-import retrofit2.http.Query
+import com.example.core.tools.SetSearch
 
 class SearchRepositoryImpl(
     private val searchApi: SearchApi
@@ -9,6 +8,7 @@ class SearchRepositoryImpl(
     suspend fun getSearchFilms(setSearch: SetSearch, keyWord: String, page: Int) =
         searchApi.getSearchFromKeyword(
             setSearch.counterID,
+            setSearch.genreId,
             setSearch.order.name,
             setSearch.type.name,
             setSearch.ratingFrom,

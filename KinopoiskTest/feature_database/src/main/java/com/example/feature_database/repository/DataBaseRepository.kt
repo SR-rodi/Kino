@@ -23,4 +23,8 @@ class DataBaseRepository(
     fun getFilmByID(filmID:Int) = filmsDao.getFilmById(filmID)
 
     fun getStatusFilmList(filmsID:List<Int>) = filmsDao.getFilmStatusByListId(filmsID)
+
+    fun getGenreNameByID(id:Int) = genreDao.getFromGenreID(id)
+
+    fun genCountryNameById(id:Int) = countryDao.getFromCounterID(id)
 }

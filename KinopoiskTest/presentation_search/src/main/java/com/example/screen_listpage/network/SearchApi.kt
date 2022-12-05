@@ -13,6 +13,7 @@ interface SearchApi {
     @GET(BASE_FILMS)
     suspend fun getSearchFromKeyword(
         @Query("countries") countries: Int,
+        @Query("genres") genres: Int,
         @Query("order") order: String,
         @Query("type") type: String,
         @Query("ratingFrom") ratingFrom: Int,

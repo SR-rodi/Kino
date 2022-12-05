@@ -21,10 +21,12 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
-    <style name="dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert.Bridge">
         <item name="android:windowBackground">@drawable/round_dialog</item>
-        <item name="windowMinWidthMinor">85%</item>
+        <item name="windowMinWidthMinor">85%</item>>
+        <item name="android:gravity">center</item>
     </style>
+
 
     <style name="AppBottomSheetDialogTheme"
         parent="Theme.Design.Light.BottomSheetDialog">

@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.core.R
 import com.example.core.tools.BaseFragment
+import com.example.core.tools.NAVIGATE__TO_INFO_FILM
+import com.example.core.tools.NAVIGATE__TO_STAFF
 import com.example.core.tools.adapter.category.OneCategoryForPaging
-import com.example.core.tools.base_model.category.PageCategory
 import com.example.core.tools.base_model.category.StartCategory
+import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.createErrorDialog
 import com.example.core.tools.extensions.popBackStack
 import com.example.homepage.databinding.FragmentCategoryPageBinding
@@ -46,8 +48,17 @@ class CategoryPageFragment : BaseFragment<FragmentCategoryPageBinding>() {
     }
 
     private fun onClickItem(pageCategory: StartCategory) {
-        viewModel.navigateToFilmsInfo(pageCategory.query?.id)
-        findNavController().navigate(R.id.action_categoryPageFragment_to_filmInfoFragment)
+        when (pageCategory.category){
+            CategoryInfo.STAFF -> {
+                viewModel.navigateTo(NAVIGATE__TO_STAFF, pageCategory.query?.id)
+                findNavController().navigate(R.id.action_categoryPageFragment_to_staffInfoFragment)
+            }
+            else->{
+                viewModel.navigateTo(NAVIGATE__TO_INFO_FILM,pageCategory.query?.id)
+                findNavController().navigate(R.id.action_categoryPageFragment_to_filmInfoFragment)
+            }
+        }
+
     }
 
     private fun loadStateListener() {

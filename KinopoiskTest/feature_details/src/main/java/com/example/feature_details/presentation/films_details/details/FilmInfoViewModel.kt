@@ -1,5 +1,6 @@
 package com.example.feature_details.presentation.films_details.details
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.adapterdelegate.data.createStaffList
@@ -35,7 +36,7 @@ class FilmInfoViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    val filmId:Int? = savedStateHandle[NAVIGATE__TO_INFO_FILM]
+    private val filmId: Int? = savedStateHandle[NAVIGATE__TO_INFO_FILM]
 
     private val _film = MutableSharedFlow<Pair<PosterFilm, List<BaseCategory>>>()
     val film = _film.asSharedFlow()
@@ -47,11 +48,10 @@ class FilmInfoViewModel(
     private var isEmptyInfoFromDataBase = true
 
 
-    fun getFilmForID(id:Int? = filmId) =
+    fun getFilmForID(id: Int? = filmId) =
         viewModelScope.launch(handler + Dispatchers.IO) {
-
             _loadState.value = LoadState.LOADING
-            if (id!=null) {
+            if (id != null) {
                 val infoFilms = networkRepository.getFilmForID(id)
                 filmsDatabaseRepository.getFilmByID(id).onEach {
                     filmEntity = it
@@ -62,7 +62,8 @@ class FilmInfoViewModel(
 
                     } else _filmStatus.emit(it)
                     _film.emit(
-                        Pair(infoFilms.toPosterFilms(),
+                        Pair(
+                            infoFilms.toPosterFilms(),
                             createListCategoryInfo(id, infoFilms)
                         )
                     )
@@ -71,7 +72,6 @@ class FilmInfoViewModel(
             _loadState.value = LoadState.SUCCESS
 
         }
-
 
 
     fun workDatabase(button: ButtonPoster) =
@@ -98,17 +98,13 @@ class FilmInfoViewModel(
         val setCollection = collectionsFilmsRepository
             .getCollectionFromFilmIdAndCollectionId(film.filmId, collectionId)
 
-        var isCheck = false
-        if (collectionId == setCollection) {
-
-            isCheck = false
+        return   if (collectionId == setCollection) {
             collectionsFilmsRepository.deleteFilmInCollection(collectionId, film.filmId)
+            false
         } else {
-            isCheck = true
             collectionsFilmsRepository.insertFilmCollection(film, collectionId)
-
+            true
         }
-        return isCheck
 
     }
 
@@ -120,26 +116,29 @@ class FilmInfoViewModel(
 
         listInfo.add(infoFilms.toDescriptions())
 
-       listInfo.addAll(networkRepository.getAllStaffFilmsByID(id).createStaffList())
+        listInfo.addAll(networkRepository.getAllStaffFilmsByID(id).createStaffList())
 
         listInfo.add(DetailsCategory(CategoryInfo.GALLERY, getGalleryList(id, GALLERY_SIZE)))
 
         listInfo.add(
             DetailsCategory(
-                CategoryInfo.SIMILAR,
-                networkRepository.getSimilarFilmsByID(id).toListBaseFilm()
+                CategoryInfo.SIMILAR, networkRepository.getSimilarFilmsByID(id).toListBaseFilm()
             )
         )
         return listInfo
     }
 
-    private suspend fun getGalleryList(id: Int, gallerySize: Int): MutableList<NestedInfoInCategory> {
+    private suspend fun getGalleryList(
+        id: Int,
+        gallerySize: Int
+    ): MutableList<NestedInfoInCategory> {
         val galleryList = mutableListOf<NestedInfoInCategory>()
 
         for (position in 0..ImageCategory.values().lastIndex) {
             if (galleryList.size < gallerySize) galleryList
                 .addAll(
-                    networkRepository.getGalleryFilmsByID(id, ImageCategory.values()[position].name
+                    networkRepository.getGalleryFilmsByID(
+                        id, ImageCategory.values()[position].name
                     ).items
                 )
             else break
@@ -153,13 +152,17 @@ class FilmInfoViewModel(
     }
 
     fun navigateToStaffInfo(categoryInfo: PageCategory) {
-        savedStateHandle[NAVIGATE__TO_STAFF]= categoryInfo.query?.id
+        savedStateHandle[NAVIGATE__TO_STAFF] = categoryInfo.query?.id
     }
 
     fun navigateToCategory(category: BaseCategory) {
         savedStateHandle[NAVIGATE__CATEGORY_PAGE] = PageCategory(
             category.category, emptyList(), Query(id = filmId)
         )
+    }
+
+    fun navigateToGalleryList() {
+        savedStateHandle[NAVIGATE__TO_GALLERY_LIST] = filmId
     }
 
     companion object {

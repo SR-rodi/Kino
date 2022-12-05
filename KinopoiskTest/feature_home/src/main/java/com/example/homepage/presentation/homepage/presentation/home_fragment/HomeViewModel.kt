@@ -12,7 +12,7 @@ import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 import com.example.core.tools.base_model.category.PageCategory
-import com.example.homepage.presentation.homepage.domaine.NetworkCategoryImpl
+import com.example.homepage.presentation.homepage.domain.NetworkCategoryImpl
 import com.example.homepage.presentation.homepage.tools.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -109,7 +109,9 @@ class HomeViewModel(
         savedStateHandle[WORK_MODE] = ViewModelWorkMode.IN_NETWORK
     }
 
-    fun navigateToInfoFilm(filmID: Int?) { savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmID }
+    fun navigateToInfoFilm(filmID: Int?) {
+        savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmID
+    }
 
     companion object {
         const val FIRST_PAGE = 1

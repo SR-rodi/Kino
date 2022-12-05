@@ -13,6 +13,8 @@ import com.example.feature_details.databinding.FragmentStaffInfoBinding
 import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
 import kotlinx.coroutines.launch
 import com.example.core.R
+import com.example.core.tools.adapter.home.NestedAdapterBase
+import com.example.core.tools.base_model.category.PageCategory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
@@ -21,7 +23,8 @@ class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
 
     private val viewModel by viewModel<StaffInfoViewModel>()
 
-    private val adapter by lazy { FilmsAdapter({}, {}) }
+    private val adapter by lazy { NestedAdapterBase({ onClickItem(it) }, {}) }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,11 +36,17 @@ class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
 
         binding.backArrow.popBackStack()
 
-        binding.name.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             viewModel.navigateToFilmography()
             findNavController().navigate(R.id.action_filmInfoFragment_to_filmographyFragment)
         }
 
+
+    }
+
+    private fun onClickItem(pageCategory: PageCategory) {
+        viewModel.navigateToFilInfo(pageCategory.query?.id)
+        findNavController().navigate(R.id.action_staffInfoFragment_to_filmInfoFragment)
     }
 
     private fun observe() {
@@ -47,7 +56,8 @@ class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
                 binding.avatar.glide(it.first.posterUrl)
                 binding.name.text = it.first.nameRu
                 binding.description.text = it.first.profession
-                adapter.submitList(it.second)
+                binding.counter.text = it.first.films.size.toString() + " фильма"
+                adapter.items = it.second
             }
         }
     }

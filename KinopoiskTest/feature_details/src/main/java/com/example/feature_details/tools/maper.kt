@@ -9,10 +9,18 @@ import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
 import com.example.feature_details.data.detailsFilm_page.dto.InfoFilmDTO
 import com.example.adapterdelegate.data.SimilarFilmsDTO
+import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.base_model.BaseGallery
+import com.example.core.tools.base_model.FullGalleryImage
+import com.example.core.tools.base_model.category.GriDGallery
 import com.example.feature_details.data.detailsFilm_page.model.DescriptionFilms
 import com.example.feature_details.data.detailsFilm_page.model.PosterFilm
 import com.example.feature_details.data.detailsFilm_page.response.ResponseFilmGallery
 import com.example.feature_details.data.details_staff.BestFilm
+import com.example.feature_details.data.details_staff.Film
+import com.example.feature_details.data.details_staff.FilmView
+import com.example.feature_details.domein.repository_ipl.FilmUseCase
+import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
 
 
 fun InfoFilmDTO.toPosterFilms() =
@@ -34,7 +42,7 @@ fun InfoFilmDTO.toFilmEntity() =
 fun ResponseFilmGallery.toImageCategory(imageCategory: ImageCategory): ImageCategory {
     imageCategory.pages = totalPages
     imageCategory.total = total
-    imageCategory.itemsList = items as MutableList<GalleryDTO>
+    imageCategory.itemsList = items.toGridGalleryList()
     if (imageCategory.pages > 1) imageCategory.itemsList.add(GalleryDTO("Next", ""))
     return imageCategory
 }
@@ -46,4 +54,40 @@ fun List<SimilarFilmsDTO>.toListBaseFilm(): List<BaseFilm> {
     }
     return list.createListForView(SIZE_LIST_VIEW) as List<BaseFilm>
 
+}
+
+fun List<Film>.toListFilmsView(): MutableList<FilmView> {
+    val list= mutableListOf<FilmView>()
+    this.forEach{
+        list.add(it.toFilmView())
+    }
+    return list
+}
+
+fun List<GalleryDTO>.toGridGalleryList(): MutableList<BaseGallery> {
+    val list = mutableListOf<BaseGallery>()
+    this.forEach {
+       list.add( GriDGallery(it.imageUrl,it.previewUrl))
+    }
+    return list
+}
+
+suspend fun List<Film>.getBeastFilms(filmUseCase: FilmUseCase): MutableList<BestFilm> {
+    val bestListFilms = if (this.size > StaffInfoViewModel.SIZE_BEST_LIST)
+        this.sortedByDescending { it.rating }.slice(0 until StaffInfoViewModel.SIZE_BEST_LIST)
+    else this
+    val bestFilmsInfo = mutableListOf<BestFilm>()
+    if (bestListFilms.isNotEmpty()) bestListFilms.forEach {
+        bestFilmsInfo.add(filmUseCase.getFilmByID(it.filmId).toBestFilms())
+    }
+    return bestFilmsInfo
+}
+
+fun List <NestedInfoInCategory>.toFullGalleryImage(): MutableList<NestedInfoInCategory> {
+    val list = mutableListOf<NestedInfoInCategory>()
+    this.forEach{
+        if (it is BaseGallery)
+            list.add(FullGalleryImage(it.imageUrl,it.previewUrl))
+    }
+    return list
 }

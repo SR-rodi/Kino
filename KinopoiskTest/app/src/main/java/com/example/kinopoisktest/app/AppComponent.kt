@@ -5,15 +5,23 @@ import com.example.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class AppComponent:Application() {
+class AppComponent : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        startKoin{
+        startKoin {
             androidContext(this@AppComponent)
-            modules(listOf(filmsApi, viewModel, networkRepository, databaseRepository, useCase))
+            modules(
+                listOf(
+                    filmsApi,
+                    dataBaseModule,
+                    viewModel,
+                    networkRepository,
+                    databaseRepository,
+                    useCase
+                )
+            )
         }
     }
-
 }

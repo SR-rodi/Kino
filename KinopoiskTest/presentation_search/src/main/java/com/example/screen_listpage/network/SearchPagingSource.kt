@@ -3,7 +3,7 @@ package com.example.screen_listpage.network
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.screen_listpage.data.SearchFilm
-import com.example.screen_listpage.data.SetSearch
+import com.example.core.tools.SetSearch
 
 class SearchPagingSource(
    private val networkRepositoryImpl: SearchRepositoryImpl,

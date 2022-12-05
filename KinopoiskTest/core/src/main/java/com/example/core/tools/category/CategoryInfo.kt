@@ -14,5 +14,8 @@ enum class CategoryInfo(var text :String, ): Parcelable {
     STAFF("Над фильмом работали:"),
     ACTOR("В фильме снимались"),
     GALLERY("Галлерея"),
-    DESCRIPTION("Описание"),
+    DB("База Данных"),
+    COLLECTION("Коллекции"),
+    HISTORY("Вам было интересно"),
+    LOOK("Просмотренно"),
 }

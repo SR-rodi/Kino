@@ -40,16 +40,20 @@ adapterDelegateViewBinding<BaseDetailsCategory, BaseCategory, ItemCategoryBindin
                 binding.filmsRecyclerView.setGridLayoutManager(2,GridLayoutManager.HORIZONTAL)
                 binding.buttonAll.checkVisibility(item.listValue.size, GRID_STAFF_SIZE)
             }
+            CategoryInfo.COLLECTION->{
+                binding.filmsRecyclerView.setGridLayoutManager(2,GridLayoutManager.HORIZONTAL)
+                binding.buttonAll.isVisible =false
+                binding.categoryName.text = "Коллекции"
+            }
             else -> binding.filmsRecyclerView.layoutManager=
                 LinearLayoutManager( binding.filmsRecyclerView.context,LinearLayoutManager.HORIZONTAL,false)
         }
 
 
         binding.filmsRecyclerView.adapter =
-            NestedAdapterBase({ onClickItem(it) }, { onClickAll(it) }, item).apply {
-                items = item.listValue
-
-            }
+            NestedAdapterBase(
+                { onClickItem(it) },
+                { onClickAll(it) }).apply { items = item.listValue }
     }
 }
 

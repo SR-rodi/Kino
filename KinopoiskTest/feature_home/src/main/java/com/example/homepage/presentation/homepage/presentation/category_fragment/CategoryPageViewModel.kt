@@ -7,10 +7,7 @@ import androidx.paging.PagingData
 import com.example.core.tools.*
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.category.BaseCategory
-import com.example.core.tools.base_model.category.StartCategory
-import com.example.core.tools.base_model.films.BaseFilm
-import com.example.core.tools.category.CategoryInfo
-import com.example.homepage.presentation.homepage.domaine.paging.PagingRepository
+import com.example.homepage.presentation.homepage.domain.paging.PagingRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -26,7 +23,7 @@ class CategoryPageViewModel(
         networkRepository.getFlowFilms(categoryFilms, viewModelScope)
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 
-    fun getNameCategory(): String? = categoryFilms?.category?.name
+    fun getNameCategory(): String? = categoryFilms?.category?.text
 
-    fun navigateToFilmsInfo(filmId: Int?) { savedStateHandle[NAVIGATE__TO_INFO_FILM] = filmId }
+    fun navigateTo(navigateFragment:String,filmId: Int?) { savedStateHandle[navigateFragment] = filmId }
 }
