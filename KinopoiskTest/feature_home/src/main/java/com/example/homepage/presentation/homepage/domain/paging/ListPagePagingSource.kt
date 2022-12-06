@@ -89,6 +89,9 @@ class ListPagePagingSource(
                     ID_LOOK_COLLECTION)
                 collectionDataBaseRepository.getFilmsFromListID(dataList).toNestedFilms()
             }
+            CategoryInfo.TV_SERIES->{
+                loadSerials(networkRepository,page)
+            }
             else -> emptyList()
         }
     }
