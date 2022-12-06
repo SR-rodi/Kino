@@ -6,10 +6,9 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
-import com.example.core.tools.BaseFragment
-import com.example.core.tools.adapter.home.CategoryAdapterBase
+import com.example.core.tools.basefrahment.BaseFragment
+import com.example.core.tools.adapter.adapters.CategoryAdapterBase
 import com.example.core.tools.base_model.category.BaseCategory
-import com.example.core.tools.base_model.category.PageCategory
 import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.extensions.checkFirstStart
 import com.example.core.tools.extensions.observeLoadState

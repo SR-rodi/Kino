@@ -16,4 +16,3 @@ class GalleryTabAdapter(
         return GalleryFragment()
     }
 }
-

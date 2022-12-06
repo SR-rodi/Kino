@@ -9,6 +9,8 @@ import com.example.homepage.presentation.homepage.presentation.category_fragment
 import com.example.feature_details.presentation.films_details.details.FilmInfoViewModel
 import com.example.feature_details.presentation.gallery.gallery_in_category.GalleryViewModel
 import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
+import com.example.feature_details.presentation.seasons.SeasonsListViewModel
+import com.example.feature_details.presentation.seasons.SeasonsViewModel
 import com.example.presentation_profile.ProfileViewModel
 import com.example.screen_listpage.presentation.setting.SettingsSearchViewModel
 import com.example.screen_listpage.presentation.search.SearchStartViewModel
@@ -51,7 +53,7 @@ val viewModel = module {
     }
 
     viewModel {
-        SearchStartViewModel(get(), get())
+        SearchStartViewModel(get(), get(),get())
     }
 
     viewModel {
@@ -62,5 +64,12 @@ val viewModel = module {
     }
     viewModel {
         SettingsSearchViewModel(get())
+    }
+
+    viewModel {
+        SeasonsViewModel(get())
+    }
+    viewModel {
+        SeasonsListViewModel(get())
     }
 }

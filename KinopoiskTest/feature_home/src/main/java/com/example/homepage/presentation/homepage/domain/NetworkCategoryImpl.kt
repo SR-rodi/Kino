@@ -24,4 +24,6 @@ class NetworkCategoryImpl(
 
     override  suspend fun getStaffByFilmsId(id: Int) = overallApi.getStaffFilmsByID(id)
 
+    override suspend fun getSeries(page: Int) = filmsApi.getSeries(page)
+
 }

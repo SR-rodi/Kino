@@ -57,6 +57,9 @@
         <action
             android:id="@id/action_filmInfoFragment_to_categoryPageFragment"
             app:destination="@id/categoryPageFragment" />
+        <action
+            android:id="@id/action_filmInfoFragment_to_seasonsListFragment"
+            app:destination="@id/seasonsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/staffInfoFragment"
@@ -115,4 +118,8 @@
         android:id="@+id/settingsSearchFragment"
         android:name="com.example.screen_listpage.presentation.setting.SettingsSearchFragment"
         android:label="SettingsSearchFragment" />
+    <fragment
+        android:id="@+id/seasonsListFragment"
+        android:name="com.example.feature_details.presentation.seasons.SeasonsListFragment"
+        android:label="SeasonsListFragment" />
 </navigation>

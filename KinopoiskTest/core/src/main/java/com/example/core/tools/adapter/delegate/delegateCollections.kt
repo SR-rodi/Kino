@@ -1,8 +1,8 @@
 package com.example.core.tools.adapter.delegate
 
 import com.example.core.databinding.ItemCollectionFilmsBinding
-import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
 import com.example.core.tools.all.NestedInfoInCategory
+import com.example.core.tools.base_model.FilmsCollection
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun bottomSheetDelegate(onClickItem: (collection: FilmsCollection, isCheck:Boolean) -> Unit) =

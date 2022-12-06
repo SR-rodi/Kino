@@ -26,11 +26,11 @@
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:layout_width="30dp"
-            android:layout_height="15dp"
+            android:layout_height="30dp"
             android:id="@+id/back_arrow"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp" />
         <Constraint
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
@@ -73,5 +73,10 @@
             motion:layout_constraintTop_toBottomOf="@+id/back_arrow"
             android:id="@+id/detail_recyclerView"
             android:layout_marginTop="8dp" />
+        <Constraint
+            motion:layout_editor_absoluteY="10dp"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:id="@+id/back_arrow" />
     </ConstraintSet>
 </MotionScene>

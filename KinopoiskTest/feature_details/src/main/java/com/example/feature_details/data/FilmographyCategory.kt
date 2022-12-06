@@ -1,8 +1,6 @@
 package com.example.feature_details.data
 
 import com.example.core.tools.base_model.films.FilmographyMove
-import com.example.feature_details.data.details_staff.Film
-
 
 enum class FilmographyCategory(
     val nameCategory: String,

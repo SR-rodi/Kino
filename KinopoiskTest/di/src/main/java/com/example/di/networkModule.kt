@@ -1,12 +1,10 @@
 package com.example.di
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.room.Room
 import com.example.adapterdelegate.OverallApi
 import com.example.core.tools.BASE_URL
-import com.example.feature_database.CinemaDatabase
+import com.example.feature_details.domain.DetailFilmsApi
 import com.example.homepage.presentation.homepage.domain.CategoryFilmsApi
-import com.example.feature_details.domein.DetailFilmsApi
 import com.example.screen_listpage.network.SearchApi
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.core.tools.BaseFragment
-import com.example.core.tools.adapter.home.NestedAdapterBase
+import com.example.core.tools.basefrahment.BaseFragment
+import com.example.core.tools.adapter.adapters.NestedAdapterBase
 import com.example.core.tools.base_model.category.PageCategory
-import com.example.core.tools.category.CategoryInfo
 import com.example.feature_details.databinding.FragmentRecyclerBinding
 import com.example.feature_details.tools.createGalleryDialog
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class GalleryFragment() : BaseFragment<FragmentRecyclerBinding>() {
+class GalleryFragment : BaseFragment<FragmentRecyclerBinding>() {
     override fun initBinding(inflater: LayoutInflater) =
         FragmentRecyclerBinding.inflate(inflater)
 
@@ -44,7 +43,7 @@ class GalleryFragment() : BaseFragment<FragmentRecyclerBinding>() {
         }
     }
 
-    fun onClickItem(pageCategory: PageCategory){
+    private fun onClickItem(pageCategory: PageCategory){
         if (pageCategory.query?.id ==-1) viewModel.getGallery()
         else createGalleryDialog(pageCategory)
     }
@@ -59,6 +58,4 @@ class GalleryFragment() : BaseFragment<FragmentRecyclerBinding>() {
                 lastPosition = it.lastIndex
             }
         }
-
-
 }

@@ -8,7 +8,7 @@ class PosterFilm(
     val kinopoiskId: Int,
     val countries: List<Country>,
     val genres: List<Genre>,
-    val nameRu: String,
+    val nameRu: String?,
     val nameOriginal: String?,
     val posterUrl: String,
     val ratingAgeLimits: String?,

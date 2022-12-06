@@ -28,6 +28,7 @@
     <item name="action_categoryPageFragment_to_staffInfoFragment" type="id"/>
     <item name="action_filmography_to_filmInfoFragment" type="id"/>
     <item name="action_profileFragment_to_categoryPageFragment" type="id"/>
+    <item name="action_filmInfoFragment_to_seasonsListFragment" type="id"/>
 
 
 

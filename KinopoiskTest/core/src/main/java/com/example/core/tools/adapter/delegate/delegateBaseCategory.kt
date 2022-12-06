@@ -1,6 +1,5 @@
 package com.example.core.tools.adapter.delegate
 
-import android.util.Size
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.databinding.ItemCategoryBinding
 import com.example.core.tools.GRID_ACTOR_SIZE
 import com.example.core.tools.GRID_STAFF_SIZE
-import com.example.core.tools.adapter.home.NestedAdapterBase
+import com.example.core.tools.adapter.adapters.NestedAdapterBase
 import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.category.BaseDetailsCategory
 import com.example.core.tools.base_model.category.PageCategory

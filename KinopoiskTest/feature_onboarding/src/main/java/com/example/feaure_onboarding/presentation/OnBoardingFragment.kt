@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.example.core.tools.BaseFragment
+import com.example.core.tools.basefrahment.BaseFragment
 import com.example.feaure_onboarding.data.ListOnBoarding
 import com.example.feaure_onboarding.presentation.adapter.PagerAdapter
 import com.example.feaure_onboarding.R

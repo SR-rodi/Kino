@@ -5,4 +5,3 @@ package com.example.adapterdelegate.data
     val nameRu: String,
     val posterUrlPreview: String,
 )
-

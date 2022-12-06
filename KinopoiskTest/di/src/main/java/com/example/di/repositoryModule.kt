@@ -3,10 +3,10 @@ package com.example.di
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.feature_database.repository.FilmDataBaseRepository
-import com.example.feature_details.domein.repository_ipl.FilmUseCase
-import com.example.feature_details.domein.repository_ipl.GalleryUseCase
-import com.example.feature_details.domein.repository_ipl.NetworkFilmDetailsRepositoryImpl
-import com.example.feature_details.domein.repository_ipl.NetworkStaffRepositoryImpl
+import com.example.feature_details.domain.repository_ipl.FilmUseCase
+import com.example.feature_details.domain.repository_ipl.GalleryUseCase
+import com.example.feature_details.domain.repository_ipl.NetworkFilmDetailsRepositoryImpl
+import com.example.feature_details.domain.repository_ipl.NetworkStaffRepositoryImpl
 import com.example.homepage.presentation.homepage.domain.NetworkCategoryImpl
 import com.example.homepage.presentation.homepage.domain.paging.PagingRepository
 import com.example.screen_listpage.network.SearchPagingRepo

@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
-import com.example.core.tools.BaseFragment
-import com.example.core.tools.extensions.getArgsInt
+import com.example.core.tools.basefrahment.BaseFragment
 import com.example.feature_details.R
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.databinding.FragmentTabGalleryOrFilmografyBinding

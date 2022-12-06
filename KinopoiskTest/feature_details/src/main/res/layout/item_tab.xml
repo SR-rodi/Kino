@@ -10,6 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:fontFamily="@font/graphik_bold"
         android:textColor="@color/text_selector"
         tools:text="Категория" />
 
@@ -19,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginStart="10dp"
-
+    android:fontFamily="@font/graphik_regular"
         android:textColor="@color/subtitle_text_color"
         tools:text="33" />
 

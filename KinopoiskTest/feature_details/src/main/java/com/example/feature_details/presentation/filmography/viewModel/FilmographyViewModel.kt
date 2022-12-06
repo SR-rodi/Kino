@@ -7,7 +7,7 @@ import com.example.core.tools.NAVIGATE__TO_INFO_FILM
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.films.FilmographyMove
 import com.example.feature_details.data.FilmographyCategory
-import com.example.feature_details.domein.repository_ipl.NetworkFilmDetailsRepositoryImpl
+import com.example.feature_details.domain.repository_ipl.NetworkFilmDetailsRepositoryImpl
 import com.example.feature_details.presentation.filmography.viewModel.FilmographyListViewModel.Companion.FILMOGRAPHY_CATEGORY
 import com.example.feature_details.presentation.filmography.viewModel.FilmographyListViewModel.Companion.FILMOGRAPHY_CATEGORY_POSITION
 import kotlinx.coroutines.flow.MutableSharedFlow

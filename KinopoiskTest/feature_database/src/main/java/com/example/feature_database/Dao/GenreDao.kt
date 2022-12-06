@@ -3,8 +3,8 @@ package com.example.feature_database.Dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.core.tools.general.Country
 import com.example.core.tools.general.Genre
+
 @Dao
 interface GenreDao{
 

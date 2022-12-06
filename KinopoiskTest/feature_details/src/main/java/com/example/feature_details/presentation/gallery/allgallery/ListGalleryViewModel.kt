@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.NAVIGATE__TO_GALLERY_LIST
 import com.example.feature_details.data.ImageCategory
-import com.example.feature_details.domein.repository_ipl.GalleryUseCase
+import com.example.feature_details.domain.repository_ipl.GalleryUseCase
 import com.example.feature_details.tools.toImageCategory
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow

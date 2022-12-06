@@ -1,20 +1,13 @@
 package com.example.kinopoisktest
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.kinopoisktest.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
-
 
 class MainActivity : AppCompatActivity() {
 

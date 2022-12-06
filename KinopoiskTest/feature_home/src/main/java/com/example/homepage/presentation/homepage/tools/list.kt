@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-
 fun CategoryInfo.createCategory(list: List<NestedInfoInCategory>, query: Query? = null) =
     PageCategory(this, list, query)
 

@@ -7,7 +7,7 @@ import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.BaseGallery
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
-import com.example.feature_details.domein.repository_ipl.GalleryUseCase
+import com.example.feature_details.domain.repository_ipl.GalleryUseCase
 import com.example.feature_details.presentation.gallery.allgallery.ListGalleryViewModel
 import com.example.feature_details.presentation.gallery.allgallery.ListGalleryViewModel.Companion.GALLERY_ID_FilM_IN
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,6 +48,4 @@ class GalleryViewModel(
     }
 
     fun startList() = category!!.itemsList as List<NestedInfoInCategory>
-
-
 }

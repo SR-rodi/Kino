@@ -19,7 +19,7 @@ import com.example.feature_database.entity.MergeCollectionAndFilms
     ], version = 1
 )
 @TypeConverters(Converter::class)
-abstract class CinemaDatabase() : RoomDatabase() {
+abstract class CinemaDatabase : RoomDatabase() {
 
     abstract fun countryDao(): CountryDao
 
@@ -29,6 +29,3 @@ abstract class CinemaDatabase() : RoomDatabase() {
 
     abstract fun filmsCollectionDao():FilmsCollectionDao
 }
-
-
-

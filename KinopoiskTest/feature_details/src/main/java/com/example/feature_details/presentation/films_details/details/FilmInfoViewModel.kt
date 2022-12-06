@@ -1,6 +1,5 @@
 package com.example.feature_details.presentation.films_details.details
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.adapterdelegate.data.createStaffList
@@ -10,16 +9,17 @@ import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.all.Query
 import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.category.PageCategory
+import com.example.core.tools.basefrahment.BaseViewModel
 import com.example.core.tools.category.CategoryInfo
+import com.example.core.tools.category.DetailsCategory
 import com.example.feature_database.entity.FilmEntity
 import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.FilmDataBaseRepository
 import com.example.feature_details.data.ButtonPoster
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.data.detailsFilm_page.dto.InfoFilmDTO
-import com.example.core.tools.category.DetailsCategory
 import com.example.feature_details.data.detailsFilm_page.model.PosterFilm
-import com.example.feature_details.domein.repository_ipl.NetworkFilmDetailsRepositoryImpl
+import com.example.feature_details.domain.repository_ipl.NetworkFilmDetailsRepositoryImpl
 import com.example.feature_details.tools.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -51,6 +51,7 @@ class FilmInfoViewModel(
     fun getFilmForID(id: Int? = filmId) =
         viewModelScope.launch(handler + Dispatchers.IO) {
             _loadState.value = LoadState.LOADING
+
             if (id != null) {
                 val infoFilms = networkRepository.getFilmForID(id)
                 filmsDatabaseRepository.getFilmByID(id).onEach {
@@ -67,10 +68,9 @@ class FilmInfoViewModel(
                             createListCategoryInfo(id, infoFilms)
                         )
                     )
-                }.launchIn(viewModelScope + Dispatchers.IO)
+                }.launchIn(viewModelScope + Dispatchers.IO +handler)
             }
             _loadState.value = LoadState.SUCCESS
-
         }
 
 
@@ -98,7 +98,7 @@ class FilmInfoViewModel(
         val setCollection = collectionsFilmsRepository
             .getCollectionFromFilmIdAndCollectionId(film.filmId, collectionId)
 
-        return   if (collectionId == setCollection) {
+        return if (collectionId == setCollection) {
             collectionsFilmsRepository.deleteFilmInCollection(collectionId, film.filmId)
             false
         } else {
@@ -116,7 +116,10 @@ class FilmInfoViewModel(
 
         listInfo.add(infoFilms.toDescriptions())
 
-        listInfo.addAll(networkRepository.getAllStaffFilmsByID(id).createStaffList())
+        if (infoFilms.isSerial)
+            listInfo.add(networkRepository.getSeasons(filmId!!).toSeasonsItem())
+
+            listInfo.addAll(networkRepository.getAllStaffFilmsByID(id).createStaffList())
 
         listInfo.add(DetailsCategory(CategoryInfo.GALLERY, getGalleryList(id, GALLERY_SIZE)))
 
@@ -163,6 +166,10 @@ class FilmInfoViewModel(
 
     fun navigateToGalleryList() {
         savedStateHandle[NAVIGATE__TO_GALLERY_LIST] = filmId
+    }
+
+    fun navigateToSeasonsList(categoryInfo: PageCategory) {
+        savedStateHandle[NAVIGATE__TO_SEASONS] = categoryInfo.list
     }
 
     companion object {

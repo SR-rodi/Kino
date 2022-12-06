@@ -1,6 +1,5 @@
 package com.example.core.tools.adapter.delegate
 
-import android.util.Log
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.example.core.databinding.ItemFilmographyBinding
@@ -11,7 +10,6 @@ import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.all.Query
 import com.example.core.tools.base_model.category.BaseDetailsCategory
 import com.example.core.tools.base_model.category.PageCategory
-import com.example.core.tools.base_model.category.StartCategory
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.base_model.films.FilmographyMove
 import com.example.core.tools.base_model.imes.ItemNext
@@ -19,9 +17,7 @@ import com.example.core.tools.base_model.imes.ItemStun
 import com.example.core.tools.category.CategoryInfo
 import com.example.core.tools.extensions.createName
 import com.example.core.tools.extensions.glide
-import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import kotlin.math.log
 
 fun delegateBaseFilms(
     onClickItem: (pageCategory: PageCategory) -> Unit,

@@ -6,8 +6,8 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.core.tools.BaseFragment
-import com.example.core.tools.adapter.home.NestedAdapterBase
+import com.example.core.tools.basefrahment.BaseFragment
+import com.example.core.tools.adapter.adapters.NestedAdapterBase
 import com.example.core.tools.base_model.category.PageCategory
 import com.example.feature_details.databinding.FragmentRecyclerBinding
 import com.example.feature_details.presentation.filmography.viewModel.FilmographyViewModel

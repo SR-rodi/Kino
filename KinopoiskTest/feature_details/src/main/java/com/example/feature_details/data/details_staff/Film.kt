@@ -14,19 +14,6 @@ class Film(
     val professionKey: String,
     val rating: String?,
     var posterURL: String? = null,
-    var isExpand: Boolean = true
 ) : Parcelable {
     fun toFilmView()=FilmView(description, filmId, general, nameEn, nameRu, professionKey, rating, posterURL)
 }
-
-class FilmView(
-   override val description: String?,
-   override val filmId: Int,
-   override val general: Boolean,
-   override var nameEn: String?,
-   override var nameRu: String?,
-   override val professionKey: String,
-   override val rating: String?,
-   override var posterURL: String? = null,
-   override var isExpand: Boolean = false
-) :FilmographyMove(description, filmId, general, nameEn, nameRu, professionKey, rating, posterURL)

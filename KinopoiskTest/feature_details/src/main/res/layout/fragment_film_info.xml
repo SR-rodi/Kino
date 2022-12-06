@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="30dp"
-        android:layout_height="15dp"
+        android:layout_height="30dp"
         android:paddingStart="17dp"
         android:layout_gravity="center"
         android:src="@drawable/ic_arrow_back" />

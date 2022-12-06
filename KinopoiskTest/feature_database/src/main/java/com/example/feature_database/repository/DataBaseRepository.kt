@@ -20,8 +20,6 @@ class DataBaseRepository(
 
     fun insertCounter(country: List<Country>) = countryDao.insertCounty(country)
 
-    fun getFilmByID(filmID:Int) = filmsDao.getFilmById(filmID)
-
     fun getStatusFilmList(filmsID:List<Int>) = filmsDao.getFilmStatusByListId(filmsID)
 
     fun getGenreNameByID(id:Int) = genreDao.getFromGenreID(id)

@@ -2,7 +2,6 @@ package com.example.feature_details.data
 
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.base_model.BaseGallery
-import com.example.feature_details.data.detailsFilm_page.dto.GalleryDTO
 
 enum class ImageCategory(
     val nameCategory: String,

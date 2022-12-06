@@ -12,6 +12,7 @@ import com.example.feature_database.repository.CollectionsFilmsRepository
 import com.example.feature_database.repository.DataBaseRepository
 import com.example.homepage.presentation.homepage.data.films.dto.CountryAndGenreDTO
 import com.example.core.tools.base_model.category.PageCategory
+import com.example.core.tools.basefrahment.BaseViewModel
 import com.example.homepage.presentation.homepage.domain.NetworkCategoryImpl
 import com.example.homepage.presentation.homepage.tools.*
 import kotlinx.coroutines.Dispatchers
@@ -83,30 +84,44 @@ class HomeViewModel(
         month: Int,
         counterAndGenre: CountryAndGenreDTO
     ): List<PageCategory> {
+        val counter = counterAndGenre.getRandomCounter()
+        val genre = counterAndGenre.getRandomGenre()
         val query = Query().apply {
-            counterID =counterAndGenre.getRandomCounter().id
-            genreId =counterAndGenre.getRandomGenre().id
+            counterID = counter.id
+            genreId = genre.id
             this.year = year
             this.month = month.converterInMonth()
         }
 
-              return  listOf(
-                  CategoryInfo.PREMIERS.createCategory(
-                      loadPremieres(networkRepository,query.year,query.month)
-                          .createListForView(SIZE_LIST_VIEW),query),
-                  CategoryInfo.BEST.createCategory(
-                      loadBest(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)),
-                  CategoryInfo.POPULAR.createCategory(
-                      loadPopular(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)),
-                  CategoryInfo.RANDOM.createCategory(
-                      loadFilmsByCounterAdnGenre(networkRepository, FIRST_PAGE, query.counterID, query.genreId)
-                      .createListForView(SIZE_LIST_VIEW),query)
-              )
+        val randomCategory  =  CategoryInfo.RANDOM.apply {
+            text = counter.info +" "+ genre.info
+        }
+
+        return listOf(
+            CategoryInfo.PREMIERS.createCategory(
+                loadPremieres(networkRepository, query.year, query.month)
+                    .createListForView(SIZE_LIST_VIEW), query
+            ),
+            CategoryInfo.TV_SERIES.createCategory(
+                loadSerials(networkRepository, FIRST_PAGE).createListForView(
+                    SIZE_LIST_VIEW
+                )
+            ),
+            CategoryInfo.BEST.createCategory(
+                loadBest(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)
+            ),
+            CategoryInfo.POPULAR.createCategory(
+                loadPopular(networkRepository, FIRST_PAGE).createListForView(SIZE_LIST_VIEW)
+            ),
+            randomCategory.createCategory(
+                loadFilmsByCounterAdnGenre(networkRepository, FIRST_PAGE, query.counterID, query.genreId
+                ).createListForView(SIZE_LIST_VIEW), query
+            )
+        )
     }
 
     fun navigateToCategory(categoryFilms: BaseCategory) {
         savedStateHandle[NAVIGATE__CATEGORY_PAGE] = categoryFilms as PageCategory
-        savedStateHandle[WORK_MODE] = ViewModelWorkMode.IN_NETWORK
     }
 
     fun navigateToInfoFilm(filmID: Int?) {

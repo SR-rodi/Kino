@@ -40,6 +40,13 @@ interface CategoryFilmsApi {
         @Query("page") page: Int = 1,
         @Query("countries") countries: Int = 3,
         @Query("genres") genres: Int = 2,
-    ): ResponseFiltresFilms
+    ): ResponseFilterFilms
+
+    @Headers("X-API-KEY:$API_KEY")
+    @GET("api/v2.2/films")
+    suspend fun getSeries(
+        @Query("page") page: Int,
+        @Query("type") type:String ="TV_SERIES",
+    ): ResponseSeries
 
 }

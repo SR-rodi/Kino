@@ -1,10 +1,12 @@
 package com.example.feature_details.presentation.filmography.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import com.example.core.tools.BaseFragment
+import com.example.core.tools.basefrahment.BaseFragment
+import com.example.core.tools.extensions.popBackStack
 import com.example.feature_details.R
 import com.example.feature_details.databinding.FragmentTabGalleryOrFilmografyBinding
 import com.example.feature_details.presentation.filmography.viewModel.FilmographyListViewModel
@@ -19,6 +21,7 @@ class FilmographyListFragment : BaseFragment<FragmentTabGalleryOrFilmografyBindi
 
     private val viewModel by viewModel<FilmographyListViewModel>()
 
+    @SuppressLint("InflateParams")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        val category=  viewModel.divideByCategory()
@@ -30,6 +33,8 @@ class FilmographyListFragment : BaseFragment<FragmentTabGalleryOrFilmografyBindi
         }
 
         TabLayoutMediator(binding.tabLayoutGallery,binding.viewPagerGallery){tab,position->
+
+            binding.backArrow.popBackStack()
 
             val customTab =
                 LayoutInflater.from(requireContext()).inflate(R.layout.item_tab, null)

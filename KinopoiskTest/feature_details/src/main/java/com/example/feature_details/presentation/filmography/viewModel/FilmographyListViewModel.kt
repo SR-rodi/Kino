@@ -3,7 +3,6 @@ package com.example.feature_details.presentation.filmography.viewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.core.tools.NAVIGATE__TO_FILMOGRAPHY
-import com.example.feature_details.data.detailsFilm_page.dto.StaffDetailsDTO
 import com.example.feature_details.data.FilmographyCategory
 import com.example.feature_details.data.details_staff.FilmView
 

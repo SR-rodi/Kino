@@ -7,8 +7,8 @@ import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
-import com.example.core.tools.BaseFragment
-import com.example.core.tools.adapter.home.CategoryAdapterBase
+import com.example.core.tools.basefrahment.BaseFragment
+import com.example.core.tools.adapter.adapters.CategoryAdapterBase
 import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.category.PageCategory
 import com.example.core.tools.category.CategoryInfo
@@ -27,9 +27,7 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
     private val viewModel by viewModel<FilmInfoViewModel>()
 
     private val adapter by lazy {
-        CategoryAdapterBase(
-            { onClickItem(it) },
-            { onClickAll(it) })
+        CategoryAdapterBase({ onClickItem(it) }, { onClickAll(it) })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -104,8 +102,13 @@ class FilmInfoFragment : BaseFragment<FragmentFilmInfoBinding>() {
                 viewModel.navigateToStaffInfo(categoryInfo)
                 findNavController().navigate(R.id.action_filmInfoFragment_to_staffInfoFragment)
             }
+            CategoryInfo.TV_SERIES->{
+                viewModel.navigateToSeasonsList(categoryInfo)
+                findNavController().navigate(R.id.action_filmInfoFragment_to_seasonsListFragment)
+            }
             CategoryInfo.GALLERY -> createGalleryDialog(categoryInfo)
             CategoryInfo.SIMILAR -> { viewModel.getFilmForID(categoryInfo.query?.id) }
+
             else -> {}
         }
 

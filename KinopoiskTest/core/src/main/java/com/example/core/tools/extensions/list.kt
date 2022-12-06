@@ -1,14 +1,10 @@
 package com.example.core.tools.extensions
 
-import com.example.core.tools.GRID_ACTOR_SIZE
-import com.example.core.tools.GRID_STAFF_SIZE
 import com.example.core.tools.all.NestedInfoInCategory
-import com.example.core.tools.base_model.category.BaseCategory
 import com.example.core.tools.base_model.films.BaseEntityFilm
 import com.example.core.tools.base_model.films.BaseFilm
 import com.example.core.tools.base_model.imes.ItemNext
 import com.example.core.tools.base_model.imes.ItemStun
-import com.example.core.tools.category.CategoryInfo
 
 
 fun List<BaseEntityFilm>.toBaseFilmList(): List<BaseFilm> {

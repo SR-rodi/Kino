@@ -1,18 +1,12 @@
 package com.example.core.tools.adapter.delegate
 
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.LayoutParams
-import com.example.core.databinding.ItemDescriptionBinding
-import com.example.core.databinding.ItemFilmsBinding
 import com.example.core.databinding.ItemFullGalleryBinding
 import com.example.core.databinding.ItemGalleryBinding
-import com.example.core.databinding.ItemStaffBinding
-import com.example.core.tools.NestedFilm
 import com.example.core.tools.all.NestedInfoInCategory
 import com.example.core.tools.all.Query
 import com.example.core.tools.base_model.BaseGallery
 import com.example.core.tools.base_model.FullGalleryImage
-import com.example.core.tools.base_model.Staff
 import com.example.core.tools.base_model.category.GriDGallery
 import com.example.core.tools.base_model.category.PageCategory
 import com.example.core.tools.category.CategoryInfo

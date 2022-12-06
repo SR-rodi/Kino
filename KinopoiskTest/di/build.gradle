@@ -37,8 +37,8 @@ dependencies {
     implementation project(':feature_home')
     implementation project(':feature_details')
     implementation project(':feature_database')
-    implementation project(':presentation_search')
-    implementation project(':presentation_profile')
+    implementation project(':feature_search')
+    implementation project(':feature_profile')
     implementation project(':common_domain')
     implementation project(":core")
 

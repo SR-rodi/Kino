@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.example.core.tools.adapter.collections.CollectionAdapter
-import com.example.core.tools.adapter.oldversionsadapter.FilmsCollection
+import com.example.core.tools.adapter.adapters.CollectionAdapter
+import com.example.core.tools.base_model.FilmsCollection
 import com.example.core.tools.extensions.createAddDialog
 import com.example.core.tools.extensions.glide
 import com.example.feature_details.databinding.BottomSheetMenuBinding

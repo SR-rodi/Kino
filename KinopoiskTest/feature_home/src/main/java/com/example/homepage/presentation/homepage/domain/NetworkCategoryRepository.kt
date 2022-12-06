@@ -3,7 +3,7 @@ package com.example.homepage.presentation.homepage.domain
 import com.example.adapterdelegate.data.ResponseSimilar
 import com.example.adapterdelegate.data.StaffFromFilmsDTO
 import com.example.homepage.presentation.homepage.data.films.dto.*
-
+import com.example.homepage.presentation.homepage.data.response.ResponseSeries
 
 interface NetworkCategoryRepository {
 
@@ -20,4 +20,7 @@ interface NetworkCategoryRepository {
     suspend fun getSimilarFilms(id:Int): ResponseSimilar
 
     suspend fun  getStaffByFilmsId(id: Int): List<StaffFromFilmsDTO>
+
+    suspend fun getSeries(page:Int):ResponseSeries
+
 }

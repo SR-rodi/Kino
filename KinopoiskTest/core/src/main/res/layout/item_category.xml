@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/graphik_bold"
             android:layout_marginStart="26dp"
-
-            android:text="@string/premieres"
+            tools:text="Category"
             android:layout_gravity="center_vertical"
             android:textColor="@color/title_text_color"
             android:textSize="20sp" />

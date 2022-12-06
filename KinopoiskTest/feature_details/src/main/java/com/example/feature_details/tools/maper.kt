@@ -19,7 +19,9 @@ import com.example.feature_details.data.detailsFilm_page.response.ResponseFilmGa
 import com.example.feature_details.data.details_staff.BestFilm
 import com.example.feature_details.data.details_staff.Film
 import com.example.feature_details.data.details_staff.FilmView
-import com.example.feature_details.domein.repository_ipl.FilmUseCase
+import com.example.feature_details.data.season.ResponseSerialsDTO
+import com.example.feature_details.data.season.SeasonsItem
+import com.example.feature_details.domain.repository_ipl.FilmUseCase
 import com.example.feature_details.presentation.staff_details.viewModel.StaffInfoViewModel
 
 
@@ -91,3 +93,6 @@ fun List <NestedInfoInCategory>.toFullGalleryImage(): MutableList<NestedInfoInCa
     }
     return list
 }
+
+fun ResponseSerialsDTO.toSeasonsItem()=
+    SeasonsItem(CategoryInfo.TV_SERIES,this.items)
