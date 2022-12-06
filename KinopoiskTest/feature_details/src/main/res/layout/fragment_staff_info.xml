@@ -7,10 +7,20 @@
     android:orientation="vertical"
     tools:context="com.example.feature_details.presentation.staff_details.fragment.StaffInfoFragment">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
+        <ProgressBar
+            android:layout_marginTop="50dp"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+          android:visibility="gone"
+            android:indeterminateTint="@color/purple_1"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:layout_marginTop="10dp"

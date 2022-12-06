@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.tools.basefrahment.BaseFragment
 import com.example.core.tools.adapter.adapters.NestedAdapterBase
 import com.example.core.tools.base_model.category.PageCategory
+import com.example.core.tools.extensions.observeLoadState
 import com.example.feature_details.databinding.FragmentRecyclerBinding
 import com.example.feature_details.presentation.filmography.viewModel.FilmographyViewModel
 import kotlinx.coroutines.launch
@@ -26,6 +27,8 @@ class FilmographyFragment : BaseFragment<FragmentRecyclerBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         observe()
+
+        observeLoadState(viewModel.loadState,binding.progressBar){}
 
         binding.filmsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

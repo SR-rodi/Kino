@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import com.example.core.R
 import com.example.core.tools.adapter.adapters.NestedAdapterBase
 import com.example.core.tools.base_model.category.PageCategory
+import com.example.core.tools.extensions.observeLoadState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
@@ -30,7 +31,10 @@ class StaffInfoFragment : BaseFragment<FragmentStaffInfoBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getStaff()
+
         observe()
+
+        observeLoadState(viewModel.loadState,binding.progressBar){}
 
         binding.bestFilms.adapter = adapter
 

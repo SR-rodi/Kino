@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.tools.NAVIGATE__TO_GALLERY_LIST
+import com.example.core.tools.all.LoadState
+import com.example.core.tools.basefrahment.BaseViewModel
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.domain.repository_ipl.GalleryUseCase
 import com.example.feature_details.tools.toImageCategory
@@ -14,7 +16,7 @@ import kotlinx.coroutines.launch
 class ListGalleryViewModel(
     private val galleryUseCase: GalleryUseCase,
     private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _items = MutableSharedFlow<List<ImageCategory>>()
     val items get() = _items.asSharedFlow()
@@ -23,6 +25,7 @@ class ListGalleryViewModel(
 
     fun getGallery() {
         viewModelScope.launch {
+            _loadState.emit(LoadState.LOADING)
             if (id!=null){
                 val listGallery = mutableListOf<ImageCategory>()
                 ImageCategory.values().forEach { imageCategory ->
@@ -33,6 +36,7 @@ class ListGalleryViewModel(
                 savedStateHandle[Gallery_CATEGORY] = listGallery
                 _items.emit(listGallery)
             }
+            _loadState.emit(LoadState.SUCCESS)
         }
     }
 

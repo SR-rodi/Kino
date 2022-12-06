@@ -21,5 +21,6 @@ enum class FilmographyCategory(
     PRODUCER("Продюссер"),
     ACTOR("Актер"),
     VOICE_DIRECTOR("Звуко режесёр"),
-    UNKNOWN("Остальное")
+    UNKNOWN("Остальное"),
+    VOICE_FEMALE("Озвучка")
 }

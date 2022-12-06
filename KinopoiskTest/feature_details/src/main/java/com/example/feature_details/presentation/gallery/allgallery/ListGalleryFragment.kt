@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.example.core.tools.basefrahment.BaseFragment
+import com.example.core.tools.extensions.observeLoadState
 import com.example.feature_details.R
 import com.example.feature_details.data.ImageCategory
 import com.example.feature_details.databinding.FragmentTabGalleryOrFilmografyBinding
@@ -26,6 +27,8 @@ class ListGalleryFragment : BaseFragment<FragmentTabGalleryOrFilmografyBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getGallery()
+
+        observeLoadState(viewModel.loadState,binding.progressBar){}
 
         observe()
 

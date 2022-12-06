@@ -34,8 +34,8 @@ class StaffInfoViewModel(
 
     fun getStaff() {
         viewModelScope.launch(handler + Dispatchers.IO) {
+            _loadState.value = LoadState.LOADING
             if (staffID != null) {
-                _loadState.value = LoadState.LOADING
                  person = networkRepository.getStaffByID(staffID)
                 _staff.emit(Pair(person!!, person!!.films.getBeastFilms(filmUseCase).toBaseFilmList()))
                 _loadState.value = LoadState.SUCCESS

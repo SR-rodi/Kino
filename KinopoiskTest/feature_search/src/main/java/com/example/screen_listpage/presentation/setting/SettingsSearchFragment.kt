@@ -10,6 +10,7 @@ import com.example.core.tools.general.GenreCountry
 import com.example.core.tools.Order
 import com.example.core.tools.SetSearch
 import com.example.core.tools.Type
+import com.example.core.tools.extensions.observeLoadState
 import com.example.screen_listpage.R
 import com.example.screen_listpage.tools.createDialogSetting
 import com.example.screen_listpage.tools.createDialogYearPicker
@@ -23,7 +24,7 @@ class SettingsSearchFragment : BaseFragment<FragmentSettingsSearchBinding>() {
     override fun initBinding(inflater: LayoutInflater) =
         FragmentSettingsSearchBinding.inflate(inflater)
 
-    private  val viewModel by viewModel<SettingsSearchViewModel>()
+    private val viewModel by viewModel<SettingsSearchViewModel>()
 
     private var countryList = listOf<GenreCountry>()
     private var genreList = listOf<GenreCountry>()
@@ -40,16 +41,15 @@ class SettingsSearchFragment : BaseFragment<FragmentSettingsSearchBinding>() {
 
         setListenerSlider()
 
-       observe()
-
+        observe()
 
         setOnClick()
 
     }
 
-    private fun observe(){
-        viewLifecycleOwner.lifecycleScope.launch{
-            viewModel.data.collect{
+    private fun observe() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.data.collect {
                 countryList = it.listCountry
                 genreList = it.listGenre
                 setText(binding.country, "Страна", it.countryName)
@@ -58,22 +58,22 @@ class SettingsSearchFragment : BaseFragment<FragmentSettingsSearchBinding>() {
         }
     }
 
-    fun setOnClick(){
-        binding.country.root.setOnClickListener{
-            createDialogSetting(countryList, TypeSettings.COUNTRY){
+    fun setOnClick() {
+        binding.country.root.setOnClickListener {
+            createDialogSetting(countryList, TypeSettings.COUNTRY) {
                 SetSearch.counterID = it
                 viewModel.getDataList()
             }
         }
 
-        binding.genres.root.setOnClickListener{
+        binding.genres.root.setOnClickListener {
             createDialogSetting(genreList, TypeSettings.GENRE) {
                 SetSearch.genreId = it
                 viewModel.getDataList()
             }
         }
 
-        binding.years.root.setOnClickListener{
+        binding.years.root.setOnClickListener {
             createDialogYearPicker {
                 setText(binding.years, "Год", "${SetSearch.yearFrom} - ${SetSearch.yearTo}")
             }

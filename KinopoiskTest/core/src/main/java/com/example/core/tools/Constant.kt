@@ -2,8 +2,8 @@ package com.example.core.tools
 
 const val BASE_URL = "https://kinopoiskapiunofficial.tech/"
 const val API_KEY3= "c92f9a94-f068-435f-855b-a5acff019cc5"
-const val API_KEY = "8c5cddf6-0364-4744-a57b-5d13c7f48063"
-const val API_KEY4 = "70e0059c-0587-4549-9cbf-8a9c5c4143f6"
+const val API_KEY4 = "8c5cddf6-0364-4744-a57b-5d13c7f48063"
+const val API_KEY = "70e0059c-0587-4549-9cbf-8a9c5c4143f6"
 const val API_KEY2= "2c7d0bf6-864e-4403-a497-85dde3bc1c16"
 const val API_KEY5= "4afdb41e-920d-4f23-bb5b-ff9015206a1b"
 const val API_KEY6= "ca3b0d40-c9dc-4950-b32f-d4e29e560d62"

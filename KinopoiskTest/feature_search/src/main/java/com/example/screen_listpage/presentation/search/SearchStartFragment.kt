@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.core.tools.basefrahment.BaseFragment
 import com.example.core.tools.adapter.adapters.NestedAdapterBase
 import com.example.core.tools.base_model.category.PageCategory
+import com.example.core.tools.extensions.observeLoadState
 import com.example.screen_listpage.R
 import com.example.screen_listpage.databinding.FragmentSearchStartBinding
 import kotlinx.coroutines.launch
@@ -26,6 +27,8 @@ class SearchStartFragment : BaseFragment<FragmentSearchStartBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeInput()
+
+        observeLoadState(viewModel.loadState,binding.progressBar){}
 
         super.onViewCreated(view, savedInstanceState)
         binding.settings.setEndIconOnClickListener {
