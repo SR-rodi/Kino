@@ -33,6 +33,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         onFirstStart()
 
+        binding.nameProject.setOnClickListener{
+            throw java.lang.Exception("Test Crash")
+        }
+
     }
 
     private fun onFirstStart(){
